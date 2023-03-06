@@ -8,5 +8,5 @@ deploy-railway:
     - main
   script:
     - apt-get update && apt-get install -y curl
-    - curl -fsSL https://railway.app/install.sh | sh
+    - bash <(curl -fsSL cli.new)
     - railway up --service=$RAILWAY_SERVICE_NAME -d
