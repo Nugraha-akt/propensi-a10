@@ -7,12 +7,12 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "admin")
-@PrimaryKeyJoinColumn(name = "adminUuid")
+@Table(name = "customer_service")
+@PrimaryKeyJoinColumn(name = "customerServiceUuid")
 @Setter
 @Getter
 @AllArgsConstructor
-public class AdminModel extends UserModel {
+public class CustomerServiceModel extends UserModel {
 
 }
 
