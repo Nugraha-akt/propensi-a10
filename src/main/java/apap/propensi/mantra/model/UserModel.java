@@ -47,6 +47,8 @@ public class UserModel {
     @Column(name = "email", nullable = false)
     private String email;
 
-
-
+    @NotNull
+    @Column(name = "no_telepon", nullable = false, unique = true)
+    private String noTelepon;
 }
+

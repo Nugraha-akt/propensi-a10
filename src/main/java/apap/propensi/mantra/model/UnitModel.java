@@ -6,37 +6,39 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "unit")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name= "request")
-
-public class RequestModel implements Serializable {
+public class UnitModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
     @Column(name = "status", nullable = false)
-    private String status;
+    private Integer status;
 
     @NotNull
-    @Column(nullable = false, name = "created_at")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private LocalDateTime createdAt;
+    @Column(nullable = false, name = "plat_nomor")
+    private String platNomor;
 
     @ManyToOne(fetch= FetchType.EAGER)
-    @JoinColumn(name = "customer_uuid", nullable = true)
+    @JoinColumn(name = "request_id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private CustomerModel customer;
+    private RequestModel request;
+
+    @ManyToOne(fetch= FetchType.EAGER)
+    @JoinColumn(name = "driver_uuid", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private DriverModel driver;
 }
+
 
