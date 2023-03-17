@@ -17,7 +17,6 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-
 public class UserModel {
 
     @Id
