@@ -32,9 +32,9 @@ public class UserModel implements Serializable {
     @Column(name = "nama", nullable = false, unique = true)
     private String nama;
 
-//    @Enumerated(EnumType.STRING)
-//    @Column(name = "role")
-//    private Role role;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private Role role;
 
     @NotNull
     @Size(max = 50)
@@ -54,11 +54,5 @@ public class UserModel implements Serializable {
     @NotNull
     @Column(name = "no_telepon", nullable = false, unique = true)
     private String noTelepon;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_role", referencedColumnName = "id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private RoleModel role;
 }
 

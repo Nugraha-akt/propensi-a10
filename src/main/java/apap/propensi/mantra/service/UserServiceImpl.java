@@ -1,5 +1,6 @@
 package apap.propensi.mantra.service;
 
+import apap.propensi.mantra.model.Role;
 import apap.propensi.mantra.model.UserModel;
 import apap.propensi.mantra.repository.UserDb;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,24 @@ public class UserServiceImpl implements UserService{
         UserModel newUser = new UserModel();
 
         newUser.setUsername(user.getUsername());
-        newUser.setPassword(user.getPassword());
+        newUser.setPassword(encrypt(user.getPassword()));
         newUser.setId(user.getId());
         newUser.setNoTelepon(user.getNoTelepon());
         newUser.setNama(user.getNama());
-        newUser.setRole(user.getRole());
         newUser.setEmail(user.getEmail());
+        newUser.setRole(user.getRole());
+
+//        if (role.toUpperCase().equals(Role.ADMIN.toString())) {
+//            newUser.setRole(Role.ADMIN);
+//        } else if (role.toUpperCase().equals(Role.MANAGER.toString())) {
+//            newUser.setRole(Role.MANAGER);
+//        } else if (role.toUpperCase().equals(Role.CUSTOMER.toString())) {
+//            newUser.setRole(Role.CUSTOMER);
+//        } else if (role.toUpperCase().equals(Role.DRIVER.toString())) {
+//            newUser.setRole(Role.DRIVER);
+//        } else if (role.equals("Customer Service")) {
+//            newUser.setRole(Role.CUSTOMERSERVICE);
+//        }
 
         return userDb.save(newUser);
     }
