@@ -2,6 +2,7 @@ package apap.propensi.mantra.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import javax.validation.constraints.Size;
 @Setter
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class DriverModel extends UserModel {
 
     @NotNull
