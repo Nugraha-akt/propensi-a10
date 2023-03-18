@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xlmns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Tambah User</title>
@@ -26,13 +26,15 @@
                     <label>Password</label>
                     <input type="text" name="password" class="form-control">
 
+                    <label>No Telepon</label>
+                    <input type="text" name="noTelepon" class="form-control">
+
                     <label>Role</label>
                     <select name="role" class="form-control">
                         <option selected value="">--Pilih Role--</option>
                         <option th:each="role : ${listRole}"
-                                th:value="${role.id}"
-                                th:text="${role.role}">
-                        </option>
+                                th:value="${role}"
+                                th:text="${role.name}"/>
                     </select>
                     <br>
                     <button type="submit" class="btn btn-primary">Submit</button>
