@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <!-- Favicon -->
@@ -19,8 +19,7 @@
   <link th:href="@{lib/animate/animate.min.css}" rel="stylesheet">
   <link th:href="@{lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
 
-  <!-- Customized Bootstrap Stylesheet -->
-  <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+
 
   <!-- Template Stylesheet -->
   <link th:href="@{css/style.css}" rel="stylesheet">
@@ -28,6 +27,9 @@
   <head>
     <object th:include="fragments/fragment :: style" th:remove="tag"></object>
   </head>
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
 
 </head>
 
@@ -55,13 +57,13 @@
         <div class="container my-5 py-5 px-lg-5">
           <div class="row g-5">
             <div class="col-lg-6 pt-5 text-center text-lg-start">
-              <h1 class="display-4 text-white mb-4 animated slideInLeft">Manajemen Transportasi</h1>
-              <p class="text-white animated slideInLeft">
+              <h1 class="display-4 text-white mb-4 animated slideInRight">Manajemen Transportasi</h1>
+              <p class="text-white animated slideInRight">
                 Merevolusi Manajemen Transportasi untuk memudahkan seluruh proses yang
                 terjadi dalam bisnis transportasi untuk pengalaman manajemen transportasi
                 yang lebih baik
               </p>
-              <h1 class="text-white mb-4 animated slideInLeft">
+              <h1 class="text-white mb-4 animated slideInRight">
                 <small class="align-top fw-normal"
                        style="font-size: 15px; line-height: 25px; font-style: italic; color: rgb(255,255,0);">
                   "Solusi terintegrasi untuk mengelola transportasi"
@@ -187,6 +189,6 @@
 
 </body>
 <footer>
-  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
 </footer>
 </html>
