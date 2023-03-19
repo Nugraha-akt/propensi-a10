@@ -17,6 +17,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class DriverModel extends UserModel {
 
     @NotNull

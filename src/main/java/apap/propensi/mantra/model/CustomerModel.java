@@ -16,6 +16,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class CustomerModel extends UserModel {
     @NotNull
     @Column(name = "asal_instansi", nullable = false)
