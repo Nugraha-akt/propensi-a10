@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <!-- Favicon -->
@@ -10,7 +11,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
   <!-- Icon Font Stylesheet -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -18,15 +27,27 @@
   <!-- Libraries Stylesheet -->
   <link th:href="@{lib/animate/animate.min.css}" rel="stylesheet">
   <link th:href="@{lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+  <!-- Libraries Stylesheet -->
+  <link th:href="@{lib/animate/animate.min.css}" rel="stylesheet">
+  <link th:href="@{lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
 
 
 
+
+  <!-- Template Stylesheet -->
+  <link th:href="@{css/style.css}" rel="stylesheet">
   <!-- Template Stylesheet -->
   <link th:href="@{css/style.css}" rel="stylesheet">
 
   <head>
     <object th:include="fragments/fragment :: style" th:remove="tag"></object>
   </head>
+  <head>
+    <object th:include="fragments/fragment :: style" th:remove="tag"></object>
+  </head>
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
 
   <!-- Customized Bootstrap Stylesheet -->
   <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
@@ -39,7 +60,18 @@
 <div id="wrapper">
   <ul th:replace="fragments/fragment :: sidebar('Home')"></ul>
   <div class="container-xxl bg-white p-0">
+  <ul th:replace="fragments/fragment :: sidebar('Home')"></ul>
+  <div class="container-xxl bg-white p-0">
 
+    <nav th:replace="fragments/fragment :: topbar"></nav>
+    <!-- Spinner Start -->
+    <div id="spinner"
+         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+      <div class="spinner-border text-success" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <!-- Spinner End -->
     <nav th:replace="fragments/fragment :: topbar"></nav>
     <!-- Spinner Start -->
     <div id="spinner"
@@ -51,6 +83,33 @@
     <!-- Spinner End -->
 
 
+    <!-- Hero Start -->
+    <div class="container-xxl position-relative p-0">
+      <div class="container-xxl py-5 bg-success hero-header mb-5">
+        <div class="container my-5 py-5 px-lg-5">
+          <div class="row g-5">
+            <div class="col-lg-6 pt-5 text-center text-lg-start">
+              <h1 class="display-4 text-white mb-4 animated slideInRight">Manajemen Transportasi</h1>
+              <p class="text-white animated slideInRight">
+                Merevolusi Manajemen Transportasi untuk memudahkan seluruh proses yang
+                terjadi dalam bisnis transportasi untuk pengalaman manajemen transportasi
+                yang lebih baik
+              </p>
+              <h1 class="text-white mb-4 animated slideInRight">
+                <small class="align-top fw-normal"
+                       style="font-size: 15px; line-height: 25px; font-style: italic; color: rgb(255,255,0);">
+                  "Solusi terintegrasi untuk mengelola transportasi"
+                </small>
+              </h1>
+            </div>
+            <div class="col-lg-6 text-center text-lg-start">
+              <img class="img-fluid animated zoomIn" src="img/hero.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Hero End -->
     <!-- Hero Start -->
     <div class="container-xxl position-relative p-0">
       <div class="container-xxl py-5 bg-success hero-header mb-5">
@@ -173,7 +232,9 @@
 
 
   </div>
+  </div>
 </div>
+<div th:replace="fragments/fragment :: logoutmodal"></div>
 <div th:replace="fragments/fragment :: logoutmodal"></div>
 
 <!-- JavaScript Libraries -->
@@ -189,6 +250,7 @@
 
 </body>
 <footer>
+  <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
   <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
 </footer>
 </html>

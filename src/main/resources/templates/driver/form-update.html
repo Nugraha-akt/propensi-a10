@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title> Mantra - Update Driver </title>
+  <object th:include="fragments/fragment :: style" th:remove="tag"></object>
+</head>
+<body>
+<div class="container">
+  <div class="card m-4 p-4">
+    <div class="card-body">
+      <div class="justify-content-center">
+        <h2 class="text-center">Silahkan pilih ingin ditugaskan ke request yang mana</h2>
+        <br>
+        <div th:if="*{listRequest.size() != 0}">
+          <br>
+          <table class="table">
+            <thead>
+            <tr>
+              <th class="text-center">Id</th>
+              <th class="text-center">Nama</th>
+              <th class="text-center">Asal Instansi</th>
+              <th class="text-center">Tujuan</th>
+              <th class="text-center">Aksi</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="request, iterationStatus : ${listRequest}"
+                th:style="${iterationStatus.even} ? 'font-weight:bold;'">
+              <td class="text-center" th:text="${request.id}"></td>
+              <td class="text-center" th:text="${request.customer.nama}"></td>
+              <td class="text-center" th:text="${request.customer.asalInstansi}"></td>
+              <td class="text-center" th:text="${request.tujuan}"></td>
+              <td class="text-center">
+                <a class="btn btn-sm btn-warning" style="margin: 1px" th:href="@{/driver/update-tugaskan/} + ${driver.uuid} + @{/} + ${request.id}">Tugaskan</a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div th:unless="*{listRequest.size() != 0}">
+          <br>
+          <h4 th:text="'Belum ada request'"></h4>
+        </div>
+        <br><br>
+        <a class="btn btn-primary" th:href="@{/driver/viewall/}">Kembali</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

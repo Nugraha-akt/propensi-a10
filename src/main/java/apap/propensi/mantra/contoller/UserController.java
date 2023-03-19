@@ -7,10 +7,7 @@ import apap.propensi.mantra.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,10 +41,22 @@ public class UserController {
     }
 
     @PostMapping(value = "/add")
-    private String addUserSubmit(@ModelAttribute UserModel user, String role, Model model){
+    private String addUserSubmit(@ModelAttribute UserModel user, Model model){
         userService.addUser(user);
 
         model.addAttribute("user", user);
         return "redirect:/user/viewall";
+    }
+
+    @GetMapping("/detail")
+    public String viewUserDetail(@RequestParam(value = "uuid") String uuid, Model model) {
+        if (userService.getUserByUuid(uuid) == null) {
+            model.addAttribute("uuid", uuid);
+            return "user-not-found";
+        }
+        UserModel user = userService.getUserByUuid(uuid);
+
+        model.addAttribute("user", user);
+        return "view-user-detail";
     }
 }

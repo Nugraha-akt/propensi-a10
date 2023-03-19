@@ -20,23 +20,11 @@ public class UserServiceImpl implements UserService{
 
         newUser.setUsername(user.getUsername());
         newUser.setPassword(encrypt(user.getPassword()));
-        newUser.setId(user.getId());
+        newUser.setUuid(user.getUuid());
         newUser.setNoTelepon(user.getNoTelepon());
         newUser.setNama(user.getNama());
         newUser.setEmail(user.getEmail());
         newUser.setRole(user.getRole());
-
-//        if (role.toUpperCase().equals(Role.ADMIN.toString())) {
-//            newUser.setRole(Role.ADMIN);
-//        } else if (role.toUpperCase().equals(Role.MANAGER.toString())) {
-//            newUser.setRole(Role.MANAGER);
-//        } else if (role.toUpperCase().equals(Role.CUSTOMER.toString())) {
-//            newUser.setRole(Role.CUSTOMER);
-//        } else if (role.toUpperCase().equals(Role.DRIVER.toString())) {
-//            newUser.setRole(Role.DRIVER);
-//        } else if (role.equals("Customer Service")) {
-//            newUser.setRole(Role.CUSTOMERSERVICE);
-//        }
 
         return userDb.save(newUser);
     }
@@ -47,7 +35,7 @@ public class UserServiceImpl implements UserService{
 
         updatedUser.setUsername(oldUser.getUsername());
         updatedUser.setPassword(oldUser.getPassword());
-        updatedUser.setId(oldUser.getId());
+        updatedUser.setUuid(oldUser.getUuid());
         updatedUser.setNoTelepon(oldUser.getNoTelepon());
         updatedUser.setNama(oldUser.getNama());
         updatedUser.setRole(oldUser.getRole());
@@ -69,6 +57,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserModel getUserByUsername(String username) {
         return userDb.findByUsername(username);
+    }
+
+    @Override
+    public UserModel getUserByUuid(String uuid) {
+        return userDb.findByUuid(uuid);
     }
 
     @Override
