@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> Mantra - Nonaktifkan Driver </title>
+    <object th:include="fragments/fragment :: style" th:remove="tag"></object>
+</head>
+<body>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <form th:action="@{/driver/nonaktifkan-berhasil/} + ${driver.uuid}" th:object="${driver}" method="POST">
+                <h2 th:text="'Apakah Anda Yakin ingin Menonaktifkan Driver dengan Username ' + ${driver.username}"></h2>
+                <br>
+                <button class="btn btn-success" type="submit">Ya</button>
+                <a class="btn btn-danger" th:href="@{/driver/viewall/}">Tidak</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

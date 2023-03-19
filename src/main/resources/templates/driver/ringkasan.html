@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title> Mantra - Ringkasan Driver </title>
+  <object th:include="fragments/fragment :: style" th:remove="tag"></object>
+</head>
+<body>
+<div class="container">
+  <div class="card m-4 p-4">
+    <div class="card-body">
+      <div class="justify-content-center">
+        <h2 class="text-center" th:text="'Ringkasan Driver'"></h2>
+        <br><br>
+        <table class="table">
+          <tbody>
+          <tr>
+            <th scope="row">Sedang Ditugaskan</th>
+            <td th:text="${sumSedangDitugaskan}"></td>
+          </tr>
+          <tr>
+            <th scope="row">Belum Ditugaskan</th>
+            <td th:text="${sumBelumDitugaskan}"></td>
+          </tr>
+          <tr>
+            <th scope="row">Sudah Ditugaskan</th>
+            <td th:text="${sumSudahDitugaskan}"></td>
+          </tr>
+          <tr>
+            <th scope="row">Tidak Aktif</th>
+            <td th:text="${sumTidakAktif}"></td>
+          </tr>
+        </table>
+        <a class="btn btn-primary" th:href="@{/driver/viewall}">Kembali</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
