@@ -26,6 +26,10 @@ public class RequestModel implements Serializable {
     private Long id;
 
     @NotNull
+    @Column(name = "tujuan", nullable = false)
+    private String tujuan;
+
+    @NotNull
     @Column(name = "status", nullable = false)
     private String status;
 
@@ -34,9 +38,18 @@ public class RequestModel implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime createdAt;
 
+    @NotNull
+    @Column(name = "alasan", nullable = false)
+    private String alasan;
+
     @ManyToOne(fetch= FetchType.EAGER)
     @JoinColumn(name = "customer_uuid", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private CustomerModel customer;
+
+    @ManyToOne(fetch= FetchType.EAGER)
+    @JoinColumn(name = "driver_uuid", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private DriverModel driver;
 }
 
