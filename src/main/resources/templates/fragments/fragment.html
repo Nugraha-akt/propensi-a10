@@ -18,7 +18,7 @@
 </body>
 
 <head th:fragment="style">
-
+  <link th:href="@{img/icon.png}" rel="icon">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -40,7 +40,7 @@
 <ul th:fragment="sidebar(active)" class="navbar-nav bg-gradient-success2 sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/}">
     <div class="sidebar-brand-icon">
       <i class="fas fa-car"></i>
     </div>
@@ -73,13 +73,13 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRequest"
        aria-expanded="true" aria-controls="collapseRequest">
-      <i class="fas fa-fw fa-cog"></i>
+      <i class="fas fa-fw fa-briefcase"></i>
       <span>Request</span>
     </a>
     <div id="collapseRequest" class="collapse" aria-labelledby="headingRequest" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="buttons.html">Ajukan Request</a>
-        <a class="collapse-item" href="cards.html">Riwayat Request</a>
+        <a class="collapse-item" th:href="@{/blank}">Ajukan Request</a>
+        <a class="collapse-item" th:href="@{/blank}">Riwayat Request</a>
       </div>
     </div>
   </li>
@@ -96,13 +96,13 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUnit"
        aria-expanded="true" aria-controls="collapseUnit">
-      <i class="fas fa-fw fa-wrench"></i>
+      <i class="fas fa-fw fa-car-side"></i>
       <span>Manajemen Unit</span>
     </a>
     <div id="collapseUnit" class="collapse" aria-labelledby="headingUnit" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="utilities-color.html">Membuat Unit</a>
-        <a class="collapse-item" href="utilities-border.html">Kelola Unit</a>
+        <a class="collapse-item" th:href="@{/blank}">Membuat Unit</a>
+        <a class="collapse-item" th:href="@{/blank}">Kelola Unit</a>
       </div>
     </div>
   </li>
@@ -111,20 +111,20 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDriver"
        aria-expanded="true" aria-controls="collapseDriver">
-      <i class="fas fa-fw fa-wrench"></i>
+      <i class="fas fa-fw fa-dharmachakra"></i>
       <span>Manajemen Driver</span>
     </a>
     <div id="collapseDriver" class="collapse" aria-labelledby="headingDriver" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="utilities-color.html">Membuat Driver</a>
-        <a class="collapse-item" href="utilities-border.html">Kelola Driver</a>
+        <a class="collapse-item" th:href="@{/blank}">Membuat Driver</a>
+        <a class="collapse-item" th:href="@{/blank}">Kelola Driver</a>
       </div>
     </div>
   </li>
 
   <!-- Nav Item - Monitor -->
   <li class="nav-item">
-    <a class="nav-link" href="charts.html">
+    <a class="nav-link" th:href="@{/blank}">
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Monitor Unit dan Driver</span></a>
   </li>
@@ -141,21 +141,22 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSurat"
        aria-expanded="true" aria-controls="collapseSurat">
-      <i class="fas fa-fw fa-wrench"></i>
+      <i class="fas fa-fw fa-envelope-open-text"></i>
       <span>Manajemen Surat</span>
     </a>
     <div id="collapseSurat" class="collapse" aria-labelledby="headingSurat" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="utilities-color.html">Verifikasi Surat</a>
-        <a class="collapse-item" href="utilities-border.html">Kelola Surat</a>
+        <a class="collapse-item" th:href="@{/blank}">Verifikasi Surat</a>
+        <a class="collapse-item" th:href="@{/blank}">Kelola Surat</a>
+        <a class="collapse-item" th:href="@{/blank}">Pengumpulan Surat</a>
       </div>
     </div>
   </li>
 
   <!-- Nav Item - Komplain -->
   <li class="nav-item">
-    <a class="nav-link" href="charts.html">
-      <i class="fas fa-fw fa-chart-area"></i>
+    <a class="nav-link" th:href="@{/blank}">
+      <i class="fas fa-fw fa-wrench"></i>
       <span>Manajemen Komplain</span></a>
   </li>
 
@@ -169,13 +170,13 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
        aria-expanded="true" aria-controls="collapseUser">
-      <i class="fas fa-fw fa-wrench"></i>
+      <i class="fas fa-fw fa-user-cog"></i>
       <span>Manajemen User</span>
     </a>
     <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="/user/add">Membuat User</a>
-        <a class="collapse-item" href="/user/viewall">Kelola User</a>
+        <a class="collapse-item" th:href="@{/user/add}">Membuat User</a>
+        <a class="collapse-item" th:href="@{/user/viewall}">Kelola User</a>
       </div>
     </div>
   </li>
