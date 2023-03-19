@@ -2,6 +2,7 @@ package apap.propensi.mantra.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @Setter
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class CustomerModel extends UserModel {
     @NotNull
     @Column(name = "asal_instansi", nullable = false)
