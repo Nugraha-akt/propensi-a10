@@ -70,7 +70,7 @@
   </div>
 
   <!-- Nav Item - Request Menu -->
-  <li class="nav-item" sec:authorize="hasAnyAuthority('CUSTOMER','ADMIN','MANAGER')">
+  <li class="nav-item" th:classappend="${active == 'Request'} ? active : ''" sec:authorize="hasAnyAuthority('CUSTOMER','ADMIN','MANAGER')">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRequest"
        aria-expanded="true" aria-controls="collapseRequest">
       <i class="fas fa-fw fa-briefcase"></i>
@@ -94,7 +94,7 @@
   </div>
 
   <!-- Nav Item - Unit Menu -->
-  <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
+  <li class="nav-item" th:classappend="${active == 'Unit'} ? active : ''" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUnit"
        aria-expanded="true" aria-controls="collapseUnit">
       <i class="fas fa-fw fa-car-side"></i>
@@ -109,7 +109,7 @@
   </li>
 
   <!-- Nav Item - Driver Menu -->
-  <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
+  <li class="nav-item" th:classappend="${active == 'Driver'} ? active : ''" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDriver"
        aria-expanded="true" aria-controls="collapseDriver">
       <i class="fas fa-fw fa-dharmachakra"></i>
@@ -124,7 +124,7 @@
   </li>
 
   <!-- Nav Item - Monitor -->
-  <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
+  <li class="nav-item" th:classappend="${active == 'Monitor'} ? active : ''" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
     <a class="nav-link" th:href="@{/blank}">
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Monitor Unit dan Driver</span></a>
@@ -139,7 +139,7 @@
   </div>
 
   <!-- Nav Item - Surat Menu -->
-  <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','MANAGER','CUSTOMER','DRIVER')">
+  <li class="nav-item" th:classappend="${active == 'Surat'} ? active : ''" sec:authorize="hasAnyAuthority('ADMIN','MANAGER','CUSTOMER','DRIVER')">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSurat"
        aria-expanded="true" aria-controls="collapseSurat">
       <i class="fas fa-fw fa-envelope-open-text"></i>
@@ -155,13 +155,13 @@
   </li>
 
   <!-- Nav Item - Komplain -->
-  <li class="nav-item" sec:authorize="hasAnyAuthority('CUSTOMERSERVICE', 'MANAGER', 'ADMIN')">
+  <li class="nav-item" th:classappend="${active == 'Komplain'} ? active : ''" sec:authorize="hasAnyAuthority('CUSTOMERSERVICE', 'MANAGER', 'ADMIN')">
     <a class="nav-link" th:href="@{/blank}">
       <i class="fas fa-fw fa-wrench"></i>
       <span>Manajemen Komplain</span></a>
   </li>
 
-  <li class="nav-item" sec:authorize="hasAnyAuthority('CUSTOMER', 'DRIVER')">
+  <li class="nav-item" th:classappend="${active == 'Komlain'} ? active : ''" sec:authorize="hasAnyAuthority('CUSTOMER', 'DRIVER')">
     <a class="nav-link" th:href="@{/blank}">
       <i class="fas fa-fw fa-wrench"></i>
       <span>Riwayat Komplain</span></a>
@@ -174,7 +174,7 @@
     User
   </div>
   <!-- Nav Item - User Menu -->
-  <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
+  <li class="nav-item" th:classappend="${active == 'User'} ? active : ''" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
        aria-expanded="true" aria-controls="collapseUser">
       <i class="fas fa-fw fa-user-cog"></i>

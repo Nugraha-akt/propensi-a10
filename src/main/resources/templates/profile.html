@@ -69,6 +69,11 @@
                             <div class="col-lg-9 col-md-8" th:text="${instansi}">Lueilwitz, Wisoky and Leuschke</div>
                           </div>
 
+                            <div class="row" th:if="${user.getRole().getName() == 'Driver'}">
+                                <div class="col-lg-3 col-md-4 label text-gray-800">Nomor SIM</div>
+                                <div class="col-lg-9 col-md-8" th:text="${sim}">1234566789</div>
+                            </div>
+
                           <div class="row">
                             <div class="col-lg-3 col-md-4 label text-gray-800">Role</div>
                             <div class="col-lg-9 col-md-8" th:text="${user.getRole().getName()}">Web Designer</div>

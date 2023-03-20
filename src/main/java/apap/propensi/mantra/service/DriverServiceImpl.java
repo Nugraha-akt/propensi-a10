@@ -29,6 +29,14 @@ public class DriverServiceImpl implements DriverService{
     }
 
     @Override
+    public DriverModel getDriverByUsername(String username) {
+        Optional<DriverModel> driver = driverDb.findByUsername(username);
+        if (driver.isPresent()) {
+            return driver.get();
+        } else return null;
+    }
+
+    @Override
     public DriverModel updateDriver(DriverModel driver) {
         driverDb.save(driver);
         return driver;
