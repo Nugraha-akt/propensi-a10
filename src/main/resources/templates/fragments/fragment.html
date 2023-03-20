@@ -62,15 +62,15 @@
       <span>Home</span></a>
   </li>
   <!-- Divider -->
-  <hr class="sidebar-divider">
+  <hr class="sidebar-divider" sec:authorize="hasAnyAuthority('ADMIN','MANAGER','CUSTOMER','DRIVER')">
 
   <!-- Heading -->
-  <div class="sidebar-heading">
+  <div class="sidebar-heading" sec:authorize="hasAnyAuthority('ADMIN','MANAGER','CUSTOMER','DRIVER')">
     Request
   </div>
 
   <!-- Nav Item - Request Menu -->
-  <li class="nav-item">
+  <li class="nav-item" sec:authorize="hasAnyAuthority('CUSTOMER','ADMIN','MANAGER')">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRequest"
        aria-expanded="true" aria-controls="collapseRequest">
       <i class="fas fa-fw fa-briefcase"></i>
@@ -78,22 +78,23 @@
     </a>
     <div id="collapseRequest" class="collapse" aria-labelledby="headingRequest" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" th:href="@{/blank}">Ajukan Request</a>
+        <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAuthority('CUSTOMER')">Ajukan Request</a>
         <a class="collapse-item" th:href="@{/blank}">Riwayat Request</a>
+        <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">Kelola Request</a>
       </div>
     </div>
   </li>
 
   <!-- Divider -->
-  <hr class="sidebar-divider">
+  <hr class="sidebar-divider" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
 
   <!-- Heading -->
-  <div class="sidebar-heading">
+  <div class="sidebar-heading" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
     Unit dan Driver
   </div>
 
   <!-- Nav Item - Unit Menu -->
-  <li class="nav-item">
+  <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUnit"
        aria-expanded="true" aria-controls="collapseUnit">
       <i class="fas fa-fw fa-car-side"></i>
@@ -108,7 +109,7 @@
   </li>
 
   <!-- Nav Item - Driver Menu -->
-  <li class="nav-item">
+  <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDriver"
        aria-expanded="true" aria-controls="collapseDriver">
       <i class="fas fa-fw fa-dharmachakra"></i>
@@ -116,14 +117,14 @@
     </a>
     <div id="collapseDriver" class="collapse" aria-labelledby="headingDriver" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" th:href="@{/blank}">Membuat Driver</a>
-        <a class="collapse-item" th:href="@{/blank}">Kelola Driver</a>
+        <a class="collapse-item" th:href="@{/driver/viewall}">Kelola Driver</a>
+        <a class="collapse-item" th:href="@{/driver/ringkasan}">Ringkasan Driver</a>
       </div>
     </div>
   </li>
 
   <!-- Nav Item - Monitor -->
-  <li class="nav-item">
+  <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
     <a class="nav-link" th:href="@{/blank}">
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Monitor Unit dan Driver</span></a>
@@ -138,7 +139,7 @@
   </div>
 
   <!-- Nav Item - Surat Menu -->
-  <li class="nav-item">
+  <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','MANAGER','CUSTOMER','DRIVER')">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSurat"
        aria-expanded="true" aria-controls="collapseSurat">
       <i class="fas fa-fw fa-envelope-open-text"></i>
@@ -146,28 +147,34 @@
     </a>
     <div id="collapseSurat" class="collapse" aria-labelledby="headingSurat" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" th:href="@{/blank}">Verifikasi Surat</a>
-        <a class="collapse-item" th:href="@{/blank}">Kelola Surat</a>
-        <a class="collapse-item" th:href="@{/blank}">Pengumpulan Surat</a>
+        <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAnyAuthority('CUSTOMER', 'MANAGER', 'ADMIN')">Verifikasi Surat</a>
+        <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAnyAuthority('MANAGER', 'ADMIN')" >Kelola Surat </a>
+        <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAuthority('DRIVER')">Pengumpulan Surat</a>
       </div>
     </div>
   </li>
 
   <!-- Nav Item - Komplain -->
-  <li class="nav-item">
+  <li class="nav-item" sec:authorize="hasAnyAuthority('CUSTOMERSERVICE', 'MANAGER', 'ADMIN')">
     <a class="nav-link" th:href="@{/blank}">
       <i class="fas fa-fw fa-wrench"></i>
       <span>Manajemen Komplain</span></a>
   </li>
 
-  <hr class="sidebar-divider">
+  <li class="nav-item" sec:authorize="hasAnyAuthority('CUSTOMER', 'DRIVER')">
+    <a class="nav-link" th:href="@{/blank}">
+      <i class="fas fa-fw fa-wrench"></i>
+      <span>Riwayat Komplain</span></a>
+  </li>
+
+  <hr class="sidebar-divider" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
 
   <!-- Heading -->
-  <div class="sidebar-heading">
+  <div class="sidebar-heading" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
     User
   </div>
   <!-- Nav Item - User Menu -->
-  <li class="nav-item">
+  <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
        aria-expanded="true" aria-controls="collapseUser">
       <i class="fas fa-fw fa-user-cog"></i>
@@ -265,7 +272,7 @@
          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="mr-2 d-none d-lg-inline text-gray-600 small" sec:authentication="name">Nama Anda</span>
         <img class="img-profile rounded-circle"
-             src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+             th:src="@{img/team-1.jpg}">
       </a>
       <!-- Dropdown - User Information -->
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
