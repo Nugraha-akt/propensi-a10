@@ -31,6 +31,18 @@ public class WebSecurityConfig {
                 .antMatchers("/driver/nonaktifkan-berhasil/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/driver/aktifkan/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/driver/aktifkan-berhasil/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/user/viewall").hasAnyAuthority("ADMIN","MANAGER")
+                .antMatchers("/user/add").hasAnyAuthority("ADMIN")
+                .antMatchers("/user/add/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/user/update/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/user/delete/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/user/summary").hasAnyAuthority("ADMIN","MANAGER")
+                .antMatchers("/user/detail").hasAnyAuthority("ADMIN","MANAGER")
+                .antMatchers("/unit/viewall").hasAnyAuthority("ADMIN","MANAGER")
+                .antMatchers("/unit/view/**").hasAnyAuthority("ADMIN","MANAGER")
+                .antMatchers("/unit/add").hasAnyAuthority("ADMIN")
+                .antMatchers("/unit/update/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/unit/delete/**").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -46,15 +58,6 @@ public class WebSecurityConfig {
     public BCryptPasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
     }
-
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-//        auth.inMemoryAuthentication()
-//                .passwordEncoder(encoder())
-//                .withUser("ayu")
-//                .password(encoder().encode("apapA"))
-//                .roles("USER");
-//    }
 
     @Autowired
     private UserDetailsService userDetailsService;
