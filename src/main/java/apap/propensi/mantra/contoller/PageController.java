@@ -26,9 +26,7 @@ public class PageController {
 
     @Autowired
     private CustomerService customerService;
-
-//    @Autowired
-//    private RoleService roleService;
+    
     @RequestMapping("/")
     public String home() {
         return "index";
