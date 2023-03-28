@@ -6,8 +6,14 @@ import java.util.List;
 
 public interface DriverService {
     List<DriverModel> getListDriverOrderByStatus();
+    List<DriverModel> getListDriver();
+    DriverModel addDriver(DriverModel user);
+    void deleteDriver(DriverModel user);
+    String encrypt(String password);
     DriverModel getDriverByUuid(String uuid);
+    DriverModel getDriverByUsername(String username);
     DriverModel updateDriver(DriverModel driver);
+    DriverModel updateDriverUser(DriverModel user);
     Integer getSumSedangDitugaskan();
     Integer getSumBelumDitugaskan();
     Integer getSumSudahDitugaskan();

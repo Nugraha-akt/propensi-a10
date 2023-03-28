@@ -14,8 +14,8 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name = "customerUuid")
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class CustomerModel extends UserModel {
     @NotNull
     @Column(name = "asal_instansi", nullable = false)

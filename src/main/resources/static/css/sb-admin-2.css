@@ -159,14 +159,13 @@ sup {
 }
 
 a {
-  color: #4e73df;
+  color: #75df4e;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #224abe;
-  text-decoration: underline;
+  color: #3fbe22;
 }
 
 a:not([href]):not([tabindex]) {
@@ -9686,7 +9685,7 @@ a:focus {
 
 .bg-gradient-success2 {
   background-color: #067d68;
-  background-image: linear-gradient(180deg, #067d68 10%, #FEFE69 100%);
+  background-image: linear-gradient(180deg, #067d68 10%, #A1CE69 100%);
   background-size: cover;
 }
 
@@ -10004,8 +10003,8 @@ a:focus {
 }
 
 .topbar .dropdown-list .dropdown-header {
-  background-color: #4e73df;
-  border: 1px solid #4e73df;
+  background-color: #009b03;
+  border: 1px solid #009b03;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   color: #fff;
@@ -10590,7 +10589,7 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
+  background: url("https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
   background-position: center;
   background-size: cover;
 }

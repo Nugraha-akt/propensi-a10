@@ -15,8 +15,8 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name = "driverUuid")
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class DriverModel extends UserModel {
 
     @NotNull

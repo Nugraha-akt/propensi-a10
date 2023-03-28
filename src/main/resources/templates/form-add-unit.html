@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <object th:include="fragments/fragment :: style" th:remove="tag"></object>
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+  <ul th:replace="fragments/fragment :: sidebar('Unit')"></ul>
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+      <nav th:replace="fragments/fragment :: topbar"></nav>
+<div class="container">
+  <div class="card m-4 p-4">
+    <div class="card-body">
+      <div class="justify-content-center">
+        <h2>Tambah Unit</h2>
+        <br>
+        <form th:action="@{/unit/add}" th:object="${unit}" method="POST">
+          plat nomor: <br>
+          <input class="form-control" type="text" required th:field="*{platNomor}"/>
+          <br><br>
+          <p th:if="${errorstatus == 1}" th:text="'plat nomor sudah pernah terdaftar'"></p>
+
+
+          status: <br>
+
+          <select name="idk" th:field="*{status}"
+                  class="form-group" required>
+              <option th:value=0 >tidak available</option>
+              <option th:value=1 th:text="available"></option>
+              <option th:value=2 >tidak aktif</option>
+          </select>
+          <br><br>
+
+          <button class="btn btn-primary" type="submit" name="save">Submit</button>
+          <a class="btn btn-primary" th:href="@{/unit/viewall}">kembali</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    <!-- End of Main Content -->
+    <footer th:replace="fragments/fragment :: cr"></footer>
+  </div>
+  <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<a th:replace="fragments/fragment :: scrolltop"></a>
+<div th:replace="fragments/fragment :: logoutmodal"></div>
+
+<footer>
+  <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</footer>
+
+</div>
+</body>
+</html>
