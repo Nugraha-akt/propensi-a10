@@ -10,7 +10,7 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
 
-    <ul th:replace="fragments/fragment :: sidebar('IsiSesuaiHalaman')"></ul>
+    <ul th:replace="fragments/fragment :: sidebar('User')"></ul>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -26,6 +26,8 @@
                 <h1 class="h3 mb-4 text-gray-800">Daftar User</h1>
                 <a class="btn btn-primary" th:href="@{/}">Beranda</a>
                 <a class="btn btn-primary" th:href="@{/user/add}">Buat User Baru</a>
+                <a class="btn btn-primary" th:href="@{/user/summary}">Rangkuman User</a>
+
                 <!-- ISI DISIN YA MANIS -->
 
                 <div class="container">
@@ -49,9 +51,9 @@
                                         <td th:text="${user.email}"></td>
                                         <td th:text="${user.role.name}"></td>
                                         <td>
-                                            <a class="btn btn-sm btn-primary" th:href="@{/user/detail?uuid=} + ${user.uuid}">Detail</a>
-                                            <a class="btn btn-sm btn-outline-primary" th:href="@{/user/update?uuid=} + ${user.uuid}">Update</a>
-                                            <a class="btn btn-sm btn-danger" th:href="@{/user/delete?uuid=} + ${user.uuid}">Delete</a>
+                                            <a class="btn btn-sm btn-primary" th:href="@{/user/detail?uuid=} + ${user.uuid}">Detil</a>
+                                            <a class="btn btn-sm btn-outline-primary" th:href="@{/user/update/} + ${user.uuid}">Ubah</a>
+                                            <a class="btn btn-sm btn-danger" th:href="@{/user/delete/} + ${user.uuid}">Hapus</a>
                                         </td>
                                     </tr>
                                     </tbody>

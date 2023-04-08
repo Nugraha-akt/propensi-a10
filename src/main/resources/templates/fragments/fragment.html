@@ -102,8 +102,8 @@
     </a>
     <div id="collapseUnit" class="collapse" aria-labelledby="headingUnit" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" th:href="@{/blank}">Membuat Unit</a>
-        <a class="collapse-item" th:href="@{/blank}">Kelola Unit</a>
+        <a class="collapse-item" th:href="@{/unit/add}">Membuat Unit</a>
+        <a class="collapse-item" th:href="@{/unit/viewall}">Kelola Unit</a>
       </div>
     </div>
   </li>
@@ -161,7 +161,7 @@
       <span>Manajemen Komplain</span></a>
   </li>
 
-  <li class="nav-item" th:classappend="${active == 'Komlain'} ? active : ''" sec:authorize="hasAnyAuthority('CUSTOMER', 'DRIVER')">
+  <li class="nav-item" th:classappend="${active == 'Komplain'} ? active : ''" sec:authorize="hasAnyAuthority('CUSTOMER', 'DRIVER')">
     <a class="nav-link" th:href="@{/blank}">
       <i class="fas fa-fw fa-wrench"></i>
       <span>Riwayat Komplain</span></a>

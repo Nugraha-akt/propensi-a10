@@ -22,7 +22,7 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
 
-  <ul th:replace="fragments/fragment :: sidebar('IsiSesuaiHalaman')"></ul>
+  <ul th:replace="fragments/fragment :: sidebar('User')"></ul>
 
   <!-- Content Wrapper -->
   <div id="content-wrapper" class="d-flex flex-column">
@@ -68,32 +68,16 @@
                       <td class="h4 text-gray-700">Nomor Telepon</td>
                       <td class="h5 text-secondary" th:text="': '+ ${user.noTelepon}"></td>
                     </tr>
+                    <tr th:if="*{user.role.name == 'Driver'}">
+                      <td class="h4 text-gray-700">Nomor SIM</td>
+                      <td class="h5 text-secondary" th:text="': '+ ${user.sim}"></td>
+                    </tr>
+                    <tr th:if="*{user.role.name == 'Customer'}">
+                      <td class="h4 text-gray-700">Asal Instansi</td>
+                      <td class="h5 text-secondary" th:text="': '+ ${user.asalInstansi}"></td>
+                    </tr>
                   </tbody>
                 </table>
-<!--                <div class="container-md justify-content-center">-->
-<!--                  <h2 class="h4 mb-4 text-gray-700">Id</h2>-->
-<!--                  <h3 class="h5 mb-3 text-secondary" th:text="${user.id}"></h3>-->
-<!--                </div>-->
-<!--                <div class="container-md justify-content-center">-->
-<!--                  <h2 class="h4 mb-4 text-gray-700">Nama</h2>-->
-<!--                  <h3 class="h5 mb-3 text-secondary" th:text="${user.nama}"></h3>-->
-<!--                </div>-->
-<!--                <h2 class="h4 mb-4 text-gray-700">Username</h2>-->
-<!--                <div class="container-md justify-content-center">-->
-<!--                  <h3 class="h5 mb-3 text-secondary" th:text="${user.username}"></h3>-->
-<!--                </div>-->
-<!--                <h2 class="h4 mb-4 text-gray-700">Role</h2>-->
-<!--                <div class="container-md justify-content-center">-->
-<!--                  <h3 class="h5 mb-3 text-secondary" th:text="${user.role.name}"></h3>-->
-<!--                </div>-->
-<!--                <h2 class="h4 mb-4 text-gray-700">Email</h2>-->
-<!--                <div class="container-md justify-content-center">-->
-<!--                  <h3 class="h5 mb-3 text-secondary" th:text="${user.email}"></h3>-->
-<!--                </div>-->
-<!--                <h2 class="h4 mb-4 text-gray-700">Nomor Telepon</h2>-->
-<!--                <div class="container-md justify-content-center">-->
-<!--                  <h3 class="h5 mb-3 text-secondary" th:text="${user.noTelepon}"></h3>-->
-<!--                </div>-->
                 <br>
                 <br>
                 <div class="center">

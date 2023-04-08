@@ -29,7 +29,7 @@ public class UserModel implements Serializable {
     private String uuid;
 
     @NotNull
-    @Column(name = "nama", nullable = false, unique = true)
+    @Column(name = "nama", nullable = false)
     private String nama;
 
     @Enumerated(EnumType.STRING)
@@ -48,11 +48,11 @@ public class UserModel implements Serializable {
 
     @NotNull
     @Size(max = 50)
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @NotNull
-    @Column(name = "no_telepon", nullable = false, unique = true)
+    @Column(name = "no_telepon", nullable = false)
     private String noTelepon;
 }
 

@@ -2,9 +2,12 @@ package apap.propensi.mantra.contoller;
 
 import apap.propensi.mantra.model.DriverModel;
 import apap.propensi.mantra.model.RequestModel;
+import apap.propensi.mantra.model.UserModel;
 import apap.propensi.mantra.service.DriverService;
 import apap.propensi.mantra.service.RequestService;
+import apap.propensi.mantra.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +24,14 @@ public class DriverController {
     @Autowired
     private RequestService requestService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/viewall")
     public String listDriverOrderByStatus(Model model) {
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        UserModel userSession = userService.getUserByUsername(auth.getName());
+        model.addAttribute("userRole", userSession.getRole().toString());
         List<DriverModel> listDriverOrderByStatus = driverService.getListDriverOrderByStatus();
         model.addAttribute("listDriver", listDriverOrderByStatus);
         return "driver/viewall";

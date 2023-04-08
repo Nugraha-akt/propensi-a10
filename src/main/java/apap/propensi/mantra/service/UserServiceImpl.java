@@ -1,12 +1,10 @@
 package apap.propensi.mantra.service;
 
-import apap.propensi.mantra.model.Role;
 import apap.propensi.mantra.model.UserModel;
 import apap.propensi.mantra.repository.UserDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
@@ -55,15 +53,44 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public List<UserModel> getListUserSortedByRole() {
+        return userDb.findAllOrderByRoleAsc();
+    }
+
+    @Override
+    public List<String> getAllUsername() {
+        return userDb.getAllUsername();
+    }
+
+    @Override
+    public List<String> getAllEmail() {
+        return userDb.getAllEmail();
+    }
+
+    @Override
     public UserModel getUserByUsername(String username) {
         return userDb.findByUsername(username);
     }
+
+    @Override
+    public UserModel getUserByEmail(String email) { return userDb.findByEmail(email); }
 
     @Override
     public UserModel getUserByUuid(String uuid) {
         return userDb.findByUuid(uuid);
     }
 
+    @Override
+    public String isUniqueUpdate(UserModel user) {
+        if (getUserByUsername(user.getUsername()) != null) {
+            if (!getUserByUsername(user.getUsername()).getUuid().equals(user.getUuid())) {
+                return "duplicate-username";
+            } else if (!getUserByEmail(user.getEmail()).getUuid().equals(user.getUuid())) {
+                return "duplicate-email";
+            }
+        }
+        return "unique";
+    }
     @Override
     public String encrypt(String password){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

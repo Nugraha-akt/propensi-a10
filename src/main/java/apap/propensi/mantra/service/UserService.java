@@ -8,7 +8,12 @@ public interface UserService {
     UserModel updateUser(UserModel user);
     void deleteUser(UserModel user);
     List<UserModel> getListUser();
+    List<UserModel> getListUserSortedByRole();
+    List<String> getAllUsername();
+    List<String> getAllEmail();
     UserModel getUserByUsername(String username);
+    UserModel getUserByEmail(String email);
     UserModel getUserByUuid(String uuid);
+    String isUniqueUpdate(UserModel user);
     String encrypt(String password);
 }
