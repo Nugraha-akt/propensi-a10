@@ -39,6 +39,16 @@ public class RequestModel implements Serializable {
     private LocalDateTime createdAt;
 
     @NotNull
+    @Column(name = "depart_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime departDate;
+
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @Column(name = "end")
+    private LocalDateTime end;
+
+    @NotNull
     @Column(name = "alasan", nullable = false)
     private String alasan;
 
