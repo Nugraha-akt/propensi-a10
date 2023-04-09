@@ -12,6 +12,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Setter
 @Getter
@@ -26,40 +27,38 @@ public class RequestModel implements Serializable {
     private Long id;
 
     @NotNull
+    @ElementCollection
     @Column(name = "tujuan", nullable = false)
-    private String tujuan;
+    private ArrayList<String> tujuan;
 
     @NotNull
     @Column(name = "status", nullable = false)
     private String status;
 
     @NotNull
-    @Column(nullable = false, name = "created_at")
+    @Column(name = "created_at", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime createdAt;
 
     @NotNull
-    @Column(name = "depart_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @Column(name = "depart_date", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime departDate;
 
     @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @Column(name = "end")
-    private LocalDateTime end;
+    @Column(name = "return_date", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDateTime returnDate;
 
     @NotNull
     @Column(name = "alasan", nullable = false)
     private String alasan;
 
     @ManyToOne(fetch= FetchType.EAGER)
-    @JoinColumn(name = "customer_uuid", nullable = true)
+    @JoinColumn(name = "customer_uuid")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private CustomerModel customer;
 
-    @ManyToOne(fetch= FetchType.EAGER)
-    @JoinColumn(name = "driver_uuid", nullable = true)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private DriverModel driver;
+
 }
 

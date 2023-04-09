@@ -29,6 +29,6 @@ public class DriverModel extends UserModel {
     private Integer status;
 
     @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<RequestModel> listRequest;
+    private List<PairUnitDriverModel> listPairRequest;
 }
 

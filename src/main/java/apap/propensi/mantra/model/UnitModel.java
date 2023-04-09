@@ -10,6 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "unit")
@@ -27,18 +28,15 @@ public class UnitModel implements Serializable {
     private Integer status;
 
     @NotNull
-    @Column(nullable = false, name = "plat_nomor")
+    @Column(name = "jenis", nullable = false)
+    private String jenis;
+
+    @NotNull
+    @Column(name = "plat_nomor", nullable = false, unique = true)
     private String platNomor;
 
-    @ManyToOne(fetch= FetchType.EAGER)
-    @JoinColumn(name = "request_id", nullable = true)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private RequestModel request;
-
-    @ManyToOne(fetch= FetchType.EAGER)
-    @JoinColumn(name = "driver_uuid", nullable = true)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private DriverModel driver;
+    @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PairUnitDriverModel> listPairRequest;
 }
 
 
