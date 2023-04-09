@@ -37,17 +37,17 @@ public class DriverController {
         return "driver/viewall";
     }
 
-    @GetMapping("/detail/{uuid}")
-    public String detailDriver(@PathVariable String uuid, Model model){
-        DriverModel driver = driverService.getDriverByUuid(uuid);
-        if (driver != null){
-            List<RequestModel> listRequest = driver.getListRequest();
-            model.addAttribute("driver", driver);
-            model.addAttribute("listRequest", listRequest);
-            return "driver/detail";
-        }
-        return "driver/404";
-    }
+//    @GetMapping("/detail/{uuid}")
+//    public String detailDriver(@PathVariable String uuid, Model model){
+//        DriverModel driver = driverService.getDriverByUuid(uuid);
+//        if (driver != null){
+//            List<RequestModel> listRequest = driver.getListRequest();
+//            model.addAttribute("driver", driver);
+//            model.addAttribute("listRequest", listRequest);
+//            return "driver/detail";
+//        }
+//        return "driver/404";
+//    }
 
     @GetMapping("/nonaktifkan/{uuid}")
     public String nonaktifkanDriver(@PathVariable String uuid, Model model){
@@ -136,18 +136,18 @@ public class DriverController {
         return "driver/404";
     }
 
-    @PostMapping("/update-sedang/{uuid}/{id}")
-    public String updateBerhasilDriver(@PathVariable String uuid,@PathVariable Long id, Model model) {
-        DriverModel driver = driverService.getDriverByUuid(uuid);
-        RequestModel request = requestService.getRequestById(id);
-        driver.setStatus(1);
-        request.setDriver(driver);
-        DriverModel updateDriver = driverService.updateDriver(driver);
-        RequestModel updateRequest = requestService.updateRequest(request);
-        model.addAttribute("driver", updateDriver);
-        model.addAttribute("request", updateRequest);
-        return "driver/update";
-    }
+//    @PostMapping("/update-sedang/{uuid}/{id}")
+//    public String updateBerhasilDriver(@PathVariable String uuid,@PathVariable Long id, Model model) {
+//        DriverModel driver = driverService.getDriverByUuid(uuid);
+//        RequestModel request = requestService.getRequestById(id);
+//        driver.setStatus(1);
+//        request.setDriver(driver);
+//        DriverModel updateDriver = driverService.updateDriver(driver);
+//        RequestModel updateRequest = requestService.updateRequest(request);
+//        model.addAttribute("driver", updateDriver);
+//        model.addAttribute("request", updateRequest);
+//        return "driver/update";
+//    }
 
     @PostMapping("/update-sudah/{uuid}")
     public String updateSudahDitugaskanDriver(@PathVariable String uuid, Model model) {

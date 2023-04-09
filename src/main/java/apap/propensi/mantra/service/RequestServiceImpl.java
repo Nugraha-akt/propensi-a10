@@ -20,10 +20,10 @@ public class RequestServiceImpl implements RequestService{
         return requestDb.listRequestMulai();
     }
 
-    @Override
-    public RequestModel getRequestByDriverUuid(String uuid) {
-        return requestDb.findByDriverUuid(uuid);
-    }
+//    @Override
+//    public RequestModel getRequestByDriverUuid(String uuid) {
+//        return requestDb.findByDriverUuid(uuid);
+//    }
 
     @Override
     public RequestModel getRequestById(Long id) {
