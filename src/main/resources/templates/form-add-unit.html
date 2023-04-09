@@ -25,6 +25,10 @@
         <h2>Tambah Unit</h2>
         <br>
         <form th:action="@{/unit/add}" th:object="${unit}" method="POST">
+          jenis: <br>
+          <input class="form-control" type="text" required th:field="*{jenis}"/>
+          <br><br>
+
           plat nomor: <br>
           <input class="form-control" type="text" required th:field="*{platNomor}"/>
           <br><br>

@@ -12,7 +12,7 @@ public interface RequestDb extends JpaRepository<RequestModel, String> {
     @Query("SELECT r FROM RequestModel r WHERE r.status='MULAI'")
     List<RequestModel> listRequestMulai();
 
-    RequestModel findByDriverUuid(String uuid);
+//    RequestModel findByDriverUuid(String uuid);
 
     RequestModel findById(Long id);
 }

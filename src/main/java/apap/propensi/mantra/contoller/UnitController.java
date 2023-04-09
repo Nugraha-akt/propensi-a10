@@ -81,9 +81,9 @@ public class UnitController {
     @GetMapping(value = "/delete/{platNomor}")
     private String DeleteUnitFormPage(@PathVariable("platNomor") String plat, Model model){
         UnitModel unit = unitService.getUnitByPlat(plat);
-        if(unit.getRequest()==null){
-            unitService.deleteUnit(unit);
-        }
+//        if(unit.getRequest()==null){
+//            unitService.deleteUnit(unit);
+//        }
         return "redirect:/unit/viewall";
     }
 }
