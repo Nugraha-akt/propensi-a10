@@ -41,7 +41,7 @@ public class DriverServiceImpl implements DriverService{
         newDriver.setRole(Role.DRIVER);
         newDriver.setSim(user.getSim());
         newDriver.setStatus(2);
-        newDriver.setListRequest(new ArrayList<>());
+        newDriver.setListPairRequest(new ArrayList<>());
 
         return driverDb.save(newDriver);
     }

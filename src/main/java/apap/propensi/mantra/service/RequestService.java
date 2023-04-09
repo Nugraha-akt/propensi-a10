@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RequestService {
     List<RequestModel> getListRequestMulai();
-    RequestModel getRequestByDriverUuid(String uuid);
+//    RequestModel getRequestByDriverUuid(String uuid);
     RequestModel getRequestById(Long id);
     RequestModel updateRequest(RequestModel request);
 }

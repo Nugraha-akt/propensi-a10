@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -59,6 +60,7 @@ public class RequestModel implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private CustomerModel customer;
 
-
+    @OneToMany(mappedBy = "request", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PairUnitDriverModel> listPairRequest;
 }
 
