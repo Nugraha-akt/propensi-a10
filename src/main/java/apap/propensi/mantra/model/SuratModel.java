@@ -30,6 +30,9 @@ public class SuratModel implements Serializable {
     @Column(name = "status", nullable = false)
     private Integer status;
 
+    @Column(name = "foto", nullable = true)
+    private String foto;
+
     @ManyToOne(fetch= FetchType.EAGER)
     @JoinColumn(name = "request_id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)

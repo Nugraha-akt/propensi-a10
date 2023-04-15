@@ -18,17 +18,17 @@
 </body>
 
 <head th:fragment="style">
-  <link th:href="@{img/icon.png}" rel="icon">
+  <link th:href="@{/img/icon.png}" rel="icon">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Manajemen Transportasi</title>
+<!--  <title>Manajemen Transportasi</title>-->
 
   <!-- Custom fonts for this template-->
-  <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+  <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
@@ -70,7 +70,7 @@
   </div>
 
   <!-- Nav Item - Request Menu -->
-  <li class="nav-item" th:classappend="${active == 'Request'} ? active : ''" sec:authorize="hasAnyAuthority('CUSTOMER','ADMIN','MANAGER')">
+  <li class="nav-item" th:classappend="${active == 'Request'} ? active : ''" sec:authorize="hasAnyAuthority('CUSTOMER','ADMIN','MANAGER', 'DRIVER')">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRequest"
        aria-expanded="true" aria-controls="collapseRequest">
       <i class="fas fa-fw fa-briefcase"></i>
@@ -81,6 +81,7 @@
         <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAuthority('CUSTOMER')">Ajukan Request</a>
         <a class="collapse-item" th:href="@{/blank}">Riwayat Request</a>
         <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">Kelola Request</a>
+        <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAuthority('DRIVER')">Kelola Request</a>
       </div>
     </div>
   </li>
@@ -149,7 +150,7 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAnyAuthority('CUSTOMER', 'MANAGER', 'ADMIN')">Verifikasi Surat</a>
         <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAnyAuthority('MANAGER', 'ADMIN')" >Kelola Surat </a>
-        <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAuthority('DRIVER')">Pengumpulan Surat</a>
+        <a class="collapse-item" th:href="@{/surat/list}" sec:authorize="hasAuthority('DRIVER')">Kelola Surat</a>
       </div>
     </div>
   </li>
@@ -272,7 +273,7 @@
          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="mr-2 d-none d-lg-inline text-gray-600 small" sec:authentication="name">Nama Anda</span>
         <img class="img-profile rounded-circle"
-             th:src="@{img/team-1.jpg}">
+             th:src="@{/img/team-1.jpg}">
       </a>
       <!-- Dropdown - User Information -->
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
