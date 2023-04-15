@@ -29,27 +29,127 @@
                     <div class="card m-4 p-4">
                         <div class="card-body">
                             <div class="justify-content-center">
-                                <form th:action="@{/user/update}" th:object="${user}" method="POST">
-                                    <input type="hidden" th:field="*{uuid}"/>
-                                    <input type="hidden" th:field="*{role}"/>
+                                <!--Form untuk update Admin-->
+                                <form th:if="${user.role.name == 'Admin'}" th:action="@{/user/update/admin}" th:object="${user}" method="POST">
+                                    <input type="hidden" th:field="*{uuid}">
+                                    <input type="hidden" th:field="*{role}">
+                                    <input type="hidden" th:field="*{password}">
 
                                     <label>Username</label>
-                                    <input required type="text" name="username" class="form-control" th:value="*{username}">
+                                    <input required type="text" name="username" class="form-control" th:value="*{username}" th:field="*{username}">
 
                                     <label>Nama</label>
-                                    <input required type="text" name="nama" class="form-control" th:value="*{nama}">
+                                    <input required type="text" name="nama" class="form-control" th:value="*{nama}" th:field="*{nama}">
 
                                     <label>E-mail</label>
-                                    <input required type="text" name="email" class="form-control" th:value="*{email}">
-
-                                    <label>Password</label>
-                                    <input required type="text" name="password" class="form-control" th:value="*{password}">
+                                    <input required type="text" name="email" class="form-control" th:value="*{email}" th:field="*{email}">
 
                                     <label>No Telepon</label>
-                                    <input required type="text" name="noTelepon" class="form-control" th:value="*{noTelepon}">
+                                    <input required type="text" name="noTelepon" class="form-control" th:value="*{noTelepon}" th:field="*{noTelepon}">
+
                                     <br>
                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                    <a class="btn btn-link" href="@{/user/viewall}">Kembali</a>
+                                    <a class="btn btn-link" th:href="@{/user/viewall}">Kembali</a>
+                                </form>
+
+                                <!--Form untuk update Manager-->
+                                <form th:if="${user.role.name == 'Manager'}" th:action="@{/user/update/manager}" th:object="${user}" method="POST">
+                                    <input type="hidden" th:field="*{uuid}">
+                                    <input type="hidden" th:field="*{role}">
+                                    <input type="hidden" th:field="*{password}">
+
+                                    <label>Username</label>
+                                    <input required type="text" name="username" class="form-control" th:value="*{username}" th:field="*{username}">
+
+                                    <label>Nama</label>
+                                    <input required type="text" name="nama" class="form-control" th:value="*{nama}" th:field="*{nama}">
+
+                                    <label>E-mail</label>
+                                    <input required type="text" name="email" class="form-control" th:value="*{email}" th:field="*{email}">
+
+                                    <label>No Telepon</label>
+                                    <input required type="text" name="noTelepon" class="form-control" th:value="*{noTelepon}" th:field="*{noTelepon}">
+
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <a class="btn btn-link" th:href="@{/user/viewall}">Kembali</a>
+                                </form>
+
+                                <!--Form untuk update Customer-->
+                                <form th:if="${user.role.name == 'Customer'}" th:action="@{/user/update/customer}" th:object="${user}" method="POST">
+                                    <input type="hidden" th:field="*{uuid}">
+                                    <input type="hidden" th:field="*{role}">
+                                    <input type="hidden" th:field="*{password}">
+
+                                    <label>Username</label>
+                                    <input required type="text" name="username" class="form-control" th:value="*{username}" th:field="*{username}">
+
+                                    <label>Nama</label>
+                                    <input required type="text" name="nama" class="form-control" th:value="*{nama}" th:field="*{nama}">
+
+                                    <label>E-mail</label>
+                                    <input required type="text" name="email" class="form-control" th:value="*{email}" th:field="*{email}">
+
+                                    <label>No Telepon</label>
+                                    <input required type="text" name="noTelepon" class="form-control" th:value="*{noTelepon}" th:field="*{noTelepon}">
+
+                                    <label>Asal Instansi</label>
+                                    <input required type="text" name="asalInstansi" class="form-control" th:value="*{asalInstansi}" th:field="*{asalInstansi}">
+
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <a class="btn btn-link" th:href="@{/user/viewall}">Kembali</a>
+                                </form>
+
+                                <!--Form untuk update Driver-->
+                                <form th:if="${user.role.name == 'Driver'}" th:action="@{/user/update/driver}" th:object="${user}" method="POST">
+                                    <input type="hidden" th:field="*{uuid}">
+                                    <input type="hidden" th:field="*{role}">
+                                    <input type="hidden" th:field="*{password}">
+                                    <input type="hidden" th:field="*{status}">
+
+
+                                    <label>Username</label>
+                                    <input required type="text" name="username" class="form-control" th:value="*{username}" th:field="*{username}">
+
+                                    <label>Nama</label>
+                                    <input required type="text" name="nama" class="form-control" th:value="*{nama}" th:field="*{nama}">
+
+                                    <label>E-mail</label>
+                                    <input required type="text" name="email" class="form-control" th:value="*{email}" th:field="*{email}">
+
+                                    <label>No Telepon</label>
+                                    <input required type="text" name="noTelepon" class="form-control" th:value="*{noTelepon}" th:field="*{noTelepon}">
+
+                                    <label>Nomor SIM</label>
+                                    <input required type="text" name="sim" class="form-control" th:value="*{sim}" th:field="*{sim}">
+
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <a class="btn btn-link" th:href="@{/user/viewall}">Kembali</a>
+                                </form>
+
+                                <!--Form untuk update Customer Service-->
+                                <form th:if="${user.role.name == 'Customer Service'}" th:action="@{/user/update/customerservice}" th:object="${user}" method="POST">
+                                    <input type="hidden" th:field="*{uuid}">
+                                    <input type="hidden" th:field="*{role}">
+                                    <input type="hidden" th:field="*{password}">
+
+                                    <label>Username</label>
+                                    <input required type="text" name="username" class="form-control" th:value="*{username}" th:field="*{username}">
+
+                                    <label>Nama</label>
+                                    <input required type="text" name="nama" class="form-control" th:value="*{nama}" th:field="*{nama}">
+
+                                    <label>E-mail</label>
+                                    <input required type="text" name="email" class="form-control" th:value="*{email}" th:field="*{email}">
+
+                                    <label>No Telepon</label>
+                                    <input required type="text" name="noTelepon" class="form-control" th:value="*{noTelepon}" th:field="*{noTelepon}">
+
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <a class="btn btn-link" th:href="@{/user/viewall}">Kembali</a>
                                 </form>
                             </div>
                         </div>

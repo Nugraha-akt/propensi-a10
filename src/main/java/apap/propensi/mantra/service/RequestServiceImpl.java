@@ -20,6 +20,15 @@ public class RequestServiceImpl implements RequestService{
         return requestDb.listRequestMulai();
     }
 
+    @Override
+    public List<RequestModel> getListAllRequest() { return requestDb.findAll(); }
+
+    @Override
+    public List<RequestModel> getListRequest(String username) { return requestDb.listRequestUserSpecific(username); }
+
+    @Override
+    public List<RequestModel> getListRequestAktif() { return requestDb.listRequestAktif(); }
+
 //    @Override
 //    public RequestModel getRequestByDriverUuid(String uuid) {
 //        return requestDb.findByDriverUuid(uuid);

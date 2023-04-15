@@ -13,7 +13,6 @@ public interface DriverService {
     DriverModel getDriverByUuid(String uuid);
     DriverModel getDriverByUsername(String username);
     DriverModel updateDriver(DriverModel driver);
-    DriverModel updateDriverUser(DriverModel user);
     Integer getSumSedangDitugaskan();
     Integer getSumBelumDitugaskan();
     Integer getSumSudahDitugaskan();
