@@ -9,9 +9,7 @@ import ch.qos.logback.core.net.SyslogOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -67,6 +65,68 @@ public class RequestController {
         return "request/viewall-request";
     }
 
+    @GetMapping("/confirm")
+    public String confirmRequestPage(@RequestParam(value = "id") Long id, Model model) {
+        if (requestService.getRequestById(id) == null) {
+            model.addAttribute("id", id);
+            return "request/request-not-found";
+        }
+
+        RequestModel request = requestService.getRequestById(id);
+        request.setStatus("In-Progress");
+        request.setStatusPerjalanan("Started");
+        requestService.updateRequest(request);
+
+        model.addAttribute("message", "Request berhasil dikonfirmasi!");
+        return "request/update-status-request";
+    }
+
+    // TODO: belum ada update success! page
+    @GetMapping("/update")
+    public String updateRequestFormPage(@RequestParam(value = "id") Long id, Model model) {
+        if (requestService.getRequestById(id) == null) {
+            model.addAttribute("id", id);
+            return "request/request-not-found";
+        }
+
+        RequestModel request = requestService.getRequestById(id);
+
+        model.addAttribute("request", request);
+        return "request/form-update-request";
+    }
+    @PostMapping("/update")
+    public String updateRequestSubmitPage(@ModelAttribute RequestModel request, Model model) {
+//        if (requestService.getRequestById(id) == null) {
+//            model.addAttribute("id", id);
+//            return "request/request-not-found";
+//        }
+        RequestModel updatedRequest = requestService.getRequestById(request.getId());
+        updatedRequest.setStatusPerjalanan(request.getStatusPerjalanan());
+
+//        request.setStatusPerjalanan(statusPerjalanan);
+
+        requestService.updateRequest(updatedRequest);
+
+        return "redirect:/request/viewall";
+    }
+
+    // TODO: ganti "finish" menjadi ubah status perjalanan. Ketika diinput 'finished' maka status request akan ganti menjadi Finished
+    @GetMapping("/finish")
+    public String finishRequestPage(@RequestParam(value = "id") Long id, Model model) {
+        if (requestService.getRequestById(id) == null) {
+            model.addAttribute("id", id);
+            return "request/request-not-found";
+        }
+
+        RequestModel request = requestService.getRequestById(id);
+        request.setStatus("Finished");
+        request.setStatusPerjalanan("Finished");
+        requestService.updateRequest(request);
+
+        model.addAttribute("message", "Request berhasil diselesaikan!");
+        return "request/update-status-request";
+    }
+
     @GetMapping("/detail")
     public String viewRequestDetailPage(@RequestParam(value = "id") Long id, Model model) {
         if (requestService.getRequestById(id) == null) {
@@ -75,6 +135,9 @@ public class RequestController {
         }
 
         RequestModel request = requestService.getRequestById(id);
+        request.getListPairRequest();
+
+        // TODO: perbagus htmlnya
 
         model.addAttribute("request", request);
         return "request/view-request-detail";

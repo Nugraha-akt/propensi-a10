@@ -26,6 +26,9 @@ public class UnitModel implements Serializable {
     @NotNull
     @Column(name = "status", nullable = false)
     private Integer status;
+    // 0: not available
+    // 1: available
+    // 2: tidak aktif
 
     @NotNull
     @Column(name = "jenis", nullable = false)

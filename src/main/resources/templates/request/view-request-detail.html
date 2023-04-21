@@ -5,11 +5,8 @@
   <object th:include="fragments/fragment :: style" th:remove="tag"></object>
   <style>
     .center {
-      margin: 0;
-      position: absolute;
-      left: 50%;
-      -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
+      margin-left: auto;
+      margin-right: auto
     }
     td {
       padding: 0 10px;
@@ -50,7 +47,7 @@
                   </tr>
                   <tr>
                     <td class="h4 text-gray-700">Nama Customer</td>
-                    <td class="h5 text-secondary" th:text="': '+ ${request.customer.username}"></td>
+                    <td class="h5 text-secondary" th:text="': '+ ${request.customer.nama}"></td>
                   </tr>
                   <tr>
                     <td class="h4 text-gray-700">Tujuan</td>
@@ -83,6 +80,23 @@
                   </tbody>
                 </table>
                 <br>
+
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Driver</th>
+                    <th>Unit</th>
+                    <th>Plat Nomor</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="pair, iterationStatus : ${request.listPairRequest}">
+                    <td th:text="${pair.driver.nama}"></td>
+                    <td th:text="${pair.unit.jenis}"></td>
+                    <td th:text="${pair.unit.platNomor}"></td>
+                  </tr>
+                  </tbody>
+                </table>
                 <br>
                 <div class="center">
                   <a class="btn btn-primary" th:href="@{/request/viewall}">Kembali</a>
