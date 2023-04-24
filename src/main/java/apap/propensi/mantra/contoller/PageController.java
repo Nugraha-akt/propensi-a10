@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -28,7 +30,14 @@ public class PageController {
     private CustomerService customerService;
     
     @RequestMapping("/")
-    public String home() {
+    public String home(@ModelAttribute("successMessage") String successMessage, Model model, RedirectAttributes redirectAttributes) {
+        if (!successMessage.isEmpty()) {
+            System.out.println(successMessage);
+            model.addAttribute("toastrSuccessMessage", successMessage);
+            redirectAttributes.addFlashAttribute("successMessage", "");
+        } else {
+            model.addAttribute("toastrSuccessMessage", "");
+        }
         return "index";
     }
 

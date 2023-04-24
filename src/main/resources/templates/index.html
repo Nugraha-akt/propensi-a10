@@ -297,5 +297,9 @@
 </body>
 <footer>
   <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
+  <script th:inline="javascript" th:if="${toastrSuccessMessage != ''}">
+    toastr.success([[${toastrSuccessMessage}]], 'Success');
+  </script>
+
 </footer>
 </html>

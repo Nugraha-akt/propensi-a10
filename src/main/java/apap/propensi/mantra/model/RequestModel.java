@@ -12,7 +12,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Setter
@@ -28,13 +27,16 @@ public class RequestModel implements Serializable {
     private Long id;
 
     @NotNull
-    @ElementCollection
     @Column(name = "tujuan", nullable = false)
-    private ArrayList<String> tujuan;
+    private String tujuan;
 
     @NotNull
     @Column(name = "status", nullable = false)
     private String status;
+
+    @NotNull
+    @Column(name = "status_perjalanan", nullable = false)
+    private String statusPerjalanan;
 
     @NotNull
     @Column(name = "created_at", nullable = false)
@@ -43,12 +45,12 @@ public class RequestModel implements Serializable {
 
     @NotNull
     @Column(name = "depart_date", nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime departDate;
 
     @NotNull
     @Column(name = "return_date", nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime returnDate;
 
     @NotNull
