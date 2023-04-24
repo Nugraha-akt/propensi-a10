@@ -25,7 +25,7 @@ public class RequestServiceImpl implements RequestService{
     public RequestModel saveRequest(RequestModel requestModel, List<CustomUnitPair> selectedUnit, UserModel user) {
         requestModel.setCreatedAt(LocalDateTime.now());
         requestModel.setStatus("Created");
-        requestModel.setStatusPerjalanan("Start");
+        requestModel.setStatusPerjalanan("");
         requestModel.setListPairRequest(new ArrayList<>());
         requestModel.setCustomer((CustomerModel) user);
         for (CustomUnitPair customUnitPair: selectedUnit) {
@@ -43,6 +43,15 @@ public class RequestServiceImpl implements RequestService{
     public List<RequestModel> getListRequestMulai() {
         return requestDb.listRequestMulai();
     }
+
+    @Override
+    public List<RequestModel> getListAllRequest() { return requestDb.findAll(); }
+
+    @Override
+    public List<RequestModel> getListRequest(String username) { return requestDb.listRequestUserSpecific(username); }
+
+    @Override
+    public List<RequestModel> getListRequestAktif() { return requestDb.listRequestAktif(); }
 
 //    @Override
 //    public RequestModel getRequestByDriverUuid(String uuid) {

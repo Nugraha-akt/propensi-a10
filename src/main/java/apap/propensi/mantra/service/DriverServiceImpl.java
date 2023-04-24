@@ -81,12 +81,6 @@ public class DriverServiceImpl implements DriverService{
     }
 
     @Override
-    public DriverModel updateDriverUser(DriverModel user) {
-        user.setPassword(user.getPassword());
-        return driverDb.save(user);
-    }
-
-    @Override
     public Integer getSumSedangDitugaskan() {
         return driverDb.sumSedangDitugaskan();
     }

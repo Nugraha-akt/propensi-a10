@@ -25,7 +25,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Manajemen Transportasi</title>
+<!--  <title>Manajemen Transportasi</title>-->
 
   <!-- Custom fonts for this template-->
   <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
@@ -80,7 +80,7 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" th:href="@{/request/add}" sec:authorize="hasAuthority('CUSTOMER')">Ajukan Request</a>
         <a class="collapse-item" th:href="@{/blank}">Riwayat Request</a>
-        <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">Kelola Request</a>
+        <a class="collapse-item" th:href="@{/request/viewall}" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">Kelola Request</a>
       </div>
     </div>
   </li>

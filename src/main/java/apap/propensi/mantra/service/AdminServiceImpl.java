@@ -30,7 +30,6 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public AdminModel updateAdmin(AdminModel user) {
-        user.setPassword(encrypt(user.getPassword()));
         return adminDb.save(user);
     }
 

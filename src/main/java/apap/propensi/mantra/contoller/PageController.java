@@ -30,16 +30,7 @@ public class PageController {
     private CustomerService customerService;
     
     @RequestMapping("/")
-    public String home(@ModelAttribute("successMessage") String successMessage, Model model, RedirectAttributes redirectAttributes) {
-        if (!successMessage.isEmpty()) {
-            System.out.println(successMessage);
-            model.addAttribute("toastrSuccessMessage", successMessage);
-            redirectAttributes.addFlashAttribute("successMessage", "");
-        } else {
-            model.addAttribute("toastrSuccessMessage", "");
-        }
-        return "index";
-    }
+    public String home() { return "index"; }
 
     @GetMapping("/dashboard")
     public String Dashboard() {

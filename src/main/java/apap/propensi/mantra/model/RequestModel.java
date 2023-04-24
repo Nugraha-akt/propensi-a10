@@ -33,10 +33,26 @@ public class RequestModel implements Serializable {
     @NotNull
     @Column(name = "status", nullable = false)
     private String status;
+    // Created - Request baru dibuat - Udah dibuat, belum dikerjain (customer yang ngebuat, customer milih unit) - output: unit udah ada di request
+    // Assigned - Assign driver ke request, sudah bisa download surat - output: driver udah di assign ke unit
+    // In-Progress - berangkat - output: dapat diakses/manipulasi statusPerjalanan
+    // Finished - request terkumpul, surat bisa diverifikasi - output: surat diverifikasi, request dapat direview
+    //
+    // luarscope:
+    // harus direview
+    // dicancel
+    //
+    // customer buat request (ditampilin list unit yang tersedia) - Created
+    // request yang udah ada unit akan tampil di halaman manage driver untuk assign driver ke unit -
+    // setelah punya unit & driver, ada tombol download untuk download surat (generate surat)
 
     @NotNull
     @Column(name = "status_perjalanan", nullable = false)
     private String statusPerjalanan;
+    //  valuenya -> nama tempat
+    // 'Started'
+    // 'Nama-nama tempat' (cuma nama tempat pada suatu waktu)
+    // 'Finished'
 
     @NotNull
     @Column(name = "created_at", nullable = false)

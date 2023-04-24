@@ -27,6 +27,10 @@ public class DriverModel extends UserModel {
     @NotNull
     @Column(name = "status", nullable = false)
     private Integer status;
+    // 1 : Sedang ditugaskan
+    // 2 : Belum ditugaskan
+    // 3 : Sudah ditugaskan
+    // 4 : Tidak aktif
 
     @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PairUnitDriverModel> listPairRequest;

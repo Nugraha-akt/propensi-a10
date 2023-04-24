@@ -44,8 +44,6 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public CustomerModel updateCustomer(CustomerModel user) {
-        user.setPassword(encrypt(user.getPassword()));
-
         return customerDb.save(user);
     }
 
