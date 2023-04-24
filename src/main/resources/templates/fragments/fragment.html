@@ -80,8 +80,7 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAuthority('CUSTOMER')">Ajukan Request</a>
         <a class="collapse-item" th:href="@{/blank}">Riwayat Request</a>
-        <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">Kelola Request</a>
-        <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAuthority('DRIVER')">Kelola Request</a>
+        <a class="collapse-item" th:href="@{/request/viewall}" sec:authorize="hasAnyAuthority('ADMIN','MANAGER', 'DRIVER')">Kelola Request</a>
       </div>
     </div>
   </li>

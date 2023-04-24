@@ -21,9 +21,18 @@ public class RequestServiceImpl implements RequestService{
     }
 
     @Override
-    public RequestModel getRequestByDriverUuid(String uuid) {
-        return requestDb.findByDriverUuid(uuid);
-    }
+    public List<RequestModel> getListAllRequest() { return requestDb.findAll(); }
+
+    @Override
+    public List<RequestModel> getListRequest(String username) { return requestDb.listRequestUserSpecific(username); }
+
+    @Override
+    public List<RequestModel> getListRequestAktif() { return requestDb.listRequestAktif(); }
+
+//    @Override
+//    public RequestModel getRequestByDriverUuid(String uuid) {
+//        return requestDb.findByDriverUuid(uuid);
+//    }
 
     @Override
     public RequestModel getRequestById(Long id) {

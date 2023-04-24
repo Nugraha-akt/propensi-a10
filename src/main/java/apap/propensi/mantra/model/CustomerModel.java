@@ -23,6 +23,5 @@ public class CustomerModel extends UserModel {
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<RequestModel> listRequest;
-
 }
 

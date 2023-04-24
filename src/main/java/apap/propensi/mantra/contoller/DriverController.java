@@ -1,6 +1,7 @@
 package apap.propensi.mantra.contoller;
 
 import apap.propensi.mantra.model.DriverModel;
+import apap.propensi.mantra.model.PairUnitDriverModel;
 import apap.propensi.mantra.model.RequestModel;
 import apap.propensi.mantra.model.UserModel;
 import apap.propensi.mantra.service.DriverService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -37,17 +39,17 @@ public class DriverController {
         return "driver/viewall";
     }
 
-    @GetMapping("/detail/{uuid}")
-    public String detailDriver(@PathVariable String uuid, Model model){
-        DriverModel driver = driverService.getDriverByUuid(uuid);
-        if (driver != null){
-            List<RequestModel> listRequest = driver.getListRequest();
-            model.addAttribute("driver", driver);
-            model.addAttribute("listRequest", listRequest);
-            return "driver/detail";
-        }
-        return "driver/404";
-    }
+//    @GetMapping("/detail/{uuid}")
+//    public String detailDriver(@PathVariable String uuid, Model model){
+//        DriverModel driver = driverService.getDriverByUuid(uuid);
+//        if (driver != null){
+//            List<RequestModel> listRequest = driver.getListRequest();
+//            model.addAttribute("driver", driver);
+//            model.addAttribute("listRequest", listRequest);
+//            return "driver/detail";
+//        }
+//        return "driver/404";
+//    }
 
     @GetMapping("/nonaktifkan/{uuid}")
     public String nonaktifkanDriver(@PathVariable String uuid, Model model){
@@ -100,22 +102,42 @@ public class DriverController {
         return "driver/ringkasan";
     }
 
+    // Update status driver
     @GetMapping("/update/{uuid}")
     public String updateDriver(@PathVariable String uuid, Model model){
         DriverModel driver = driverService.getDriverByUuid(uuid);
         if (driver != null){
+            // Handle driver yang mau diubah jadi sedang ditugaskan
             if (driver.getStatus()==2 || driver.getStatus()==3) {
                 List<RequestModel> listRequestMulai = requestService.getListRequestMulai();
                 model.addAttribute("listRequest", listRequestMulai);
                 model.addAttribute("driver", driver);
                 return "driver/form-update";
+
+            // Handle driver yang sedang ditugaskan tapi mau update menjadi sudah ditugaskan
             } else if (driver.getStatus()==1) {
-                String statusPerjalanan = requestService.getRequestByDriverUuid(uuid).getStatus();
-                if (!statusPerjalanan.equals("SAMPAI")){
+
+                // Ambil request
+                List<PairUnitDriverModel> listPairUnitDriver = driverService.getDriverByUuid(uuid).getListPairRequest();
+                List<RequestModel> listRequest = new ArrayList<>();
+                for (int i=0; i<listPairUnitDriver.size(); i++) {
+                    listRequest.add(listPairUnitDriver.get(i).getRequest());
+                }
+
+//                String statusPerjalanan = requestService.getRequestByDriverUuid(uuid).getStatus();
+
+                // Mengambil status request paling terbaru (index tertinggi)
+
+                // TODO: cek, bener kah request yang ditampilin = request terakhir (terbaru)
+                String statusPerjalanan = listRequest.get(listRequest.size()-1).getStatusPerjalanan();
+
+                // Belum sampai --> ga bisa diubah menjadi sudah ditugaskan
+                if (!statusPerjalanan.equals("Finished")){
                     model.addAttribute("driver", driver);
                     return "driver/belum-sampai";
                 }
                 else {
+                    // Handle driver yang sudah sampai ditujuan bisa diubah menjadi sudah ditugaskan
                     model.addAttribute("driver", driver);
                     return "driver/validasi-sampai";
                 }
@@ -136,18 +158,18 @@ public class DriverController {
         return "driver/404";
     }
 
-    @PostMapping("/update-sedang/{uuid}/{id}")
-    public String updateBerhasilDriver(@PathVariable String uuid,@PathVariable Long id, Model model) {
-        DriverModel driver = driverService.getDriverByUuid(uuid);
-        RequestModel request = requestService.getRequestById(id);
-        driver.setStatus(1);
-        request.setDriver(driver);
-        DriverModel updateDriver = driverService.updateDriver(driver);
-        RequestModel updateRequest = requestService.updateRequest(request);
-        model.addAttribute("driver", updateDriver);
-        model.addAttribute("request", updateRequest);
-        return "driver/update";
-    }
+//    @PostMapping("/update-sedang/{uuid}/{id}")
+//    public String updateBerhasilDriver(@PathVariable String uuid,@PathVariable Long id, Model model) {
+//        DriverModel driver = driverService.getDriverByUuid(uuid);
+//        RequestModel request = requestService.getRequestById(id);
+//        driver.setStatus(1);
+//        request.setDriver(driver);
+//        DriverModel updateDriver = driverService.updateDriver(driver);
+//        RequestModel updateRequest = requestService.updateRequest(request);
+//        model.addAttribute("driver", updateDriver);
+//        model.addAttribute("request", updateRequest);
+//        return "driver/update";
+//    }
 
     @PostMapping("/update-sudah/{uuid}")
     public String updateSudahDitugaskanDriver(@PathVariable String uuid, Model model) {

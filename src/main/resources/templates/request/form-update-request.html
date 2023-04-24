@@ -23,34 +23,21 @@
       <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Update Admin</h1>
+        <h1 class="h3 mb-4 text-gray-800">Update Status Perjalanan Request</h1>
         <!-- ISI DISIN YA MANIS -->
         <div class="container">
           <div class="card m-4 p-4">
             <div class="card-body">
               <div class="justify-content-center">
-                <form th:action="@{/user/update/admin}" th:object="${user}" method="POST">
-                  <input type="hidden" th:field="*{uuid}">
-                  <input type="hidden" th:field="*{role}">
+                <!--Form untuk update Admin-->
+                <form th:action="@{/request/update}" th:object="${request}" method="POST">
+                  <input type="hidden" th:field="*{id}">
 
-                  <label>Username</label>
-                  <input required type="text" name="username" class="form-control" th:value="*{username}" th:field="*{username}">
-
-                  <label>Nama</label>
-                  <input required type="text" name="nama" class="form-control" th:value="*{nama}" th:field="*{nama}">
-
-                  <label>E-mail</label>
-                  <input required type="text" name="email" class="form-control" th:value="*{email}" th:field="*{email}">
-
-                  <label>Password</label>
-                  <input required type="text" name="password" class="form-control" th:value="*{password}" th:field="*{password}">
-
-                  <label>No Telepon</label>
-                  <input required type="text" name="noTelepon" class="form-control" th:value="*{noTelepon}" th:field="*{noTelepon}">
-
+                  <label>Isi dengan deskripsi atau nama tempat saat ini</label>
+                  <input required type="text" name="statusPerjalanan" class="form-control" th:field="*{statusPerjalanan}" th:value="*{statusPerjalanan}">
                   <br>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                  <a class="btn btn-link" th:href="@{/user/viewall}">Kembali</a>
+                  <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                  <a class="btn btn-sm btn-outline-primary" th:href="@{/request/viewall}">Kembali</a>
                 </form>
               </div>
             </div>

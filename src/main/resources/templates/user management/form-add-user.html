@@ -43,6 +43,141 @@
                         </td>
                     </tr>
                 </table>
+                <div th:if="${role != null}" class="container">
+                    <div class="card m-4 p-4">
+                        <div class="card-body">
+                            <div class="justify-content-center">
+                                <!--Form untuk tambah Admin-->
+                                <form th:if="${role == 'Admin'}"  th:action="@{/user/add/admin}" th:object="${user}" method="POST">
+                                    <label>Username</label>
+                                    <input required type="text" name="username" class="form-control">
+
+                                    <label>Nama</label>
+                                    <input required type="text" name="nama" class="form-control">
+
+                                    <label>E-mail</label>
+                                    <input required type="text" name="email" class="form-control">
+
+                                    <label>Password</label>
+                                    <input required type="text" name="password" class="form-control">
+
+                                    <label>No Telepon</label>
+                                    <input required type="text" name="noTelepon" class="form-control">
+
+                                    <label>Role</label>
+                                    <input type="text" name="role" class="form-control" value="Admin" disabled>
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <a class="btn btn-link" th:href="@{/user/viewall}">Kembali</a>
+                                </form>
+
+
+                                <form th:if="${role == 'Manager'}" th:action="@{/user/add/manager}" th:object="${user}" method="POST">
+                                    <label>Username</label>
+                                    <input required type="text" name="username" class="form-control">
+
+                                    <label>Nama</label>
+                                    <input required type="text" name="nama" class="form-control">
+
+                                    <label>E-mail</label>
+                                    <input required type="text" name="email" class="form-control">
+
+                                    <label>Password</label>
+                                    <input required type="text" name="password" class="form-control">
+
+                                    <label>No Telepon</label>
+                                    <input required type="text" name="noTelepon" class="form-control">
+
+                                    <label>Role</label>
+                                    <input type="text" name="role" class="form-control" value="Manager" disabled>
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <a class="btn btn-link" th:href="@{/user/viewall}">Kembali</a>
+                                </form>
+
+
+                                <form th:if="${role == 'Customer'}" th:action="@{/user/add/customer}" th:object="${user}" method="POST">
+                                    <label>Username</label>
+                                    <input required type="text" name="username" class="form-control">
+
+                                    <label>Nama</label>
+                                    <input required type="text" name="nama" class="form-control">
+
+                                    <label>E-mail</label>
+                                    <input required type="text" name="email" class="form-control">
+
+                                    <label>Password</label>
+                                    <input required type="text" name="password" class="form-control">
+
+                                    <label>No Telepon</label>
+                                    <input required type="text" name="noTelepon" class="form-control">
+
+                                    <label>Role</label>
+                                    <input type="text" name="role" class="form-control" value="Customer" disabled>
+
+                                    <label>Asal Instansi</label>
+                                    <input required type="text" name="asalInstansi" class="form-control">
+
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <a class="btn btn-link" th:href="@{/user/viewall}">Kembali</a>
+                                </form>
+
+
+                                <form th:if="${role == 'Driver'}" th:action="@{/user/add/driver}" th:object="${user}" method="POST">
+                                    <label>Username</label>
+                                    <input required type="text" name="username" class="form-control">
+
+                                    <label>Nama</label>
+                                    <input required type="text" name="nama" class="form-control">
+
+                                    <label>E-mail</label>
+                                    <input required type="text" name="email" class="form-control">
+
+                                    <label>Password</label>
+                                    <input required type="text" name="password" class="form-control">
+
+                                    <label>No Telepon</label>
+                                    <input required type="text" name="noTelepon" class="form-control">
+
+                                    <label>Role</label>
+                                    <input type="text" name="role" class="form-control" value="Driver" disabled>
+
+                                    <label>Nomor SIM</label>
+                                    <input required type="text" name="sim" class="form-control">
+
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <a class="btn btn-link" th:href="@{/user/viewall}">Kembali</a>
+                                </form>
+
+
+                                <form th:if="${role == 'Customer Service'}" th:action="@{/user/add/customerservice}" th:object="${user}" method="POST">
+                                    <label>Username</label>
+                                    <input required type="text" name="username" class="form-control">
+
+                                    <label>Nama</label>
+                                    <input required type="text" name="nama" class="form-control">
+
+                                    <label>E-mail</label>
+                                    <input required type="text" name="email" class="form-control">
+
+                                    <label>Password</label>
+                                    <input required type="text" name="password" class="form-control">
+
+                                    <label>No Telepon</label>
+                                    <input required type="text" name="noTelepon" class="form-control">
+
+                                    <label>Role</label>
+                                    <input type="text" name="role" class="form-control" value="Customer Service" disabled>
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <a class="btn btn-link" th:href="@{/user/viewall}">Kembali</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <a class="btn btn-link" th:href="@{/user/viewall}">Kembali</a>
             </div>
             <!-- /.container-fluid -->
