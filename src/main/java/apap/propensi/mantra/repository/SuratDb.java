@@ -12,4 +12,16 @@ public interface SuratDb extends JpaRepository<SuratModel, String> {
 
     @Query("SELECT s FROM SuratModel s ORDER BY  s.status ASC")
     List<SuratModel> viewSuratOrderByStatus();
+
+    @Query("SELECT COUNT(s) FROM SuratModel s WHERE s.status=1")
+    Integer sumGenerated();
+
+    @Query("SELECT COUNT(s) FROM SuratModel s WHERE s.status=2")
+    Integer sumSubmitted();
+
+    @Query("SELECT COUNT(s) FROM SuratModel s WHERE s.status=3")
+    Integer sumVerified();
+
+    @Query("SELECT COUNT(s) FROM SuratModel s WHERE s.status=4")
+    Integer sumRejected();
 }

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title> Mantra - Upload Surat </title>
+  <title> Mantra - Ringkasan Surat </title>
   <object th:include="fragments/fragment :: style" th:remove="tag"></object>
 </head>
 
@@ -28,14 +28,32 @@
           <div class="card m-4 p-4">
             <div class="card-body">
               <div class="justify-content-center">
-                <h2 th:text="'Foto berhasil diupload'"></h2>
-                <br>
-                <a class="btn btn-primary" th:href="@{/surat/list}">Kembali</a>
+                <h2 class="text-center" th:text="'Ringkasan Surat'"></h2>
+                <br><br>
+                <table class="table">
+                  <tbody>
+                  <tr>
+                    <th scope="row">Generated</th>
+                    <td th:text="${sumGenerated}"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Submitted</th>
+                    <td th:text="${sumSubmitted}"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Verified</th>
+                    <td th:text="${sumVerified}"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Rejected</th>
+                    <td th:text="${sumRejected}"></td>
+                  </tr>
+                </table>
+                <a class="btn btn-primary" th:href="@{/surat/viewall}">Kembali</a>
               </div>
             </div>
           </div>
         </div>
-
         <!-- /.container-fluid -->
 
       </div>
@@ -58,3 +76,4 @@
 </div>
 </body>
 </html>
+

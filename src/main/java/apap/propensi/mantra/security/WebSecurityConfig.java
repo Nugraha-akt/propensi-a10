@@ -46,6 +46,7 @@ public class WebSecurityConfig {
                 .antMatchers("/surat/list").hasAnyAuthority("DRIVER")
                 .antMatchers("/surat/upload-foto/**").hasAnyAuthority("DRIVER")
                 .antMatchers("/surat/upload/**").hasAnyAuthority("DRIVER")
+                .antMatchers("/surat/ringkasan").hasAnyAuthority("ADMIN","MANAGER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
