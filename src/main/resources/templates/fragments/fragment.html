@@ -148,8 +148,8 @@
     </a>
     <div id="collapseSurat" class="collapse" aria-labelledby="headingSurat" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAnyAuthority('CUSTOMER', 'MANAGER', 'ADMIN')">Verifikasi Surat</a>
         <a class="collapse-item" th:href="@{/blank}" sec:authorize="hasAnyAuthority('MANAGER', 'ADMIN')" >Kelola Surat </a>
+        <a class="collapse-item" th:href="@{/surat/ringkasan}" sec:authorize="hasAnyAuthority('MANAGER', 'ADMIN')" >Ringkasan Surat </a>
         <a class="collapse-item" th:href="@{/surat/list}" sec:authorize="hasAuthority('DRIVER')">Kelola Surat</a>
       </div>
     </div>

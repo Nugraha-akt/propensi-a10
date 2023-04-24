@@ -8,4 +8,8 @@ public interface SuratService {
     SuratModel getSuratById(Long id);
     SuratModel updateSurat(SuratModel surat);
     List<SuratModel> getListSuratOrderByStatus();
+    Integer getSumGenerated();
+    Integer getSumSubmitted();
+    Integer getSumVerified();
+    Integer getSumRejected();
 }

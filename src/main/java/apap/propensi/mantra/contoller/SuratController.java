@@ -48,7 +48,6 @@ public class SuratController {
             try {
                 File saveFile = new ClassPathResource("static/img").getFile();
                 Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + img.getOriginalFilename());
-                System.out.println(path);
                 Files.copy(img.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -73,5 +72,43 @@ public class SuratController {
         }
         model.addAttribute("listSuratDriver", listSuratDriver);
         return "surat/list";
+    }
+
+    @GetMapping("/ringkasan")
+    public String ringkasanSurat(Model model) {
+        Integer sumGenerated = suratService.getSumGenerated();
+        Integer sumSubmitted= suratService.getSumSubmitted();
+        Integer sumVerified = suratService.getSumVerified();
+        Integer sumRejected = suratService.getSumRejected();
+        model.addAttribute("sumGenerated", sumGenerated);
+        model.addAttribute("sumSubmitted", sumSubmitted);
+        model.addAttribute("sumVerified", sumVerified);
+        model.addAttribute("sumRejected", sumRejected);
+        return "surat/ringkasan";
+    }
+
+    @GetMapping("/dokumen/{id}")
+    public String dokumenSurat(@PathVariable Long id, Model model) {
+        SuratModel surat = suratService.getSuratById(id);
+        model.addAttribute("surat", surat);
+        return "surat/dokumen";
+    }
+
+    @GetMapping("/verifikasi/{id}")
+    public String verifikasiSurat(@PathVariable Long id, Model model) {
+        SuratModel surat = suratService.getSuratById(id);
+        surat.setStatus(3);
+        SuratModel updateSurat = suratService.updateSurat(surat);
+        model.addAttribute("surat", updateSurat);
+        return "surat/verifikasi";
+    }
+
+    @GetMapping("/tolak/{id}")
+    public String tolakSurat(@PathVariable Long id, Model model) {
+        SuratModel surat = suratService.getSuratById(id);
+        surat.setStatus(4);
+        SuratModel updateSurat = suratService.updateSurat(surat);
+        model.addAttribute("surat", updateSurat);
+        return "surat/tolak";
     }
 }

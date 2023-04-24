@@ -32,7 +32,26 @@ public class SuratServiceImpl implements SuratService{
 
     @Override
     public List<SuratModel> getListSuratOrderByStatus(){
-        return suratDb.viewSuratOrderByStatus()
-;    }
+        return suratDb.viewSuratOrderByStatus();
+    }
 
+    @Override
+    public Integer getSumGenerated() {
+        return suratDb.sumGenerated();
+    }
+
+    @Override
+    public Integer getSumSubmitted() {
+        return suratDb.sumSubmitted();
+    }
+
+    @Override
+    public Integer getSumVerified() {
+        return suratDb.sumVerified();
+    }
+
+    @Override
+    public Integer getSumRejected() {
+        return suratDb.sumRejected();
+    }
 }
