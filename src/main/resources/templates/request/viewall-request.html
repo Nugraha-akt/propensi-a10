@@ -168,7 +168,9 @@
         });
     });
 </script>
-
+<script th:inline="javascript" th:if="${toastrSuccessMessage != ''}">
+    toastr.success([[${toastrSuccessMessage}]], 'Success');
+</script>
 </body>
 
 </html>

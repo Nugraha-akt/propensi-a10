@@ -14,7 +14,7 @@ public interface RequestDb extends JpaRepository<RequestModel, String> {
     List<RequestModel> listRequestMulai();
 
     // TODO: Search for requests that are linked to the user
-    @Query("SELECT r FROM RequestModel r WHERE r.customer.username=username")
+    @Query("SELECT r FROM RequestModel r WHERE r.customer.username = :username")
     List<RequestModel> listRequestUserSpecific(String username);
 
     // TODO: handle status

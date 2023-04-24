@@ -38,7 +38,7 @@ public class UnitModel implements Serializable {
     @Column(name = "plat_nomor", nullable = false, unique = true)
     private String platNomor;
 
-    @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "unit", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PairUnitDriverModel> listPairRequest;
 }
 

@@ -91,7 +91,7 @@
                   </thead>
                   <tbody>
                   <tr th:each="pair, iterationStatus : ${request.listPairRequest}">
-                    <td th:text="${pair.driver.nama}"></td>
+                    <td th:text="${pair.driver != null} ? ${pair.driver.nama} : '-'"></td>
                     <td th:text="${pair.unit.jenis}"></td>
                     <td th:text="${pair.unit.platNomor}"></td>
                   </tr>
