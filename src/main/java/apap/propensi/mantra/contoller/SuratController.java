@@ -29,6 +29,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -134,14 +135,15 @@ public class SuratController {
     @GetMapping(value = "/view/{noSurat}")
     private String viewSuratPage(@PathVariable("noSurat") long noSurat, Model model){
         SuratModel surat = suratService.getSurat(noSurat);
-
+        long days = Duration.between(surat.getRequest().getDepartDate(), surat.getRequest().getReturnDate()).toDays();
 
         model.addAttribute("unit", surat);
+        model.addAttribute("days", days);
         return "surat/view-surat";
     }
 
     @GetMapping(value = "/pdf/{noSurat}")
-    public ResponseEntity<?> getDokumen(@PathVariable("noSurat") long noSurat, HttpServletRequest request, HttpServletResponse response, Model model){
+    public ResponseEntity<?> getPDF(@PathVariable("noSurat") long noSurat, HttpServletRequest request, HttpServletResponse response, Model model){
 
         /* Do Business Logic*/
 
@@ -156,7 +158,9 @@ public class SuratController {
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateEngine.setTemplateResolver(templateResolver);
         WebContext context = new WebContext(request, response, request.getServletContext());
+        long days = Duration.between(surat.getRequest().getDepartDate(), surat.getRequest().getReturnDate()).toDays();
         context.setVariable("unit", surat);
+        context.setVariable("days", days);
         String orderHtml = templateEngine.process("surat/surat-asli", context);
 
         /* Setup Source and target I/O streams */

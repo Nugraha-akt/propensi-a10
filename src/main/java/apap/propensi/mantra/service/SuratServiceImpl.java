@@ -1,5 +1,7 @@
 package apap.propensi.mantra.service;
 
+import apap.propensi.mantra.model.PairUnitDriverModel;
+import apap.propensi.mantra.model.RequestModel;
 import apap.propensi.mantra.model.SuratModel;
 import apap.propensi.mantra.repository.SuratDb;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,4 +72,17 @@ public class SuratServiceImpl implements SuratService{
 
     @Override
     public void deleteSurat(SuratModel surat) {suratDb.delete(surat);}
+
+    @Override
+    public void generateSurat(RequestModel request){
+            for(PairUnitDriverModel pair : request.getListPairRequest()){
+                SuratModel surat = new SuratModel();
+                surat.setStatus(1);
+                surat.setDriver(pair.getDriver());
+                surat.setRequest(request);
+                surat.setId(suratDb.count()+1);
+                surat.setNoSurat(surat.getId().toString());
+                suratDb.save(surat);
+        }
+    }
 }

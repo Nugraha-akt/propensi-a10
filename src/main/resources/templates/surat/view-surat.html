@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <object th:include="fragments/fragment :: style" th:remove="tag"></object>
@@ -38,7 +38,7 @@
                                 <tr>
                                     <td><p>pejabat yang berwenang memberi perintah:</p></td>
                                     <td>
-                                        <p th:text="'nama: '+${unit.request.customer.getNama()}"></p>
+                                        <p th:text="'nama(belum tau ini siapa harusnya): '+${unit.request.customer.getNama()}"></p>
                                         <p style="padding-right: 200px;">jabatan:</p>
                                     </td>
 
@@ -64,8 +64,8 @@
                                 <tr>
                                     <td><p>alat angkut yang dipergunakan:</p></td>
                                     <td>
-                                        <p th:text="'blm selesai: '+${unit.request.getAlasan()}"></p>
-                                        <p style="padding-right: 200px;">jabatan:</p>
+                                        <p th:text="'blm selesai: '+${unit.request.getTujuan()}"></p>
+                                        <p style="padding-right: 200px;"></p>
                                     </td>
 
                                 </tr>
@@ -89,9 +89,9 @@
                                         <p>c.tanggal harus kembali</p>
                                     </td>
                                     <td>
-                                        <p th:text="'a.(blm ke handle) '+${unit.request.tujuan}"></p>
-                                        <p style="padding-right: 200px;">b.</p>
-                                        <p style="padding-right: 200px;">c.</p>
+                                        <p th:text="'a. '+${days}+' hari'"></p>
+                                        <p style="padding-right: 200px;" th:text="'b. '+${unit.getRequest().getDepartDate().toLocalDate()}"></p>
+                                        <p style="padding-right: 200px;" th:text="'c. '+${unit.getRequest().getReturnDate().toLocalDate()}"></p>
                                     </td>
 
                                 </tr>
@@ -131,16 +131,17 @@
                                         <p>4.</p>
                                     </td>
                                     <td>
-                                        <p>dikeluarkan di makassar pada tanggal</p>
-                                        <p>ttd disini</p>
-                                        <p>nama orang yg ttd</p>
-                                        <p>jabatan orangnya</p>
+                                        <p th:text="'dikeluarkan di makassar pada tanggal '+${unit.getRequest().getCreatedAt().toLocalDate()} ">dikeluarkan di makassar pada tanggal</p>
+                                        <p hidden>ttd disini</p>
+                                        <p hidden>nama orang yg ttd</p>
+                                        <p>kepala HCGS</p>
                                     </td>
 
                                 </tr>
                                 </tbody>
                             </table>
-                            <a class="btn btn-primary" th:href="@{/surat/viewall}">kembali</a>
+                            <a sec:authorize="hasAnyAuthority('MANAGER', 'ADMIN')" class="btn btn-primary" th:href="@{/surat/viewall}">kembali</a>
+                            <a sec:authorize="hasAnyAuthority('DRIVER')" class="btn btn-primary" th:href="@{/surat/list}">kembali</a>
                         </div>
                     </div>
                 </div>

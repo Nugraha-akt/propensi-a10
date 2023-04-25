@@ -3,12 +3,8 @@ package apap.propensi.mantra.contoller;
 import apap.propensi.mantra.model.*;
 import apap.propensi.mantra.helper.CustomUnitPair;
 import apap.propensi.mantra.helper.RequestUnitHelper;
+import apap.propensi.mantra.service.*;
 import ch.qos.logback.core.net.SyslogOutputStream;
-import apap.propensi.mantra.service.CustomerService;
-import apap.propensi.mantra.service.RequestService;
-import apap.propensi.mantra.service.DriverService;
-import apap.propensi.mantra.service.UnitService;
-import apap.propensi.mantra.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +25,9 @@ public class RequestController {
     final UserService userService;
     final DriverService driverService;
     final CustomerService customerService;
+
+    @Autowired
+    private SuratService suratService;
 
     public RequestController(RequestService requestService, UnitService unitService, UserService userService, DriverService driverService, CustomerService customerService) {
         this.requestService = requestService;
@@ -164,6 +163,8 @@ public class RequestController {
         request.setStatus("In-Progress");
         request.setStatusPerjalanan("Started");
         requestService.updateRequest(request);
+
+        suratService.generateSurat(request);
 
         model.addAttribute("message", "Request berhasil dikonfirmasi!");
         return "request/update-status-request";

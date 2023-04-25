@@ -1,5 +1,6 @@
 package apap.propensi.mantra.service;
 
+import apap.propensi.mantra.model.RequestModel;
 import apap.propensi.mantra.model.SuratModel;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface SuratService {
     List<SuratModel> getListSurat();
     SuratModel getSurat(long id);
     void deleteSurat(SuratModel surat);
+
+    void generateSurat(RequestModel request);
 }
