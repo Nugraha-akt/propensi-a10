@@ -1,10 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <style>
+        table, th, td {
+            border: 2px solid black;
+
+        }
+        td + td{ border-left: 1px solid black;}
+    </style>
+
 </head>
 <body>
 
+<table class="table">
+    <thead>
+    </thead>
+    <tbody>
+    <tr>
+        <td><p>pejabat yang berwenang memberi perintah:</p></td>
+        <td>
+            <p th:text="'nama: '+${unit.request.customer.getNama()}"></p>
+            <p style="padding-right: 200px;">jabatan:</p>
+        </td>
+        </div>
+    </tr>
+
+    <tr>
+        <td><p>pegawai yang diperintah:</p></td>
+        <td>
+            <p th:text="'nama: '+${unit.driver.getNama()}"></p>
+            <p style="padding-right: 200px;">jabatan: driver</p>
+        </td>
+        </div>
+    </tr>
+
+    <tr>
+        <td><p>maksud perjalanan dinas:</p></td>
+        <td>
+            <p th:text="${unit.request.getAlasan()}"></p>
+        </td>
+        </div>
+    </tr>
+
+    <tr>
+        <td><p>alat angkut yang dipergunakan:</p></td>
+        <td>
+            <p th:text="'blm selesai: '+${unit.request.getAlasan()}"></p>
+            <p style="padding-right: 200px;">jabatan:</p>
+        </td>
+        </div>
+    </tr>
+
+    <tr>
+        <td>
+            <p>a.tempat berangkat:</p>
+            <p>b.tempat tujuan</p>
+        </td>
+        <td>
+            <p th:text="'a.(harus diedit lagi requestnya) '+${unit.request.tujuan}"></p>
+            <p style="padding-right: 200px;" th:text="'b. '+${unit.request.tujuan}">b.</p>
+        </td>
+        </div>
+    </tr>
+
+    <tr>
+        <td>
+            <p>a.lamanya perjalanan dinas:</p>
+            <p>b.tanggal berangkat</p>
+            <p>c.tanggal harus kembali</p>
+        </td>
+        <td>
+            <p th:text="'a.(blm ke handle) '+${unit.request.tujuan}"></p>
+            <p style="padding-right: 200px;">b.</p>
+            <p style="padding-right: 200px;">c.</p>
+        </td>
+        </div>
+    </tr>
+
+    <tr>
+        <td>
+            <p>keluarga yang ikut perjalanan:</p>
+        </td>
+        <td>
+            <p>hubungan keluarga/keterangan</p>
+            <br>
+            <br>
+            <br>
+        </td>
+        </div>
+    </tr>
+
+    <tr>
+        <td>
+            <p>keterangan lain lain:</p>
+        </td>
+        <td>
+            <p></p>
+            <br>
+            <br>
+            <br>
+        </td>
+        </div>
+    </tr>
+
+    <tr>
+        <td>
+            <p>Cc:</p>
+            <p>1.</p>
+            <p>2.</p>
+            <p>3.</p>
+            <p>4.</p>
+        </td>
+        <td>
+            <p>dikeluarkan di makassar pada tanggal</p>
+            <p>ttd disini</p>
+            <p>nama orang yg ttd</p>
+            <p>jabatan orangnya</p>
+        </td>
+        </div>
+    </tr>
+    </tbody>
+</table>
+<!-- End of Main Content -->
+<footer>
+    <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</footer>
+
+</div>
 </body>
 </html>
