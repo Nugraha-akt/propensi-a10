@@ -7,6 +7,7 @@ import java.util.List;
 public interface DriverService {
     List<DriverModel> getListDriverOrderByStatus();
     List<DriverModel> getListDriver();
+    List<DriverModel> getListAvailableDriver();
     DriverModel addDriver(DriverModel user);
     void deleteDriver(DriverModel user);
     String encrypt(String password);

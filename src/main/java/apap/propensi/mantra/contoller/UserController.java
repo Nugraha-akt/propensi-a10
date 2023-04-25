@@ -1,14 +1,20 @@
 package apap.propensi.mantra.contoller;
 
 
+import apap.propensi.mantra.helper.PasswordChangeForm;
 import apap.propensi.mantra.model.*;
 import apap.propensi.mantra.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping("/user")
@@ -322,6 +328,39 @@ public class UserController {
 
         model.addAttribute("user", user);
         return "user management/delete-user";
+    }
+
+    @GetMapping("/change-password")
+    public String changePasswordPage(Model model) {
+        model.addAttribute("passwordChangeForm", new PasswordChangeForm());
+        return "user management/change-password-form";
+    }
+
+    @PostMapping("/change-password")
+    public String changePasswordSubmitPage(@ModelAttribute PasswordChangeForm passwordChangeForm, Principal principal, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "user management/change-password-form";
+        }
+
+        UserModel user = userService.getUserByUsername(principal.getName());
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        // old password validation
+        if (!encoder.matches(passwordChangeForm.getOldPassword(), user.getPassword())) {
+            model.addAttribute("errorMsg", "Invalid password");
+            return "user management/change-password-form";
+        }
+
+        // new password matches with new password confirm validation
+        if (!passwordChangeForm.getNewPassword().equals(passwordChangeForm.getNewPasswordConfirm())) {
+            model.addAttribute("errorMsg", "New password didn't match");
+            return "user management/change-password-form";
+        }
+
+        user.setPassword(encoder.encode(passwordChangeForm.getNewPassword()));
+        userService.updateUser(user);
+
+        return "user management/change-password";
     }
 
     @GetMapping("/summary")
