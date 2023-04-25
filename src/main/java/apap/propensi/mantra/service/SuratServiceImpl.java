@@ -54,4 +54,20 @@ public class SuratServiceImpl implements SuratService{
     public Integer getSumRejected() {
         return suratDb.sumRejected();
     }
+    @Override
+    public List<SuratModel> getListSurat() {
+        return suratDb.findAll();
+    }
+
+    @Override
+    public SuratModel getSurat(long id){
+        ///terdapat perubahan, method ini mengikuti method getSuratById yang ada diatas
+        Optional<SuratModel> surat = suratDb.findById(id);
+        if (surat.isPresent()) {
+            return surat.get();
+        } else return null;
+    }
+
+    @Override
+    public void deleteSurat(SuratModel surat) {suratDb.delete(surat);}
 }
