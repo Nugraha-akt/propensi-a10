@@ -12,4 +12,7 @@ public interface SuratService {
     Integer getSumSubmitted();
     Integer getSumVerified();
     Integer getSumRejected();
+    List<SuratModel> getListSurat();
+    SuratModel getSurat(long id);
+    void deleteSurat(SuratModel surat);
 }
