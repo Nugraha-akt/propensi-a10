@@ -15,6 +15,9 @@ public interface DriverDb extends JpaRepository<DriverModel, String> {
 
     Optional<DriverModel> findByUsername(String username);
 
+    @Query("SELECT d from DriverModel d WHERE d.status=1")
+    List<DriverModel> findAvailableDriver();
+
     @Query("SELECT COUNT(d) FROM DriverModel d WHERE d.status=1")
     Integer sumSedangDitugaskan();
 

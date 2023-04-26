@@ -29,17 +29,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserModel updateUser(UserModel oldUser){
-        UserModel updatedUser = new UserModel();
-
-        updatedUser.setUsername(oldUser.getUsername());
-        updatedUser.setPassword(oldUser.getPassword());
-        updatedUser.setUuid(oldUser.getUuid());
-        updatedUser.setNoTelepon(oldUser.getNoTelepon());
-        updatedUser.setNama(oldUser.getNama());
-        updatedUser.setRole(oldUser.getRole());
-        updatedUser.setEmail(oldUser.getEmail());
-
-        return userDb.save(updatedUser);
+        return userDb.save(oldUser);
     }
 
     @Override

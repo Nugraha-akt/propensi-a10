@@ -29,6 +29,11 @@ public class DriverServiceImpl implements DriverService{
     }
 
     @Override
+    public List<DriverModel> getListAvailableDriver() {
+        return driverDb.findAvailableDriver();
+    }
+
+    @Override
     public DriverModel addDriver(DriverModel user) {
         DriverModel newDriver = new DriverModel();
 
@@ -40,7 +45,7 @@ public class DriverServiceImpl implements DriverService{
         newDriver.setEmail(user.getEmail());
         newDriver.setRole(Role.DRIVER);
         newDriver.setSim(user.getSim());
-        newDriver.setStatus(2);
+        newDriver.setStatus(1);
         newDriver.setListPairRequest(new ArrayList<>());
 
         return driverDb.save(newDriver);

@@ -3,11 +3,9 @@ package apap.propensi.mantra.contoller;
 import apap.propensi.mantra.model.*;
 import apap.propensi.mantra.helper.CustomUnitPair;
 import apap.propensi.mantra.helper.RequestUnitHelper;
-import apap.propensi.mantra.service.CustomerService;
-import apap.propensi.mantra.service.RequestService;
-import apap.propensi.mantra.service.DriverService;
-import apap.propensi.mantra.service.UnitService;
-import apap.propensi.mantra.service.UserService;
+import apap.propensi.mantra.service.*;
+import ch.qos.logback.core.net.SyslogOutputStream;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -112,7 +110,7 @@ public class RequestController {
     public String listAllRequest(@ModelAttribute("successMessage") String successMessage, Model model, RedirectAttributes redirectAttributes, Principal principal) {
         String role = userService.getUserByUsername(principal.getName()).getRole().getName();
         List<RequestModel> listRequest = new ArrayList<>();
-        System.out.println("P");
+
         if (!successMessage.isEmpty()) {
             System.out.println(successMessage);
             model.addAttribute("toastrSuccessMessage", successMessage);
@@ -150,6 +148,61 @@ public class RequestController {
         return "request/viewall-request";
     }
 
+    @GetMapping("/assign")
+    public String assignDriverPage(@RequestParam(value = "id") Long id, Model model) {
+        if (requestService.getRequestById(id) == null) {
+            model.addAttribute("id", id);
+            return "request/request-not-found";
+        }
+        RequestModel request = requestService.getRequestById(id);
+
+        if (!request.getStatus().equals("Created")) {
+            return "error/404";
+        }
+
+        List<DriverModel> listAvailableDrivers = driverService.getListAvailableDriver();
+        List<PairUnitDriverModel> listPair = request.getListPairRequest();
+
+        model.addAttribute("listAvailableDrivers", listAvailableDrivers);
+        model.addAttribute("request", request);
+        model.addAttribute("listPair", listPair);
+        return "request/form-assign-driver";
+    }
+
+    @PostMapping("/assign")
+    public String assignDriverConfirmPage(@ModelAttribute RequestModel request, Model model) {
+        RequestModel updatedRequest = requestService.getRequestById(request.getId());
+
+        List<PairUnitDriverModel> listPair = updatedRequest.getListPairRequest();
+
+        // verifikasi bahwa semua driver yang ter-assign, merupakan driver yang unik (tidak ada satu driver yang paired dengan >1 unit)
+        for (int i=0; i < listPair.size(); i++) {
+            DriverModel driver1 = driverService.getDriverByUuid(request.getListPairRequest().get(i).getDriver().getUuid());
+            for (int j=i+1; j < listPair.size(); j++) {
+                DriverModel driver2 = driverService.getDriverByUuid(request.getListPairRequest().get(j).getDriver().getUuid());
+
+                if (driver1.getUuid().equals(driver2.getUuid())) {
+                    model.addAttribute("id", request.getId());
+                    model.addAttribute("errorMsg", "Tidak bisa assign driver ke lebih dari satu unit");
+                    return "request/assign-driver-error";
+                }
+            }
+        }
+
+        // update semua driver pada pair, dari hanya uuid -> menjadi DriverModel
+        for (int i=0; i < listPair.size(); i++) {
+            PairUnitDriverModel pair = listPair.get(i);
+            DriverModel driver = driverService.getDriverByUuid(request.getListPairRequest().get(i).getDriver().getUuid());
+            driver.setStatus(2);
+            pair.setDriver(driver);
+        }
+        updatedRequest.setStatus("Assigned");
+        requestService.updateRequest(updatedRequest);
+
+        model.addAttribute("message", "Berhasil assign driver ke unit!");
+        return "request/success-message";
+    }
+
     @GetMapping("/confirm")
     public String confirmRequestPage(@RequestParam(value = "id") Long id, Model model) {
         if (requestService.getRequestById(id) == null) {
@@ -181,14 +234,8 @@ public class RequestController {
     }
     @PostMapping("/update")
     public String updateRequestSubmitPage(@ModelAttribute RequestModel request, Model model) {
-//        if (requestService.getRequestById(id) == null) {
-//            model.addAttribute("id", id);
-//            return "request/request-not-found";
-//        }
         RequestModel updatedRequest = requestService.getRequestById(request.getId());
-        updatedRequest.setStatusPerjalanan(request.getStatusPerjalanan());
-
-//        request.setStatusPerjalanan(statusPerjalanan);
+        updatedRequest.setStatusPerjalanan(StringTitleCase.toTitleCase(request.getStatusPerjalanan()));
 
         requestService.updateRequest(updatedRequest);
 
@@ -209,7 +256,7 @@ public class RequestController {
         requestService.updateRequest(request);
 
         model.addAttribute("message", "Request berhasil diselesaikan!");
-        return "request/update-status-request";
+        return "request/success-message";
     }
 
     @GetMapping("/detail")
