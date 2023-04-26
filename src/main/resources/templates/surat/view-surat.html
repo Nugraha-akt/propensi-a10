@@ -64,8 +64,8 @@
                                 <tr>
                                     <td><p>alat angkut yang dipergunakan:</p></td>
                                     <td>
-                                        <p th:text="'blm selesai: '+${unit.request.getTujuan()}"></p>
-                                        <p style="padding-right: 200px;"></p>
+                                        <p th:text="'jenis: '+${unit.unit.getJenis()}"></p>
+                                        <p th:text="'plat nomor: '+${unit.unit.getPlatNomor()}"></p>
                                     </td>
 
                                 </tr>
@@ -76,7 +76,7 @@
                                         <p>b.tempat tujuan</p>
                                     </td>
                                     <td>
-                                        <p th:text="'a.(harus diedit lagi requestnya) '+${unit.request.tujuan}"></p>
+                                        <p th:text="'a. makassar '"></p>
                                         <p style="padding-right: 200px;" th:text="'b. '+${unit.request.tujuan}">b.</p>
                                     </td>
 
@@ -134,6 +134,9 @@
                                         <p th:text="'dikeluarkan di makassar pada tanggal '+${unit.getRequest().getCreatedAt().toLocalDate()} ">dikeluarkan di makassar pada tanggal</p>
                                         <p hidden>ttd disini</p>
                                         <p hidden>nama orang yg ttd</p>
+                                        <br>
+                                        <br>
+                                        <p>______________________</p>
                                         <p>kepala HCGS</p>
                                     </td>
 

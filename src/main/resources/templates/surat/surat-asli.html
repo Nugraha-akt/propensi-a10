@@ -33,7 +33,7 @@
         <td><p>pegawai yang diperintah:</p></td>
         <td>
             <p th:text="'nama: '+${unit.driver.getNama()}"></p>
-            <p style="padding-right: 200px;">jabatan: driver</p>
+            <p>jabatan: driver</p>
         </td>
 
     </tr>
@@ -51,7 +51,7 @@
         <td><p>pegawai yang diperintah:</p></td>
         <td>
             <p th:text="'nama: '+${unit.driver.getNama()}"></p>
-            <p style="padding-right: 200px;">jabatan: driver</p>
+            <p>jabatan: driver</p>
         </td>
 
     </tr>
@@ -67,8 +67,8 @@
     <tr>
         <td><p>alat angkut yang dipergunakan:</p></td>
         <td>
-            <p th:text="'blm selesai: '+${unit.request.getTujuan()}"></p>
-            <p style="padding-right: 200px;"></p>
+            <p th:text="'jenis: '+${unit.unit.getJenis()}"></p>
+            <p th:text="'plat nomor: '+${unit.unit.getPlatNomor()}"></p>
         </td>
 
     </tr>
@@ -76,11 +76,11 @@
     <tr>
         <td>
             <p>a.tempat berangkat:</p>
-            <p>b.tempat tujuan</p>
+            <p>a.tempat tujuan</p>
         </td>
         <td>
-            <p th:text="'a.(harus diedit lagi requestnya) '+${unit.request.tujuan}"></p>
-            <p style="padding-right: 200px;" th:text="'b. '+${unit.request.tujuan}">b.</p>
+            <p th:text="'a. makassar'"></p>
+            <p th:text="'b. '+${unit.request.tujuan}">b.</p>
         </td>
 
     </tr>
@@ -93,8 +93,8 @@
         </td>
         <td>
             <p th:text="'a. '+${days}+' hari'"></p>
-            <p style="padding-right: 200px;" th:text="'b. '+${unit.getRequest().getDepartDate().toLocalDate()}"></p>
-            <p style="padding-right: 200px;" th:text="'c. '+${unit.getRequest().getReturnDate().toLocalDate()}"></p>
+            <p th:text="'b. '+${unit.getRequest().getDepartDate().toLocalDate()}"></p>
+            <p th:text="'c. '+${unit.getRequest().getReturnDate().toLocalDate()}"></p>
         </td>
 
     </tr>
@@ -136,8 +136,10 @@
         <td>
             <p th:text="'dikeluarkan di makassar pada tanggal '+${unit.getRequest().getCreatedAt().toLocalDate()} ">dikeluarkan di makassar pada tanggal</p>
             <p hidden>ttd disini</p>
+            <br>
+            <p>______________________</p>
             <p hidden>nama orang yg ttd</p>
-            <p>jabatan orangnya</p>
+            <p>kepala HCGS</p>
         </td>
 
     </tr>

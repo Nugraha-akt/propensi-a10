@@ -79,6 +79,7 @@ public class SuratServiceImpl implements SuratService{
                 SuratModel surat = new SuratModel();
                 surat.setStatus(1);
                 surat.setDriver(pair.getDriver());
+                surat.setUnit(pair.getUnit());
                 surat.setRequest(request);
                 surat.setId(suratDb.count()+1);
                 surat.setNoSurat(surat.getId().toString());
