@@ -222,7 +222,7 @@ public class RequestController {
         suratService.generateSurat(request);
 
         model.addAttribute("message", "Request berhasil dikonfirmasi!");
-        return "request/update-status-request";
+        return "request/success-message";
     }
 
     // TODO: belum ada update success! page
