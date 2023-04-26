@@ -53,8 +53,8 @@
                                             <td class="text-center">
                                                 <a class="btn btn-sm btn-info" style="margin: 1px" th:href="@{/surat/view/} + ${surat.id}">Detail</a>
                                                 <a class="btn btn-sm btn-warning" style="margin: 1px" th:href="@{/surat/pdf/} + ${surat.id}">Download</a>
-                                                <a th:if="${surat.status == 1}" class="btn btn-sm btn-success" style="margin: 1px" th:href="@{/surat/upload-foto/} + ${surat.id}">Collect</a>
-                                                <a th:if="${surat.status != 1}" class="btn btn-sm btn-success disabled" style="margin: 1px" th:href="@{/surat/upload-foto/} + ${surat.id}">Collect</a>
+                                                <a th:if="${surat.status == 1 AND surat.request.status =='Finished'}" class="btn btn-sm btn-success" style="margin: 1px" th:href="@{/surat/upload-foto/} + ${surat.id}">Collect</a>
+                                                <a th:if="${surat.status != 1 OR surat.request.status !='Finished'}" class="btn btn-sm btn-success disabled" style="margin: 1px" th:href="@{/surat/upload-foto/} + ${surat.id}">Collect</a>
                                                 <!-- Untuk di fitur melihat daftar surat ADMIN -->
 <!--                                                <a th:if="${surat.status != 1}" class="btn btn-sm btn-outline-primary" style="margin: 1px" th:href="@{/surat/dokumen/} + ${surat.id}">Dokumen</a>-->
 <!--                                                <a th:if="${surat.status == 1}" class="btn btn-sm btn-outline-primary disabled" style="margin: 1px" th:href="@{/surat/dokumen/} + ${surat.id}">Dokumen</a>-->
