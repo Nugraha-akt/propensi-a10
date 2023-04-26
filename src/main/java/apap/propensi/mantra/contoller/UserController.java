@@ -335,4 +335,27 @@ public class UserController {
 
         return "user management/user-summary";
     }
+
+    @GetMapping("/update-profile/{uuid}")
+    public String updateProfileFormPage(@PathVariable String uuid, Model model) {
+        UserModel user = userService.getUserByUuid(uuid);
+        model.addAttribute("user", user);
+
+        return "/data-diri/form-update-profile";
+    }
+
+    @PostMapping(value = "/update-profile")
+    private String updateProfileSubmitPage(@ModelAttribute UserModel user, Model model){
+        UserModel updatedUser = userService.getUserByUuid(user.getUuid());
+        updatedUser.setNama(user.getNama());
+        updatedUser.setNoTelepon(user.getNoTelepon());
+        updatedUser.setEmail(user.getEmail());
+
+        userService.updateProfile(updatedUser);
+        model.addAttribute("user", updatedUser);
+
+
+        return "/data-diri/update-profile";
+    }
+
 }

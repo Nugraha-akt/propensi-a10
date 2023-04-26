@@ -10,8 +10,7 @@ import apap.propensi.mantra.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -68,4 +67,19 @@ public class PageController {
 
     @RequestMapping("/blank")
     public String blank() { return "blank";}
+
+//    @GetMapping("/update/{uuid}")
+//    public String updateProfileFormPage(@PathVariable String uuid, Model model) {
+//        UserModel user = userService.getUserByUuid(uuid);
+//        model.addAttribute("user", user);
+//        return "data-diri/form-update-profile";
+//    }
+//
+//    @PostMapping(value = "/data-diri/update-profile/{uuid}")
+//    private String updateProfileSubmitPage(@ModelAttribute UserModel user, Model model){
+//        model.addAttribute("user", user);
+//        userService.updateProfile(user);
+//
+//        return "data-diri/update-profile";
+//    }
 }

@@ -100,29 +100,29 @@ public class DriverController {
         return "driver/ringkasan";
     }
 
-    @GetMapping("/update/{uuid}")
-    public String updateDriver(@PathVariable String uuid, Model model){
-        DriverModel driver = driverService.getDriverByUuid(uuid);
-        if (driver != null){
-            if (driver.getStatus()==2 || driver.getStatus()==3) {
-                List<RequestModel> listRequestMulai = requestService.getListRequestMulai();
-                model.addAttribute("listRequest", listRequestMulai);
-                model.addAttribute("driver", driver);
-                return "driver/form-update";
-            } else if (driver.getStatus()==1) {
-                String statusPerjalanan = requestService.getRequestByDriverUuid(uuid).getStatus();
-                if (!statusPerjalanan.equals("SAMPAI")){
-                    model.addAttribute("driver", driver);
-                    return "driver/belum-sampai";
-                }
-                else {
-                    model.addAttribute("driver", driver);
-                    return "driver/validasi-sampai";
-                }
-            }
-        }
-        return "driver/404";
-    }
+//    @GetMapping("/update/{uuid}")
+//    public String updateDriver(@PathVariable String uuid, Model model){
+//        DriverModel driver = driverService.getDriverByUuid(uuid);
+//        if (driver != null){
+//            if (driver.getStatus()==2 || driver.getStatus()==3) {
+//                List<RequestModel> listRequestMulai = requestService.getListRequestMulai();
+//                model.addAttribute("listRequest", listRequestMulai);
+//                model.addAttribute("driver", driver);
+//                return "driver/form-update";
+//            } else if (driver.getStatus()==1) {
+//                String statusPerjalanan = requestService.getRequestByDriverUuid(uuid).getStatus();
+//                if (!statusPerjalanan.equals("SAMPAI")){
+//                    model.addAttribute("driver", driver);
+//                    return "driver/belum-sampai";
+//                }
+//                else {
+//                    model.addAttribute("driver", driver);
+//                    return "driver/validasi-sampai";
+//                }
+//            }
+//        }
+//        return "driver/404";
+//    }
 
     @GetMapping("/update-tugaskan/{uuid}/{id}")
     public String updateSedangDitugaskan(@PathVariable String uuid, @PathVariable Long id, Model model){
