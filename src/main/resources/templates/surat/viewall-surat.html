@@ -52,7 +52,7 @@
                                         <td class="text-center">
                                             <a class="btn btn-sm btn-info" style="margin: 1px" th:href="@{/surat/view/} + ${surat.id}">Detail</a>
                                             <a class="btn btn-sm btn-danger disabled" th:if="*{surat.request != null}" style="margin: 1px">Hapus</a>
-                                            <a class="btn btn-sm btn-warning" th:if="*{surat.request == null}" style="margin: 1px" th:href="@{/surat/delete/} + ${surat.id}">Hapus</a>
+<!--                                            <a class="btn btn-sm btn-warning" th:if="*{surat.request == null}" style="margin: 1px" th:href="@{/surat/delete/} + ${surat.id}">Hapus</a>-->
                                             <a th:if="${surat.status != 1}" class="btn btn-sm btn-outline-primary" style="margin: 1px" th:href="@{/surat/dokumen/} + ${surat.id}">Dokumen</a>
                                             <a th:if="${surat.status == 1}" class="btn btn-sm btn-outline-primary disabled" style="margin: 1px" th:href="@{/surat/dokumen/} + ${surat.id}">Dokumen</a>
                                         </td>

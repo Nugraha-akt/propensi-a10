@@ -62,7 +62,7 @@
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="modalKonfirmasi" tabindex="-1" role="dialog" aria-labelledby="modalKonfirmasiLabel" aria-hidden="true">
+                                            <div th:if="${role == 'Driver' and request.status == 'Assigned'}" class="modal fade" id="modalKonfirmasi" tabindex="-1" role="dialog" aria-labelledby="modalKonfirmasiLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -87,7 +87,7 @@
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="modalUbahStatus" tabindex="-1" role="dialog" aria-labelledby="modalUbahStatusLabel" aria-hidden="true">
+                                            <div th:if="${role == 'Driver' and request.status == 'In-Progress'}" class="modal fade" id="modalUbahStatus" tabindex="-1" role="dialog" aria-labelledby="modalUbahStatusLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -109,7 +109,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="modal fade" id="modalSelesai" tabindex="-1" role="dialog" aria-labelledby="modalSelesaiLabel" aria-hidden="true">
+                                            <div th:if="${role == 'Driver' and request.status == 'In-Progress'}" class="modal fade" id="modalSelesai" tabindex="-1" role="dialog" aria-labelledby="modalSelesaiLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
