@@ -174,8 +174,23 @@ public class RequestController {
     public String assignDriverConfirmPage(@ModelAttribute RequestModel request, Model model) {
         RequestModel updatedRequest = requestService.getRequestById(request.getId());
 
-        // update semua driver pada pair, dari hanya uuid -> menjadi DriverModel
         List<PairUnitDriverModel> listPair = updatedRequest.getListPairRequest();
+
+        // verifikasi bahwa semua driver yang ter-assign, merupakan driver yang unik (tidak ada satu driver yang paired dengan >1 unit)
+        for (int i=0; i < listPair.size(); i++) {
+            DriverModel driver1 = driverService.getDriverByUuid(request.getListPairRequest().get(i).getDriver().getUuid());
+            for (int j=i+1; j < listPair.size(); j++) {
+                DriverModel driver2 = driverService.getDriverByUuid(request.getListPairRequest().get(j).getDriver().getUuid());
+
+                if (driver1.getUuid().equals(driver2.getUuid())) {
+                    model.addAttribute("id", request.getId());
+                    model.addAttribute("errorMsg", "Tidak bisa assign driver ke lebih dari satu unit");
+                    return "request/assign-driver-error";
+                }
+            }
+        }
+
+        // update semua driver pada pair, dari hanya uuid -> menjadi DriverModel
         for (int i=0; i < listPair.size(); i++) {
             PairUnitDriverModel pair = listPair.get(i);
             DriverModel driver = driverService.getDriverByUuid(request.getListPairRequest().get(i).getDriver().getUuid());
