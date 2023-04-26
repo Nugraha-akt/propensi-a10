@@ -20,6 +20,7 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
+                .antMatchers("/forgot-password**", "/reset-password**").permitAll()
                 .antMatchers("/driver/viewall").hasAnyAuthority("ADMIN","MANAGER")
                 .antMatchers("/driver/ringkasan").hasAnyAuthority("ADMIN","MANAGER")
                 .antMatchers("/driver/detail/**").hasAnyAuthority("ADMIN","MANAGER")
@@ -66,4 +67,6 @@ public class WebSecurityConfig {
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
     }
+
+
 }

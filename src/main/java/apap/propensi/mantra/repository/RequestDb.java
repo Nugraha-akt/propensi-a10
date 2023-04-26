@@ -24,4 +24,8 @@ public interface RequestDb extends JpaRepository<RequestModel, String> {
 //    RequestModel findByDriverUuid(String uuid);
 
     RequestModel findById(Long id);
+
+    long countByStatus(String status);
+    long countByStatusAndCustomerUuid(String status, String customerUuid);
+    long countByStatusAndListPairRequest_DriverUuid(String status, String driverUuid);
 }

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -68,4 +70,39 @@ public class RequestServiceImpl implements RequestService{
         requestDb.save(request);
         return request;
     }
+
+    @Override
+    public Map<String, Long> getCountOfRequestsByStatus(UserModel userModel) {
+        Map<String, Long> countMap = new HashMap<>();
+        long createdCount;
+        long assignedCount;
+        long inProgressCount;
+        long finishedCount;
+
+        if (userModel.getRole().getName().equals("Customer")) {
+            createdCount = requestDb.countByStatusAndCustomerUuid("Created", userModel.getUuid());
+            assignedCount = requestDb.countByStatusAndCustomerUuid("Assigned", userModel.getUuid());
+            inProgressCount = requestDb.countByStatusAndCustomerUuid("In-Progress", userModel.getUuid());
+            finishedCount = requestDb.countByStatusAndCustomerUuid("Finished", userModel.getUuid());
+        } else if (userModel.getRole().getName().equals("Driver")) {
+            createdCount = requestDb.countByStatusAndListPairRequest_DriverUuid("Created", userModel.getUuid());
+            assignedCount = requestDb.countByStatusAndListPairRequest_DriverUuid("Assigned", userModel.getUuid());
+            inProgressCount = requestDb.countByStatusAndListPairRequest_DriverUuid("In-Progress", userModel.getUuid());
+            finishedCount = requestDb.countByStatusAndListPairRequest_DriverUuid("Finished", userModel.getUuid());
+        } else { // Admin, Manager
+            createdCount = requestDb.countByStatus("Created");
+            assignedCount = requestDb.countByStatus("Assigned");
+            inProgressCount = requestDb.countByStatus("In-Progress");
+            finishedCount = requestDb.countByStatus("Finished");
+        }
+        // SOON: For CS with Complaint
+
+        countMap.put("createdCount", createdCount);
+        countMap.put("assignedCount", assignedCount);
+        countMap.put("inProgressCount", inProgressCount);
+        countMap.put("finishedCount", finishedCount);
+
+        return countMap;
+    }
+
 }
