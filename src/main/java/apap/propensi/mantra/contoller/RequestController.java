@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -241,7 +240,7 @@ public class RequestController {
     @PostMapping("/update")
     public String updateRequestSubmitPage(@ModelAttribute RequestModel request, Model model) {
         RequestModel updatedRequest = requestService.getRequestById(request.getId());
-        updatedRequest.setStatusPerjalanan(StringTitleCase.toTitleCase(request.getStatusPerjalanan()));
+        updatedRequest.setStatusPerjalanan(StringTitleCase.toTitleCase(request.getStatusPerjalanan().toLowerCase()));
 
         requestService.updateRequest(updatedRequest);
 
@@ -303,9 +302,16 @@ public class RequestController {
     }
 
     @GetMapping("/overview")
-    public String overviewRequest(Model model) {
+    public String overviewRequest(Model model, Principal principal) {
+        UserModel user = userService.getUserByUsername(principal.getName());
+        Map<String, Long> statusCount = requestService.getCountOfRequestsByStatus(user);
 
-        return "request/";
+
+        model.addAttribute("createdCount", statusCount.get("createdCount"));
+        model.addAttribute("assignedCount",  statusCount.get("assignedCount"));
+        model.addAttribute("inProgressCount",  statusCount.get("inProgressCount"));
+        model.addAttribute("finishedCount",  statusCount.get("finishedCount"));
+        return "request/overview-request";
     }
 }
 

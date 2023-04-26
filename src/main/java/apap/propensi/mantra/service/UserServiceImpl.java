@@ -81,10 +81,18 @@ public class UserServiceImpl implements UserService{
         }
         return "unique";
     }
+
+    @Override
+    public UserModel updatePassword(UserModel userModel) {
+        userModel.setPassword(encrypt(userModel.getPassword()));
+        return userDb.save(userModel);
+    }
+
     @Override
     public String encrypt(String password){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(password);
         return hashedPassword;
     }
+
 }

@@ -31,6 +31,7 @@
                 <h1 class="h3 mb-4 text-gray-800">Daftar Request</h1>
                 <a class="btn btn-primary" th:href="@{/}">Beranda</a>
                 <a th:if="*{role == 'Admin' || role == 'Manager'}" class="btn btn-primary" th:href="@{/request/summary}">Rangkuman Request</a>
+                <a class="btn btn-outline-success" th:href="@{/request/overview}">Overview Request</a>
 
                 <!-- ISI DISIN YA MANIS -->
 
