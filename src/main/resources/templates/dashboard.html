@@ -319,5 +319,12 @@
 </body>
 <footer>
   <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
+  <!-- Page level plugins -->
+  <script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+
+  <!-- Page level custom scripts -->
+  <script th:src="@{/js/demo/chart-area-demo.js}"></script>
+  <script th:src="@{/js/demo/chart-pie-demo.js}"></script>
+
 </footer>
 </html>

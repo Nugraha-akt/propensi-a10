@@ -24,20 +24,20 @@
       <div class="container-fluid">
 
         <!-- Page Heading -->
-<div class="container">
-  <div class="card m-4 p-4">
-    <div class="card-body">
-      <div class="justify-content-center">
-        <form th:action="@{/driver/update-sedang/} + ${driver.uuid} + @{/} + ${request.id}" th:object="${driver}" method="POST">
-          <h2 th:text="'Apakah Anda Yakin ingin Menugaskan Driver dengan Username ' + ${driver.username} + ' Untuk Request dengan Id ' + ${request.id}"></h2>
-          <br>
-          <button class="btn btn-success" type="submit">Ya</button>
-          <a class="btn btn-danger" th:href="@{/driver/update/} + ${driver.uuid}">Tidak</a>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+        <div class="container">
+          <div class="card m-4 p-4">
+            <div class="card-body">
+              <div class="justify-content-center">
+                <form th:action="@{/driver/update-sedang/} + ${driver.uuid} + @{/} + ${request.id}" th:object="${driver}" method="POST">
+                  <h2 th:text="'Apakah Anda Yakin ingin Menugaskan Driver dengan Username ' + ${driver.username} + ' Untuk Request dengan Id ' + ${request.id}"></h2>
+                  <br>
+                  <button class="btn btn-success" type="submit">Ya</button>
+                  <a class="btn btn-danger" th:href="@{/driver/update/} + ${driver.uuid}">Tidak</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- /.container-fluid -->
 

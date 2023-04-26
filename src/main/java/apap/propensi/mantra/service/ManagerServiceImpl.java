@@ -31,7 +31,6 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public ManagerModel updateManager(ManagerModel user) {
-        user.setPassword(user.getPassword());
         return managerDb.save(user);
     }
 

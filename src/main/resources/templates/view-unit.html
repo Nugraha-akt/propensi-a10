@@ -35,22 +35,22 @@
           <td>status: tidak aktif</td>
         </div>
         <br>
-        <p th:if="${unit.request == null}" th:text="'request: tidak ada request yang bersangkutan'"></p>
-        <p th:if="${unit.request != null}" th:text="'request: aktif'"></p>
+<!--        <p th:if="${unit.request == null}" th:text="'request: tidak ada request yang bersangkutan'"></p>-->
+<!--        <p th:if="${unit.request != null}" th:text="'request: aktif'"></p>-->
 
-        <div th:if="*{unit.request != null}">
-          <a class="btn btn-sm btn-danger" >update data(disabled karena request aktif)</a>
-        </div>
-        <div th:if="*{unit.request == null}">
-          <a class="btn btn-sm btn-warning" th:href="@{/unit/update/} + ${unit.platNomor}">update data unit</a>
-        </div>
-        <br>
-        <div th:if="*{unit.request != null}">
-          <a class="btn btn-sm btn-danger">hapus(disabled,request aktif)</a>
-        </div>
-        <div th:if="*{unit.request == null}">
-          <a class="btn btn-sm btn-warning" th:href="@{/unit/delete/} + ${unit.platNomor}">hapus</a>
-        </div>
+<!--        <div th:if="*{unit.request != null}">-->
+<!--          <a class="btn btn-sm btn-danger" >update data(disabled karena request aktif)</a>-->
+<!--        </div>-->
+<!--        <div th:if="*{unit.request == null}">-->
+<!--          <a class="btn btn-sm btn-warning" th:href="@{/unit/update/} + ${unit.platNomor}">update data unit</a>-->
+<!--        </div>-->
+<!--        <br>-->
+<!--        <div th:if="*{unit.request != null}">-->
+<!--          <a class="btn btn-sm btn-danger">hapus(disabled,request aktif)</a>-->
+<!--        </div>-->
+<!--        <div th:if="*{unit.request == null}">-->
+<!--          <a class="btn btn-sm btn-warning" th:href="@{/unit/delete/} + ${unit.platNomor}">hapus</a>-->
+<!--        </div>-->
         <br>
         <a class="btn btn-primary" th:href="@{/unit/viewall}">kembali</a>
       </div>

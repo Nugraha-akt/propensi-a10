@@ -20,6 +20,7 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
+                .antMatchers("/forgot-password**", "/reset-password**").permitAll()
                 .antMatchers("/driver/viewall").hasAnyAuthority("ADMIN","MANAGER")
                 .antMatchers("/driver/ringkasan").hasAnyAuthority("ADMIN","MANAGER")
                 .antMatchers("/driver/detail/**").hasAnyAuthority("ADMIN","MANAGER")
@@ -43,6 +44,22 @@ public class WebSecurityConfig {
                 .antMatchers("/unit/add").hasAnyAuthority("ADMIN")
                 .antMatchers("/unit/update/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/unit/delete/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/surat/list").hasAnyAuthority("DRIVER")
+                .antMatchers("/surat/upload-foto/**").hasAnyAuthority("DRIVER")
+                .antMatchers("/surat/upload/**").hasAnyAuthority("DRIVER")
+                .antMatchers("/surat/ringkasan").hasAnyAuthority("ADMIN","MANAGER")
+                .antMatchers("/surat/dokumen/**").hasAnyAuthority("ADMIN","MANAGER")
+                .antMatchers("/surat/verifikasi/**").hasAnyAuthority("ADMIN","MANAGER")
+                .antMatchers("/surat/tolak/**").hasAnyAuthority("ADMIN","MANAGER")
+                .antMatchers("/surat/pdf/**").hasAnyAuthority("ADMIN","DRIVER")
+                .antMatchers("/surat/viewall").hasAnyAuthority("ADMIN")
+                .antMatchers("/surat/view/**").hasAnyAuthority("ADMIN","DRIVER")
+                .antMatchers("/request/viewall").hasAnyAuthority("ADMIN","MANAGER","DRIVER","CUSTOMER")
+                .antMatchers("/request/detail").hasAnyAuthority("ADMIN","MANAGER","DRIVER","CUSTOMER")
+                .antMatchers("/request/assign").hasAnyAuthority("ADMIN","MANAGER")
+                .antMatchers("/request/confirm").hasAnyAuthority("DRIVER")
+                .antMatchers("/request/update").hasAnyAuthority("DRIVER")
+                .antMatchers("/request/finish").hasAnyAuthority("DRIVER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -66,4 +83,6 @@ public class WebSecurityConfig {
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
     }
+
+
 }
