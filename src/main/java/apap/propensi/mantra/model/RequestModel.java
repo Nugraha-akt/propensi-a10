@@ -28,9 +28,10 @@ public class RequestModel implements Serializable {
     private Long id;
 
     @NotNull
-    @ElementCollection
+    //@ElementCollection
     @Column(name = "tujuan", nullable = false)
-    private ArrayList<String> tujuan;
+    //private ArrayList<String> tujuan;
+    private String tujuan;
 
     @NotNull
     @Column(name = "status", nullable = false)

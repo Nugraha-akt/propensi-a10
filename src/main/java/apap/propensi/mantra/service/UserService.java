@@ -16,4 +16,5 @@ public interface UserService {
     UserModel getUserByUuid(String uuid);
     String isUniqueUpdate(UserModel user);
     String encrypt(String password);
+    UserModel updateProfile(UserModel user);
 }
