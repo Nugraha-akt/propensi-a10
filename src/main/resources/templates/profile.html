@@ -58,6 +58,8 @@
 <!--                          <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>-->
 
                           <h5 class="card-title">Profile Details</h5>
+<!--                            <a class="btn btn-danger" th:href="@{/data-diri/form-update-profile/} + ${user.uuid}">Update Data Diri</a>-->
+                            <a class="btn btn-sm btn-outline-primary" th:href="@{ /user/update-profile/} + ${user.uuid}">Ubah Data Diri</a>
 
                           <div class="row">
                             <div class="col-lg-3 col-md-4 label text-gray-800" >Full Name</div>

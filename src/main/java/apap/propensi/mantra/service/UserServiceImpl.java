@@ -5,6 +5,8 @@ import apap.propensi.mantra.repository.UserDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
@@ -95,4 +97,35 @@ public class UserServiceImpl implements UserService{
         return hashedPassword;
     }
 
+
+//    @Override
+//    public UserModel updateUser(String uuid, UserModel user) {
+//        Optional<UserModel> optionalUser = userRepository.findById(id);
+//        if (!optionalUser.isPresent()) {
+//            throw new ResourceNotFoundException("User not found with id: " + id);
+//        }
+//
+//        UserModel existingUser = optionalUser.get();
+//        existingUser.setNama(user.getNama());
+//        existingUser.setEmail(user.getEmail());
+//        existingUser.setPassword(user.getPassword());
+//
+//        UserModel updatedUser = userRepository.save(existingUser);
+//        return updatedUser;
+//    }
+
+    @Override
+    public UserModel updateProfile(UserModel oldUser){
+//        UserModel updatedProfile = new UserModel();
+//
+//        updatedProfile.setUsername(oldUser.getUsername());
+//        updatedProfile.setPassword(oldUser.getPassword());
+//        updatedProfile.setUuid(oldUser.getUuid());
+//        updatedProfile.setNoTelepon(oldUser.getNoTelepon());
+//        updatedProfile.setNama(oldUser.getNama());
+//        updatedProfile.setRole(oldUser.getRole());
+//        updatedProfile.setEmail(oldUser.getEmail());
+
+        return userDb.save(oldUser);
+    }
 }

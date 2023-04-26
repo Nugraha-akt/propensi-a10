@@ -19,4 +19,6 @@ public interface UserDb extends JpaRepository<UserModel, Long>{
     List<String> getAllUsername();
     @Query("SELECT c.email FROM UserModel c")
     List<String> getAllEmail();
+
+
 }
