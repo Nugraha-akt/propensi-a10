@@ -259,6 +259,15 @@ public class RequestController {
         RequestModel request = requestService.getRequestById(id);
         request.setStatus("Finished");
         request.setStatusPerjalanan("Finished");
+
+        // ubah status driver yang terkait dengan request menjadi "Available"
+        List<PairUnitDriverModel> listPair = request.getListPairRequest();
+        for (int i=0; i < listPair.size(); i++) {
+            PairUnitDriverModel pair = listPair.get(i);
+            DriverModel driver = driverService.getDriverByUuid(pair.getDriver().getUuid());
+            driver.setStatus(1);
+        }
+
         requestService.updateRequest(request);
 
         model.addAttribute("message", "Request berhasil diselesaikan!");
