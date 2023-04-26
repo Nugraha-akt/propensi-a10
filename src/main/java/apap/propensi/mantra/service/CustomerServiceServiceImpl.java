@@ -32,7 +32,6 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 
     @Override
     public CustomerServiceModel updateCustomerService(CustomerServiceModel user) {
-        user.setPassword(user.getPassword());
         return customerServiceDb.save(user);
     }
 

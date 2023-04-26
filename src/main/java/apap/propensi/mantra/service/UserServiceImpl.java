@@ -31,17 +31,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserModel updateUser(UserModel oldUser){
-        UserModel updatedUser = new UserModel();
-
-        updatedUser.setUsername(oldUser.getUsername());
-        updatedUser.setPassword(oldUser.getPassword());
-        updatedUser.setUuid(oldUser.getUuid());
-        updatedUser.setNoTelepon(oldUser.getNoTelepon());
-        updatedUser.setNama(oldUser.getNama());
-        updatedUser.setRole(oldUser.getRole());
-        updatedUser.setEmail(oldUser.getEmail());
-
-        return userDb.save(updatedUser);
+        return userDb.save(oldUser);
     }
 
     @Override
@@ -93,12 +83,20 @@ public class UserServiceImpl implements UserService{
         }
         return "unique";
     }
+
+    @Override
+    public UserModel updatePassword(UserModel userModel) {
+        userModel.setPassword(encrypt(userModel.getPassword()));
+        return userDb.save(userModel);
+    }
+
     @Override
     public String encrypt(String password){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(password);
         return hashedPassword;
     }
+
 
 //    @Override
 //    public UserModel updateUser(String uuid, UserModel user) {

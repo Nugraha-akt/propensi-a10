@@ -18,3 +18,4 @@ public enum Role {
         this.name = name;
     }
 }
+

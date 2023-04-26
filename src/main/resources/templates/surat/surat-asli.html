@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        table, tbody, tr, td {
+            border: 5px solid black;
+            outline-color: black;
+            table-border-color-dark: black;
+
+
+        }
+        tr + tr{ border: 1px solid black;}
+        td+td { border: 1px solid black;}
+    </style>
+
+</head>
+<body style="border-color: black">
+
+<table class="table">
+    <thead>
+    </thead>
+    <tbody>
+    <tr hidden>
+        <td><p>pejabat yang berwenang memberi perintah:</p></td>
+        <td>
+            <p th:text="'nama(belum tau ini siapa harusnya): '+${unit.request.customer.getNama()}"></p>
+            <p style="padding-right: 200px;">jabatan:</p>
+        </td>
+
+    </tr>
+
+    <tr hidden>
+        <td><p>pegawai yang diperintah:</p></td>
+        <td>
+            <p th:text="'nama: '+${unit.driver.getNama()}"></p>
+            <p>jabatan: driver</p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td><p>pejabat yang berwenang memberi perintah:</p></td>
+        <td>
+            <p th:text="'nama(belum tau ini siapa harusnya): '+${unit.request.customer.getNama()}"></p>
+            <p style="padding-right: 200px;">jabatan:</p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td><p>pegawai yang diperintah:</p></td>
+        <td>
+            <p th:text="'nama: '+${unit.driver.getNama()}"></p>
+            <p>jabatan: driver</p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td><p>maksud perjalanan dinas:</p></td>
+        <td>
+            <p th:text="${unit.request.getAlasan()}"></p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td><p>alat angkut yang dipergunakan:</p></td>
+        <td>
+            <p th:text="'jenis: '+${unit.unit.getJenis()}"></p>
+            <p th:text="'plat nomor: '+${unit.unit.getPlatNomor()}"></p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <p>a.tempat berangkat:</p>
+            <p>a.tempat tujuan</p>
+        </td>
+        <td>
+            <p th:text="'a. makassar'"></p>
+            <p th:text="'b. '+${unit.request.tujuan}">b.</p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <p>a.lamanya perjalanan dinas:</p>
+            <p>b.tanggal berangkat</p>
+            <p>c.tanggal harus kembali</p>
+        </td>
+        <td>
+            <p th:text="'a. '+${days}+' hari'"></p>
+            <p th:text="'b. '+${unit.getRequest().getDepartDate().toLocalDate()}"></p>
+            <p th:text="'c. '+${unit.getRequest().getReturnDate().toLocalDate()}"></p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <p>keluarga yang ikut perjalanan:</p>
+        </td>
+        <td>
+            <p>hubungan keluarga/keterangan</p>
+            <br>
+            <br>
+            <br>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <p>keterangan lain lain:</p>
+        </td>
+        <td>
+            <p></p>
+            <br>
+            <br>
+            <br>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <p>Cc:</p>
+            <p>1.</p>
+            <p>2.</p>
+            <p>3.</p>
+            <p>4.</p>
+        </td>
+        <td>
+            <p th:text="'dikeluarkan di makassar pada tanggal '+${unit.getRequest().getCreatedAt().toLocalDate()} ">dikeluarkan di makassar pada tanggal</p>
+            <p hidden>ttd disini</p>
+            <br>
+            <p>______________________</p>
+            <p hidden>nama orang yg ttd</p>
+            <p>kepala HCGS</p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <p>a.berangkat dari:</p>
+            <p>b.pada tanggal:</p>
+            <p>c.ke          :</p>
+            <br>
+            <p>cap dan tanda tangan:</p>
+        </td>
+        <td>
+            <p>a.</p>
+            <p style="padding-right: 200px;">b.</p>
+            <p style="padding-right: 200px;">c.</p>
+            <br>
+            <p>______________________</p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <p>a.tiba di:</p>
+            <p>b.pada tanggal:</p>
+            <br>
+            <br>
+            <p>cap dan tanda tangan:</p>
+        </td>
+        <td>
+            <p>a.</p>
+            <p style="padding-right: 200px;">b.</p>
+            <br>
+            <br>
+            <p>______________________</p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <p>a.berangkat dari:</p>
+            <p>b.pada tanggal:</p>
+            <p>c.ke          :</p>
+            <br>
+            <p>cap dan tanda tangan:</p>
+        </td>
+        <td>
+            <p>a.</p>
+            <p style="padding-right: 200px;">b.</p>
+            <p style="padding-right: 200px;">c.</p>
+            <br>
+            <p>______________________</p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <p>a.tiba di:</p>
+            <p>b.pada tanggal:</p>
+            <br>
+            <br>
+            <p>cap dan tanda tangan:</p>
+        </td>
+        <td>
+            <p>a.</p>
+            <p style="padding-right: 200px;">b.</p>
+            <br>
+            <br>
+            <p>______________________</p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <p>a.tiba di (tempat kedudukan):</p>
+            <p>b.pada tanggal:</p>
+            <p>telah diperiksa bahwa dengan benar perjalanan
+            tersebut telah dilakukan atas perintahnya dan semata-mata
+            untuk kepentingan jabatan dalam waktu yang sesingkat-singkatnya</p>
+            <p>pejabat yang memberi perintah: </p>
+            <br>
+            <br>
+            <p>____________________________________</p>
+        </td>
+        <td>
+            <p>keterangan lain-lain</p>
+            <p style="padding-right: 200px;"></p>
+            <br>
+            <br>
+            <p></p>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<!-- End of Main Content -->
+<footer>
+    <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</footer>
+
+</div>
+</body>
+</html>

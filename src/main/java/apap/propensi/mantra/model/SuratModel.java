@@ -30,6 +30,9 @@ public class SuratModel implements Serializable {
     @Column(name = "status", nullable = false)
     private Integer status;
 
+    @Column(name = "foto", nullable = true)
+    private String foto;
+
     @ManyToOne(fetch= FetchType.EAGER)
     @JoinColumn(name = "request_id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -39,4 +42,9 @@ public class SuratModel implements Serializable {
     @JoinColumn(name = "driver_uuid", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private DriverModel driver;
+
+    @ManyToOne(fetch= FetchType.EAGER)
+    @JoinColumn(name = "unit_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private UnitModel unit;
 }

@@ -16,6 +16,11 @@ import javax.persistence.*;
 @Entity
 @Table(name= "pair_unit_driver")
 public class PairUnitDriverModel {
+    public PairUnitDriverModel(UnitModel unit, RequestModel request) {
+        this.unit = unit;
+        this.request = request;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
