@@ -64,7 +64,7 @@ public class DriverController {
     @PostMapping("/nonaktifkan-berhasil/{uuid}")
     public String nonaktifkanBerhasilDriver(@PathVariable String uuid, Model model) {
         DriverModel driver = driverService.getDriverByUuid(uuid);
-        driver.setStatus(4);
+        driver.setStatus(3);
         DriverModel nonaktifDriver = driverService.updateDriver(driver);
         model.addAttribute("driver", nonaktifDriver);
         return "driver/nonaktifkan";
@@ -83,7 +83,7 @@ public class DriverController {
     @PostMapping("/aktifkan-berhasil/{uuid}")
     public String aktifkanBerhasilDriver(@PathVariable String uuid, Model model) {
         DriverModel driver = driverService.getDriverByUuid(uuid);
-        driver.setStatus(2);
+        driver.setStatus(1);
         DriverModel aktifDriver = driverService.updateDriver(driver);
         model.addAttribute("driver", aktifDriver);
         return "driver/aktifkan";
@@ -103,6 +103,7 @@ public class DriverController {
     }
 
     // Update status driver
+    // TODO: fix karena terjadi perubahan format status pada DriverModel
     @GetMapping("/update/{uuid}")
     public String updateDriver(@PathVariable String uuid, Model model){
         DriverModel driver = driverService.getDriverByUuid(uuid);
@@ -174,7 +175,7 @@ public class DriverController {
     @PostMapping("/update-sudah/{uuid}")
     public String updateSudahDitugaskanDriver(@PathVariable String uuid, Model model) {
         DriverModel driver = driverService.getDriverByUuid(uuid);
-        driver.setStatus(3);
+        driver.setStatus(1);
         DriverModel sudahDitugaskanDriver = driverService.updateDriver(driver);
         model.addAttribute("driver", sudahDitugaskanDriver);
         return "driver/update";

@@ -58,10 +58,9 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Status</th>
-                                        <td th:if="${driver.status} == 1">Sedang Ditugaskan</td>
-                                        <td th:if="${driver.status} == 2">Belum Ditugaskan</td>
-                                        <td th:if="${driver.status} == 3">Sudah Ditugaskan</td>
-                                        <td th:if="${driver.status} == 4">Tidak Aktif</td>
+                                        <td th:if="${driver.status} == 1">Available</td>
+                                        <td th:if="${driver.status} == 2">Unavailable</td>
+                                        <td th:if="${driver.status} == 3">Inactive</td>
                                     </tr>
                                 </table>
 
