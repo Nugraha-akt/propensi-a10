@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -51,7 +52,7 @@ public class SuratController {
     }
 
     @PostMapping("/upload/{id}")
-    public String imageUpload(@PathVariable Long id, @RequestParam MultipartFile img, Model model) {
+    public String imageUpload(@PathVariable Long id, @RequestParam MultipartFile img, Model model, RedirectAttributes redirectAttributes) {
         SuratModel surat = suratService.getSuratById(id);
         surat.setFoto(img.getOriginalFilename());
         surat.setStatus(2);
@@ -69,11 +70,19 @@ public class SuratController {
         System.out.println(surat.getFoto());
 
         model.addAttribute("surat", updateSurat);
-        return "surat/upload-berhasil";
+        redirectAttributes.addFlashAttribute("successMessage", "Dokumen Berhasil Diupload");
+        return "redirect:/surat/list";
     }
 
     @GetMapping("/list")
-    public String listSurat(Model model){
+    public String listSurat(@ModelAttribute("successMessage") String successMessage, Model model, RedirectAttributes redirectAttributes){
+        if (!successMessage.isEmpty()) {
+            System.out.println(successMessage);
+            model.addAttribute("toastrSuccessMessage", successMessage);
+            redirectAttributes.addFlashAttribute("successMessage", "");
+        } else {
+            model.addAttribute("toastrSuccessMessage", "");
+        }
         var auth = SecurityContextHolder.getContext().getAuthentication();
         UserModel userSession = userService.getUserByUsername(auth.getName());
         List<SuratModel> listSurat = suratService.getListSuratOrderByStatus();
@@ -108,24 +117,34 @@ public class SuratController {
     }
 
     @GetMapping("/verifikasi/{id}")
-    public String verifikasiSurat(@PathVariable Long id, Model model) {
+    public String verifikasiSurat(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
         SuratModel surat = suratService.getSuratById(id);
         surat.setStatus(3);
         SuratModel updateSurat = suratService.updateSurat(surat);
         model.addAttribute("surat", updateSurat);
-        return "surat/verifikasi";
+        redirectAttributes.addFlashAttribute("successMessage", "Dokumen Berhasil Diverifikasi");
+        return "redirect:/surat/viewall";
     }
 
     @GetMapping("/tolak/{id}")
-    public String tolakSurat(@PathVariable Long id, Model model) {
+    public String tolakSurat(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
         SuratModel surat = suratService.getSuratById(id);
         surat.setStatus(4);
         SuratModel updateSurat = suratService.updateSurat(surat);
         model.addAttribute("surat", updateSurat);
-        return "surat/tolak";
+        redirectAttributes.addFlashAttribute("successMessage", "Dokumen Berhasil Ditolak");
+        return "redirect:/surat/viewall";
+//        return "surat/tolak";
     }
-    @GetMapping(value = "/viewall")
-    public String listSuratAdmin(Model model) {
+    @GetMapping("/viewall")
+    public String listSuratAdmin(@ModelAttribute("successMessage") String successMessage, Model model, RedirectAttributes redirectAttributes) {
+        if (!successMessage.isEmpty()) {
+            System.out.println(successMessage);
+            model.addAttribute("toastrSuccessMessage", successMessage);
+            redirectAttributes.addFlashAttribute("successMessage", "");
+        } else {
+            model.addAttribute("toastrSuccessMessage", "");
+        }
         List<SuratModel> surat = suratService.getListSurat();
 
         model.addAttribute("listSurat", surat);

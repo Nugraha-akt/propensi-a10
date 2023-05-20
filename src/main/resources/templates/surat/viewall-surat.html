@@ -76,9 +76,13 @@
     <div th:replace="fragments/fragment :: logoutmodal"></div>
 
     <footer>
-        <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
         <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+        <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
     </footer>
+
+    <script th:inline="javascript" th:if="${toastrSuccessMessage != ''}">
+        toastr.success([[${toastrSuccessMessage}]], 'Success');
+    </script>
 
 </div>
 </body>

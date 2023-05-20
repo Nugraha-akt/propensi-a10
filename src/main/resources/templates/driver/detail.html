@@ -78,13 +78,13 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="request, iterationStatus : ${listRequest}"
+                                        <tr th:each="pair, iterationStatus : ${listRequest}"
                                             th:style="${iterationStatus.even} ? 'font-weight:bold;'">
-                                            <td class="text-center" th:text="${request.id}"></td>
-                                            <td class="text-center" th:text="${request.customer.nama}"></td>
-                                            <td class="text-center" th:text="${request.customer.asalInstansi}"></td>
-                                            <td class="text-center" th:text="${request.tujuan}"></td>
-                                            <td class="text-center" th:text="${request.status}"></td>
+                                            <td class="text-center" th:text="${pair.request.id}"></td>
+                                            <td class="text-center" th:text="${pair.request.customer.nama}"></td>
+                                            <td class="text-center" th:text="${pair.request.customer.asalInstansi}"></td>
+                                            <td class="text-center" th:text="${pair.request.tujuan}"></td>
+                                            <td class="text-center" th:text="${pair.request.statusPerjalanan}"></td>
                                     </table>
                                 </div>
 
