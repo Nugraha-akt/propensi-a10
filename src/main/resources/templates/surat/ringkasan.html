@@ -31,7 +31,7 @@
               <h5 class="card-title">Rangkuman Status Surat</h5>
 
               <th:block th:if="${(sumGenerated+sumSubmitted+sumVerified+sumRejected) == 0}">
-                <p>There are no driver at the moment.</p>
+                <p>Belum ada surat.</p>
               </th:block>
 
               <th:block th:if="${(sumGenerated+sumSubmitted+sumVerified+sumRejected) > 0}">
