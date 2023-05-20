@@ -75,15 +75,15 @@ public class SuratServiceImpl implements SuratService{
 
     @Override
     public void generateSurat(RequestModel request){
-            for(PairUnitDriverModel pair : request.getListPairRequest()){
-                SuratModel surat = new SuratModel();
-                surat.setStatus(1);
-                surat.setDriver(pair.getDriver());
-                surat.setUnit(pair.getUnit());
-                surat.setRequest(request);
-                surat.setId(suratDb.count()+1);
-                surat.setNoSurat(surat.getId().toString());
-                suratDb.save(surat);
+        for(PairUnitDriverModel pair : request.getListPairRequest()){
+            SuratModel surat = new SuratModel();
+            surat.setStatus(1);
+            surat.setDriver(pair.getDriver());
+            surat.setUnit(pair.getUnit());
+            surat.setRequest(request);
+            surat.setId(suratDb.count()+1);
+            surat.setNoSurat(surat.getId().toString());
+            suratDb.save(surat);
         }
     }
 }
