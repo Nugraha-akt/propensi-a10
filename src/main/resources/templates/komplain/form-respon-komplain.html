@@ -81,35 +81,6 @@
   <object th:include="fragments/fragment :: js" th:remove="tag"></object>
   <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
 </footer>
-<script>
-  function updateDriverSelects(selectedDriverId) {
-    // Get all select elements with name "driverId"
-    var driverSelects = document.getElementsByName("uuid");
-
-    // Loop through each select element
-    for (var i = 0; i < driverSelects.length; i++) {
-      // Get the currently selected driver ID
-      var currentDriverId = driverSelects[i].value;
-
-      // If the current driver ID is not the selected driver ID, remove the option with the selected driver ID
-      if (currentDriverId !== "" && currentDriverId !== selectedDriverId) {
-        var option = driverSelects[i].querySelector('option[value="' + selectedDriverId + '"]');
-        if (option !== null) {
-          option.remove();
-        }
-      }
-    }
-  }
-
-  // Attach an event listener to each driver select element
-  var driverSelects = document.getElementsByName("uuid");
-  for (var i = 0; i < driverSelects.length; i++) {
-    driverSelects[i].addEventListener("change", function() {
-      var selectedDriverId = this.value;
-      updateDriverSelects(selectedDriverId);
-    });
-  }
-</script>
 </body>
 
 </html>
