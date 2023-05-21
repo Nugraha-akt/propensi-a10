@@ -18,4 +18,5 @@ public interface DriverService {
     Integer getSumBelumDitugaskan();
     Integer getSumSudahDitugaskan();
     Integer getSumTidakAktif();
+    int getCountOfActiveDrivers();
 }

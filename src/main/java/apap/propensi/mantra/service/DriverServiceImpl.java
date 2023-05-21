@@ -104,4 +104,10 @@ public class DriverServiceImpl implements DriverService{
     public Integer getSumTidakAktif() {
         return driverDb.sumTidakAktif();
     }
+
+    @Override
+    public int getCountOfActiveDrivers() {
+        int inactiveStatus = 3;
+        return driverDb.countByStatusNot(inactiveStatus);
+    }
 }

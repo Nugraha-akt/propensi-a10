@@ -87,7 +87,9 @@ public class ForgotPasswordController {
         if email sent successfully redirect with flash attributes
          */
         emailService.send(mail);
+        System.out.println("sended");
         attributes.addFlashAttribute("success", messageSource.getMessage("PASSWORD_RESET_TOKEN_SENT", new Object[]{}, Locale.ENGLISH));
+        System.out.println("reset");
         return "redirect:/forgot-password";
     }
 

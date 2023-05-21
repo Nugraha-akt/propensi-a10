@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.Month;
+import java.time.YearMonth;
+import java.util.*;
 
 @Service
 @Transactional
@@ -103,6 +103,36 @@ public class RequestServiceImpl implements RequestService{
         countMap.put("finishedCount", finishedCount);
 
         return countMap;
+    }
+
+    @Override
+    public long getRequestCountForCurrentMonth() {
+        LocalDate currentDate = LocalDate.now();
+        int currentMonth = currentDate.getMonthValue();
+
+        return requestDb.countByDepartDateMonth(currentMonth);
+    }
+
+    @Override
+    public Map<String, Long> getRequestCounts() {
+        LocalDate currentDate = LocalDate.now();
+        int currentMonth = currentDate.getMonthValue();
+        int threeMonthsAgo = currentDate.minusMonths(3).getMonthValue();
+
+        Map<String, Long> requestCounts = new LinkedHashMap<>();
+
+        for (int month = currentMonth; month >= threeMonthsAgo; month--) {
+            long count = requestDb.countByCreatedAtMonth(month);
+            requestCounts.put(Month.of(month).toString(), count);
+        }
+
+        return requestCounts;
+    }
+
+
+    @Override
+    public long getTotalCount() {
+        return requestDb.count();
     }
 
 }

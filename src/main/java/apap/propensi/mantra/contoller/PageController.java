@@ -4,9 +4,7 @@ package apap.propensi.mantra.contoller;
 import apap.propensi.mantra.model.CustomerModel;
 import apap.propensi.mantra.model.DriverModel;
 import apap.propensi.mantra.model.UserModel;
-import apap.propensi.mantra.service.CustomerService;
-import apap.propensi.mantra.service.DriverService;
-import apap.propensi.mantra.service.UserService;
+import apap.propensi.mantra.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,12 +26,26 @@ public class PageController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private RequestService requestService;
+
+    @Autowired
+    private UnitService unitService;
     
     @RequestMapping("/")
     public String home() { return "index"; }
 
     @GetMapping("/dashboard")
-    public String Dashboard() {
+    public String Dashboard(Model model, Principal principal) {
+        UserModel user = userService.getUserByUsername(principal.getName());
+        if (user.getRole().getName().equals("Manager") || user.getRole().getName().equals("Admin")) {
+            model.addAttribute("totalCount", requestService.getTotalCount());
+            model.addAttribute("countDepartThisMonth", requestService.getRequestCountForCurrentMonth());
+            model.addAttribute("countActiveDriver", driverService.getCountOfActiveDrivers());
+            model.addAttribute("countActiveUnit", unitService.getCountOfActiveUnits());
+            return "dashboard/admin-manager-dashboard";
+        }
         return "dashboard";
     }
 

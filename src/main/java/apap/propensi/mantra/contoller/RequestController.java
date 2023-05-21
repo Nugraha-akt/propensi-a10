@@ -306,7 +306,6 @@ public class RequestController {
         UserModel user = userService.getUserByUsername(principal.getName());
         Map<String, Long> statusCount = requestService.getCountOfRequestsByStatus(user);
 
-
         model.addAttribute("createdCount", statusCount.get("createdCount"));
         model.addAttribute("assignedCount",  statusCount.get("assignedCount"));
         model.addAttribute("inProgressCount",  statusCount.get("inProgressCount"));
