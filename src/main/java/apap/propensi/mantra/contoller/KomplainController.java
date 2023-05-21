@@ -96,6 +96,7 @@ public class KomplainController {
         komplain.setStatus(1);
 
         komplainService.updateKomplain(komplain);
+        redirectAttributes.addFlashAttribute("successMessage", "Komplain berhasil direspon!");
 
         return "redirect:/komplain/viewall";
     }
@@ -121,9 +122,17 @@ public class KomplainController {
     }
 
     @GetMapping(value = "/viewall")
-    public String listAllRequest(Model model, Principal principal) {
+    public String listAllRequest(@ModelAttribute("successMessage") String successMessage, Model model, Principal principal, RedirectAttributes redirectAttributes) {
         String role = userService.getUserByUsername(principal.getName()).getRole().getName();
         List<KomplainModel> listKomplain = new ArrayList<>();
+
+        if (!successMessage.isEmpty()) {
+            System.out.println(successMessage);
+            model.addAttribute("toastrSuccessMessage", successMessage);
+            redirectAttributes.addFlashAttribute("successMessage", "");
+        } else {
+            model.addAttribute("toastrSuccessMessage", "");
+        }
 
         if (role.equals("Customer Service")) {
             listKomplain = komplainService.getListKomplainOrderedByStatus();
