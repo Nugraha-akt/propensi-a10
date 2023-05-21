@@ -144,7 +144,12 @@ public class RequestController {
             }
         }
 
+        KomplainModel komplain = new KomplainModel();
+        List<KategoriKomplain> listKategori = Arrays.asList(KategoriKomplain.values());
 
+
+        model.addAttribute("komplain", komplain);
+        model.addAttribute("listKategori", listKategori);
         model.addAttribute("listRequest", listRequest);
         model.addAttribute("role", role);
 
@@ -247,7 +252,6 @@ public class RequestController {
         return "redirect:/request/viewall";
     }
 
-    // TODO: ganti "finish" menjadi ubah status perjalanan. Ketika diinput 'finished' maka status request akan ganti menjadi Finished
     @GetMapping("/finish")
     public String finishRequestPage(@RequestParam(value = "id") Long id, Model model) {
         if (requestService.getRequestById(id) == null) {
@@ -305,6 +309,7 @@ public class RequestController {
     public String overviewRequest(Model model, Principal principal) {
         UserModel user = userService.getUserByUsername(principal.getName());
         Map<String, Long> statusCount = requestService.getCountOfRequestsByStatus(user);
+
 
         model.addAttribute("createdCount", statusCount.get("createdCount"));
         model.addAttribute("assignedCount",  statusCount.get("assignedCount"));

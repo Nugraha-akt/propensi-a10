@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerServiceDb extends JpaRepository<CustomerServiceModel, Long> {
     CustomerServiceModel findByUuid(String uuid);
+    CustomerServiceModel findByUsername(String username);
 }

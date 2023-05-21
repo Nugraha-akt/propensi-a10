@@ -73,6 +73,11 @@ public class RequestModel implements Serializable {
     @Column(name = "alasan", nullable = false)
     private String alasan;
 
+    @OneToOne
+    @JoinColumn(name = "komplain_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private KomplainModel komplain;
+
     @ManyToOne(fetch= FetchType.EAGER)
     @JoinColumn(name = "customer_uuid")
     @OnDelete(action = OnDeleteAction.CASCADE)

@@ -81,7 +81,7 @@
                 <br>
                 <br>
                 <div class="center">
-                  <a class="btn btn-primary" th:href="@{/user/viewall}">Kembali</a>
+                  <button class="btn btn-secondary" onclick="goBack()">Kembali</button>
                 </div>
               </div>
             </div>
@@ -107,6 +107,12 @@
   <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
   <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </footer>
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
 
 </body>
 

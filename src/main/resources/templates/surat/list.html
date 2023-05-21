@@ -30,6 +30,7 @@
                             <div class="justify-content-center">
                                 <h2 class="text-center">Daftar Surat</h2>
                                 <br>
+                                <a class="btn btn-secondary" th:href="@{/}">Beranda</a>
                                 <div th:if="*{listSuratDriver.size() != 0}">
                                     <br>
                                     <table class="table">
@@ -51,13 +52,13 @@
                                             <td class="text-center text-success" th:if="${surat.status == 3}" th:text="'Verified'"></td>
                                             <td class="text-center text-danger" th:if="${surat.status == 4}" th:text="'Rejected'"></td>
                                             <td class="text-center">
-                                                <a class="btn btn-sm btn-info" style="margin: 1px" th:href="@{/surat/view/} + ${surat.id}">Detail</a>
+                                                <a class="btn btn-sm btn-outline-primary" style="margin: 1px" th:href="@{/surat/view/} + ${surat.id}">Detail</a>
                                                 <a class="btn btn-sm btn-warning" style="margin: 1px" th:href="@{/surat/pdf/} + ${surat.id}">Download</a>
                                                 <a th:if="${surat.status == 1 AND surat.request.status =='Finished'}" class="btn btn-sm btn-success" style="margin: 1px" th:href="@{/surat/upload-foto/} + ${surat.id}">Collect</a>
                                                 <a th:if="${surat.status != 1 OR surat.request.status !='Finished'}" class="btn btn-sm btn-success disabled" style="margin: 1px" th:href="@{/surat/upload-foto/} + ${surat.id}">Collect</a>
                                                 <!-- Untuk di fitur melihat daftar surat ADMIN -->
-<!--                                                <a th:if="${surat.status != 1}" class="btn btn-sm btn-outline-primary" style="margin: 1px" th:href="@{/surat/dokumen/} + ${surat.id}">Dokumen</a>-->
-<!--                                                <a th:if="${surat.status == 1}" class="btn btn-sm btn-outline-primary disabled" style="margin: 1px" th:href="@{/surat/dokumen/} + ${surat.id}">Dokumen</a>-->
+                                                <!--                                                <a th:if="${surat.status != 1}" class="btn btn-sm btn-outline-primary" style="margin: 1px" th:href="@{/surat/dokumen/} + ${surat.id}">Dokumen</a>-->
+                                                <!--                                                <a th:if="${surat.status == 1}" class="btn btn-sm btn-outline-primary disabled" style="margin: 1px" th:href="@{/surat/dokumen/} + ${surat.id}">Dokumen</a>-->
                                             </td>
                                         </tr>
                                         </tbody>
@@ -67,8 +68,6 @@
                                     <br>
                                     <h4 th:text="'Anda belum memiliki surat'"></h4>
                                 </div>
-                                <br><br>
-                                <a class="btn btn-secondary" th:href="@{/}">Beranda</a>
                             </div>
                         </div>
                     </div>
@@ -91,6 +90,10 @@
         <object th:include="fragments/fragment :: js" th:remove="tag"></object>
         <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
     </footer>
+
+    <script th:inline="javascript" th:if="${toastrSuccessMessage != ''}">
+        toastr.success([[${toastrSuccessMessage}]], 'Success');
+    </script>
 
 </div>
 </body>

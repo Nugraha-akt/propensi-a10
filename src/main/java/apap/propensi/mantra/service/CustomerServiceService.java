@@ -10,5 +10,6 @@ public interface CustomerServiceService {
     void deleteCustomerService(CustomerServiceModel user);
     String encrypt(String password);
     CustomerServiceModel getCustomerServiceByUuid(String uuid);
+    CustomerServiceModel getCustomerServiceByUsername(String username);
     List<CustomerServiceModel> getListCustomerService();
 }

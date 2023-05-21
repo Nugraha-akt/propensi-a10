@@ -14,9 +14,9 @@ public interface DriverService {
     DriverModel getDriverByUuid(String uuid);
     DriverModel getDriverByUsername(String username);
     DriverModel updateDriver(DriverModel driver);
-    Integer getSumSedangDitugaskan();
-    Integer getSumBelumDitugaskan();
-    Integer getSumSudahDitugaskan();
-    Integer getSumTidakAktif();
+    Integer getSumAvailable();
+    Integer getSumUnavailable();
+    Integer getSumInactive();
+
     int getCountOfActiveDrivers();
 }

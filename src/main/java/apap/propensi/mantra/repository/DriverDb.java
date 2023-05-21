@@ -19,16 +19,13 @@ public interface DriverDb extends JpaRepository<DriverModel, String> {
     List<DriverModel> findAvailableDriver();
 
     @Query("SELECT COUNT(d) FROM DriverModel d WHERE d.status=1")
-    Integer sumSedangDitugaskan();
+    Integer sumAvailable();
 
     @Query("SELECT COUNT(d) FROM DriverModel d WHERE d.status=2")
-    Integer sumBelumDitugaskan();
+    Integer sumUnavailable();
 
     @Query("SELECT COUNT(d) FROM DriverModel d WHERE d.status=3")
-    Integer sumSudahDitugaskan();
-
-    @Query("SELECT COUNT(d) FROM DriverModel d WHERE d.status=4")
-    Integer sumTidakAktif();
+    Integer sumInactive();
 
     int countByStatusNot(Integer status);
 }

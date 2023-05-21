@@ -51,7 +51,7 @@
                           <option selected value="">-- Select driver --</option>
                           <option th:each="driver : ${listAvailableDrivers}"
                                   th:value="${driver.uuid}"
-                                  th:text="${driver.nama}"
+                                  th:text="${driver.nama}">
                           </option>
                         </select>
                       </td>

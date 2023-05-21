@@ -86,23 +86,18 @@ public class DriverServiceImpl implements DriverService{
     }
 
     @Override
-    public Integer getSumSedangDitugaskan() {
-        return driverDb.sumSedangDitugaskan();
+    public Integer getSumAvailable() {
+        return driverDb.sumAvailable();
     }
 
     @Override
-    public Integer getSumBelumDitugaskan() {
-        return driverDb.sumBelumDitugaskan();
+    public Integer getSumUnavailable() {
+        return driverDb.sumUnavailable();
     }
 
     @Override
-    public Integer getSumSudahDitugaskan() {
-        return driverDb.sumSudahDitugaskan();
-    }
-
-    @Override
-    public Integer getSumTidakAktif() {
-        return driverDb.sumTidakAktif();
+    public Integer getSumInactive() {
+        return driverDb.sumInactive();
     }
 
     @Override

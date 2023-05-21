@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="UTF-8">
-  <title> Mantra - Ringkasan Surat </title>
   <object th:include="fragments/fragment :: style" th:remove="tag"></object>
+  <title>Ringkasan Surat</title>
 </head>
 
 <body id="page-top">
@@ -24,56 +24,98 @@
       <div class="container-fluid">
 
         <!-- Page Heading -->
-        <div class="container">
-          <div class="card m-4 p-4">
+        <h1 class="h3 mb-4 text-gray-800 text-center">Ringkasan Surat</h1>
+        <div class="col-lg-6">
+          <div class="card">
             <div class="card-body">
-              <div class="justify-content-center">
-                <h2 class="text-center" th:text="'Ringkasan Surat'"></h2>
-                <br><br>
-                <table class="table">
-                  <tbody>
-                  <tr>
-                    <th scope="row">Generated</th>
-                    <td th:text="${sumGenerated}"></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Submitted</th>
-                    <td th:text="${sumSubmitted}"></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Verified</th>
-                    <td th:text="${sumVerified}"></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Rejected</th>
-                    <td th:text="${sumRejected}"></td>
-                  </tr>
-                </table>
-                <a class="btn btn-primary" th:href="@{/surat/viewall}">Kembali</a>
-              </div>
+              <h5 class="card-title">Ringkasan Surat Berdasarkan Status</h5>
+
+              <th:block th:if="${(sumGenerated+sumSubmitted+sumVerified+sumRejected) == 0}">
+                <p>Belum ada surat.</p>
+              </th:block>
+
+              <th:block th:if="${(sumGenerated+sumSubmitted+sumVerified+sumRejected) > 0}">
+                <!-- Donut Chart -->
+                <div id="donutChart" style="min-height: 400px;" class="echart"></div>
+
+                <script th:inline="javascript">
+                  document.addEventListener("DOMContentLoaded", () => {
+                    echarts.init(document.querySelector("#donutChart")).setOption({
+                      tooltip: {
+                        trigger: 'item'
+                      },
+                      legend: {
+                        top: '5%',
+                        left: 'center'
+                      },
+                      series: [{
+                        name: 'Status',
+                        type: 'pie',
+                        radius: ['40%', '70%'],
+                        avoidLabelOverlap: false,
+                        label: {
+                          show: false,
+                          position: 'center'
+                        },
+                        emphasis: {
+                          label: {
+                            show: true,
+                            fontSize: '18',
+                            fontWeight: 'bold'
+                          }
+                        },
+                        labelLine: {
+                          show: false
+                        },
+                        data: [
+                          {
+                            value: [[${sumGenerated}]],
+                            name: 'Generated'
+                          },
+                          {
+                            value: [[${sumSubmitted}]],
+                            name: 'Submitted'
+                          },
+                          {
+                            value: [[${sumVerified}]],
+                            name: 'Verified'
+                          },
+                          {
+                            value: [[${sumRejected}]],
+                            name: 'Rejected'
+                          },
+                        ]
+                      }]
+                    });
+                  });
+                </script>
+                <!-- End Donut Chart -->
+              </th:block>
+              <a class="btn btn-primary" th:href="@{/surat/viewall}">Kembali</a>
             </div>
           </div>
         </div>
-        <!-- /.container-fluid -->
 
       </div>
-      <!-- End of Main Content -->
-      <footer th:replace="fragments/fragment :: cr"></footer>
+      <!-- /.container-fluid -->
+
     </div>
-    <!-- End of Content Wrapper -->
-
+    <!-- End of Main Content -->
+    <footer th:replace="fragments/fragment :: cr"></footer>
   </div>
-  <!-- End of Page Wrapper -->
-
-  <a th:replace="fragments/fragment :: scrolltop"></a>
-  <div th:replace="fragments/fragment :: logoutmodal"></div>
-
-  <footer>
-    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
-    <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
-  </footer>
+  <!-- End of Content Wrapper -->
 
 </div>
-</body>
-</html>
+<!-- End of Page Wrapper -->
 
+<a th:replace="fragments/fragment :: scrolltop"></a>
+<div th:replace="fragments/fragment :: logoutmodal"></div>
+
+<footer>
+  <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
+  <script th:src="@{/vendor/echarts/echarts.min.js}"></script>
+</footer>
+
+</body>
+
+</html>
