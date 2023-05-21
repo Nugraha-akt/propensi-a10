@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
+    <meta charset="UTF-8">
+    <title> Mantra - Daftar Surat </title>
     <object th:include="fragments/fragment :: style" th:remove="tag"></object>
-
 </head>
 <body id="page-top">
 <!-- Page Wrapper -->
@@ -25,11 +25,11 @@
                     <div class="card m-4 p-4">
                         <div class="card-body">
                             <div class="justify-content-center">
-                                <h2>List Surat</h2>
+                                <h2 class="text-center">Daftar Surat</h2>
                                 <br>
                                 <a class="btn btn-primary" style="margin: 1px"th:href="@{/surat/ringkasan}">Ringkasan</a>
                                 <a class="btn btn-secondary" style="margin: 1px" th:href="@{/}">Beranda</a>
-                                <br>
+                                <br><br>
                                 <table class="table">
                                     <thead>
                                     <tr class="text-center">
@@ -50,11 +50,11 @@
                                         <td class="text-center text-danger" th:if="${surat.status == 4}" th:text="'Rejected'"></td>
 
                                         <td class="text-center">
-                                            <a class="btn btn-sm btn-info" style="margin: 1px" th:href="@{/surat/view/} + ${surat.id}">Detail</a>
+                                            <a class="btn btn-sm btn-outline-primary" style="margin: 1px" th:href="@{/surat/view/} + ${surat.id}">Detail</a>
 <!--                                            <a class="btn btn-sm btn-danger disabled" th:if="*{surat.request != null}" style="margin: 1px">Hapus</a>-->
 <!--                                            <a class="btn btn-sm btn-warning" th:if="*{surat.request == null}" style="margin: 1px" th:href="@{/surat/delete/} + ${surat.id}">Hapus</a>-->
-                                            <a th:if="${surat.status != 1}" class="btn btn-sm btn-outline-primary" style="margin: 1px" th:href="@{/surat/dokumen/} + ${surat.id}">Dokumen</a>
-                                            <a th:if="${surat.status == 1}" class="btn btn-sm btn-outline-primary disabled" style="margin: 1px" th:href="@{/surat/dokumen/} + ${surat.id}">Dokumen</a>
+                                            <a th:if="${surat.status != 1}" class="btn btn-sm btn-warning" style="margin: 1px" th:href="@{/surat/dokumen/} + ${surat.id}">Dokumen</a>
+                                            <a th:if="${surat.status == 1}" class="btn btn-sm btn-warning disabled" style="margin: 1px" th:href="@{/surat/dokumen/} + ${surat.id}">Dokumen</a>
                                         </td>
                                     </tr>
                                     </tbody>
