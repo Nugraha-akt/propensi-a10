@@ -3,7 +3,6 @@ package apap.propensi.mantra.contoller.restcontroller;
 import apap.propensi.mantra.model.UserModel;
 import apap.propensi.mantra.service.RequestService;
 import apap.propensi.mantra.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

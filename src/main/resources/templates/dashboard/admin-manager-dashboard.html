@@ -118,7 +118,6 @@
                 <th:block th:if="${totalCount > 0}">
                   <!-- Donut Chart -->
                   <div id="donutChart" style="min-height: 400px;" class="echart"></div>
-
                   <script th:src="@{/js/chart/overview-request-chart.js}"></script>
                   <!-- End Donut Chart -->
                 </th:block>
@@ -136,10 +135,11 @@
             <!--Gauge chart -->
             <div class="card shadow mb-4">
               <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Complaints Responded</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Complaints Resolved</h6>
               </div>
               <div class="card-body">
                 <div id="respondedChart" style="min-height: 400px" class="echart"></div>
+                <script th:src="@{/js/chart/gauge-resolved-chart.js}"></script>
               </div>
             </div>
           </div>

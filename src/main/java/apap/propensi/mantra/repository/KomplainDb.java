@@ -38,4 +38,6 @@ public interface KomplainDb extends JpaRepository<KomplainModel, String> {
 
     @Query("SELECT COUNT(k) FROM KomplainModel k WHERE k.kategoriKomplain='OTHER'")
     Integer sumLainnya();
+
+    long count();
 }
