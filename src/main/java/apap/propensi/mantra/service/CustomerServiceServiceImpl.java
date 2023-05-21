@@ -53,6 +53,9 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
     }
 
     @Override
+    public CustomerServiceModel getCustomerServiceByUsername(String username) { return customerServiceDb.findByUsername(username);}
+
+    @Override
     public List<CustomerServiceModel> getListCustomerService() {
         return customerServiceDb.findAll();
     }
