@@ -133,24 +133,16 @@
         </div>
     </li>
 
-    <!-- Nav Item - Monitor -->
-    <li class="nav-item" th:classappend="${active == 'Monitor'} ? active : ''"
-        sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
-        <a class="nav-link" th:href="@{/blank}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Monitor Unit dan Driver</span></a>
-    </li>
-
     <!-- Divider -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->
-    <div class="sidebar-heading">
-        Surat dan Komplain
+    <div class="sidebar-heading" sec:authorize="hasAnyAuthority('ADMIN','MANAGER','DRIVER')">
+        Surat
     </div>
 
     <!-- Nav Item - Surat Menu -->
-    <li class="nav-item" th:classappend="${active == 'Surat'} ? active : ''" sec:authorize="hasAnyAuthority('ADMIN','MANAGER','CUSTOMER','DRIVER')">
+    <li class="nav-item" th:classappend="${active == 'Surat'} ? active : ''" sec:authorize="hasAnyAuthority('ADMIN','MANAGER','DRIVER')">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSurat"
            aria-expanded="true" aria-controls="collapseSurat">
             <i class="fas fa-fw fa-envelope-open-text"></i>
@@ -165,18 +157,29 @@
         </div>
     </li>
 
+    <div class="sidebar-heading" sec:authorize="hasAnyAuthority('ADMIN','MANAGER','CUSTOMERSERVICE','CUSTOMER')">
+        Komplain
+    </div>
 
     <!-- Nav Item - Komplain -->
     <li class="nav-item" th:classappend="${active == 'Komplain'} ? active : ''"
         sec:authorize="hasAnyAuthority('CUSTOMERSERVICE', 'MANAGER', 'ADMIN')">
-        <a class="nav-link" th:href="@{/blank}">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Manajemen Komplain</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKomplain"
+           aria-expanded="true" aria-controls="collapseKomplain">
+            <i class="fas fa-fw fa-envelope-open-text"></i>
+            <span>Manajemen Komplain</span>
+        </a>
+        <div id="collapseKomplain" class="collapse" aria-labelledby="headingKomplain" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" th:href="@{/komplain/viewall}" sec:authorize="hasAnyAuthority('MANAGER', 'ADMIN', 'CUSTOMERSERVICE')" >Kelola Komplain </a>
+                <a class="collapse-item" th:href="@{/komplain/ringkasan}" sec:authorize="hasAnyAuthority('MANAGER', 'ADMIN')" >Ringkasan Komplain </a>
+            </div>
+        </div>
     </li>
 
     <li class="nav-item" th:classappend="${active == 'Komplain'} ? active : ''"
-        sec:authorize="hasAnyAuthority('CUSTOMER', 'DRIVER')">
-        <a class="nav-link" th:href="@{/blank}">
+        sec:authorize="hasAnyAuthority('CUSTOMER')">
+        <a class="nav-link" th:href="@{/komplain/viewall}">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Riwayat Komplain</span></a>
     </li>

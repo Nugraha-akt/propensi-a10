@@ -14,7 +14,7 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
 
-  <ul th:replace="fragments/fragment :: sidebar('Request')"></ul>
+  <ul th:replace="fragments/fragment :: sidebar('Komplain')"></ul>
 
   <!-- Content Wrapper -->
   <div id="content-wrapper" class="d-flex flex-column">
@@ -27,42 +27,36 @@
       <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Assign Driver ke Unit</h1>
+        <h1 class="h3 mb-4 text-gray-800">Respon Komplain</h1>
         <!-- ISI DISIN YA MANIS -->
         <div class="container">
           <div class="card m-4 p-4">
             <div class="card-body">
               <div class="justify-content-center">
-                <!--Form untuk update Admin-->
-                <form th:action="@{/request/assign}" th:object="${request}" method="POST">
-                  <input type="hidden" th:field="*{id}" />
-                  <table class="table table-hover text-center">
-                    <thead>
-                    <tr>
-                      <th>Driver</th>
-                      <th>Unit</th>
-                      <th>Plat Nomor</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="pair, iterationStatus : *{listPairRequest}">
-                      <td>
-                        <select required class="form-select" name="uuid" th:field="*{listPairRequest[__${iterationStatus.index}__].driver.uuid}">
-                          <option selected value="">-- Select driver --</option>
-                          <option th:each="driver : ${listAvailableDrivers}"
-                                  th:value="${driver.uuid}"
-                                  th:text="${driver.nama}">
-                          </option>
-                        </select>
-                      </td>
-                      <td th:text="${pair.unit.jenis}"></td>
-                      <td th:text="${pair.unit.platNomor}"></td>
-                    </tr>
-                    </tbody>
-                  </table>
-
+                <form th:action="@{/komplain/respond}" th:object="${komplain}" method="POST">
+                  <input type="hidden" th:field="*{id}"/>
+                  <div class="mb-3">
+                    <label for="customer.username" class="form-label">Nama Customer</label>
+                    <input disabled readonly type="text" class="form-control" id="customer.username" th:value="*{customer.username}">
+                  </div>
+                  <div class="mb-3">
+                    <label for="judul" class="form-label">Judul</label>
+                    <input disabled readonly type="text" class="form-control" id="judul" th:value="*{judul}">
+                  </div>
+                  <div class="mb-3">
+                    <label for="kategoriKomplain.name" class="form-label">Kategori</label>
+                    <input disabled readonly type="text" class="form-control" id="kategoriKomplain.name" th:value="*{kategoriKomplain.name}">
+                  </div>
+                  <div class="mb-3">
+                    <label for="isi" class="form-label">Isi</label>
+                    <textarea readonly class="form-control" rows="3" id="isi" th:text="*{isi}" th:value="*{isi}"></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="respon" class="form-label">Respon</label>
+                    <input required type="text" class="form-control" id="respon" placeholder="Isi respon komplain..." th:field="*{respon}">
+                  </div>
                   <button type="submit" class="btn btn-sm btn-primary">Submit</button>
-                  <a class="btn btn-sm btn-outline-primary" th:href="@{/request/viewall}">Kembali</a>
+                  <a class="btn btn-sm btn-outline-primary" th:href="@{/komplain/viewall}">Kembali</a>
                 </form>
               </div>
             </div>
