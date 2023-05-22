@@ -17,6 +17,5 @@ public interface UserService {
     String isUniqueUpdate(UserModel user);
     String encrypt(String password);
     UserModel updatePassword(UserModel userModel);
-
     UserModel updateProfile(UserModel oldUser);
 }

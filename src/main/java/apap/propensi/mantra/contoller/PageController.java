@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.Map;
 
 @Controller
 public class PageController {
@@ -47,6 +48,20 @@ public class PageController {
             return "dashboard/admin-manager-dashboard";
         }
         return "dashboard";
+    }
+
+
+    @GetMapping("/dashboard/customer")
+    public String DashboardCustomer(Model model, Principal principal) {
+        UserModel user = userService.getUserByUsername(principal.getName());
+        Map<String, Long> statusCount = requestService.getCountOfRequestsByStatus(user);
+
+
+        model.addAttribute("createdCount", statusCount.get("createdCount"));
+        model.addAttribute("assignedCount",  statusCount.get("assignedCount"));
+        model.addAttribute("inProgressCount",  statusCount.get("inProgressCount"));
+        model.addAttribute("finishedCount",  statusCount.get("finishedCount"));
+        return "dashboard-customer";
     }
 
     @RequestMapping("/login")
