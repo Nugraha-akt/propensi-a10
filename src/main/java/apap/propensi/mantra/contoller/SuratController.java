@@ -4,27 +4,27 @@ import apap.propensi.mantra.model.SuratModel;
 import apap.propensi.mantra.model.UserModel;
 import apap.propensi.mantra.service.SuratService;
 import apap.propensi.mantra.service.UserService;
-//import com.itextpdf.html2pdf.ConverterProperties;
-//import com.itextpdf.html2pdf.HtmlConverter;
-//import com.itextpdf.io.source.ByteArrayOutputStream;
+import com.itextpdf.html2pdf.ConverterProperties;
+import com.itextpdf.html2pdf.HtmlConverter;
+import com.itextpdf.io.source.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
-//import org.springframework.http.MediaType;
-//import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-//import org.thymeleaf.TemplateEngine;
-//import org.thymeleaf.context.WebContext;
-//import org.thymeleaf.spring5.SpringTemplateEngine;
-//import org.thymeleaf.templatemode.TemplateMode;
-//import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
-//
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -161,14 +161,12 @@ public class SuratController {
         return "surat/view-surat";
     }
 
-    /*@GetMapping(value = "/pdf/{noSurat}")
+    @GetMapping(value = "/pdf/{noSurat}")
     public ResponseEntity<?> getPDF(@PathVariable("noSurat") long noSurat, HttpServletRequest request, HttpServletResponse response, Model model){
 
-        *//* Do Business Logic*//*
 
         SuratModel surat = suratService.getSurat(noSurat);
 
-        *//* Create HTML using Thymeleaf template Engine *//*
 
         TemplateEngine templateEngine = new SpringTemplateEngine();
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
@@ -182,26 +180,18 @@ public class SuratController {
         context.setVariable("days", days);
         String orderHtml = templateEngine.process("surat/surat-asli", context);
 
-        *//* Setup Source and target I/O streams *//*
-
         ByteArrayOutputStream target = new ByteArrayOutputStream();
 
-        *//*Setup converter properties. *//*
         ConverterProperties converterProperties = new ConverterProperties();
 
-        *//* Call convert method/ masih bermasalah, bikin ngelag*//*
         HtmlConverter.convertToPdf(orderHtml, target, converterProperties);
 
-        *//* extract output as bytes *//*
         byte[] bytes = target.toByteArray();
-
-
-        *//* Send the response as downloadable PDF *//*
-
+        
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(bytes);
 
-    }*/
+    }
 }
 
