@@ -50,7 +50,13 @@ public class PageController {
     }
 
     @RequestMapping("/login")
-    public String login(){
+    public String login(@ModelAttribute("successMessage") String successMessage, Model model, RedirectAttributes redirectAttributes){
+        if (!successMessage.isEmpty()) {
+            model.addAttribute("toastrSuccessMessage", successMessage);
+            redirectAttributes.addFlashAttribute("successMessage", "");
+        } else {
+            model.addAttribute("toastrSuccessMessage", "");
+        }
         return "login-page";
     }
 

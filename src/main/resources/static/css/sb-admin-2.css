@@ -10595,13 +10595,19 @@ a:focus {
 }
 
 .bg-register-image {
-  background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
+  background: url("https://kalla.co.id/assets/media/source/Milestone/2%20(4).jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.bg-forgot-image {
+  background: url("https://kalla.co.id/assets/media/source/Milestone/2%20(4).jpg");
   background-position: center;
   background-size: cover;
 }
 
 .bg-password-image {
-  background: url("https://source.unsplash.com/oWTW-jNGl9I/600x800");
+  background: url("https://statik.tempo.co/data/2018/11/09/id_795767/795767_720.jpg");
   background-position: center;
   background-size: cover;
 }
