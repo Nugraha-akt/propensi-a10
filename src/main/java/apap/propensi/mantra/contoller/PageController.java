@@ -6,6 +6,7 @@ import apap.propensi.mantra.model.DriverModel;
 import apap.propensi.mantra.model.UserModel;
 import apap.propensi.mantra.service.CustomerService;
 import apap.propensi.mantra.service.DriverService;
+import apap.propensi.mantra.service.RequestService;
 import apap.propensi.mantra.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.Map;
 
 @Controller
 public class PageController {
@@ -28,6 +30,9 @@ public class PageController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private RequestService requestService;
     
     @RequestMapping("/")
     public String home() { return "index"; }
@@ -37,6 +42,19 @@ public class PageController {
         return "dashboard";
     }
 
+
+    @GetMapping("/dashboard/customer")
+    public String Dashboard(Model model, Principal principal) {
+        UserModel user = userService.getUserByUsername(principal.getName());
+        Map<String, Long> statusCount = requestService.getCountOfRequestsByStatus(user);
+
+
+        model.addAttribute("createdCount", statusCount.get("createdCount"));
+        model.addAttribute("assignedCount",  statusCount.get("assignedCount"));
+        model.addAttribute("inProgressCount",  statusCount.get("inProgressCount"));
+        model.addAttribute("finishedCount",  statusCount.get("finishedCount"));
+        return "dashboard-customer";
+    }
     @RequestMapping("/login")
     public String login(){
         return "login-page";

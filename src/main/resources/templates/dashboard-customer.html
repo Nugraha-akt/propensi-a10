@@ -3,8 +3,7 @@
 
 <head>
   <object th:include="fragments/fragment :: style" th:remove="tag"></object>
-  <title>Ringkasan Surat</title>
-
+  <title>Overview Request</title>
 </head>
 
 <body id="page-top">
@@ -12,7 +11,7 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
 
-  <ul th:replace="fragments/fragment :: sidebar('Surat')"></ul>
+  <ul th:replace="fragments/fragment :: sidebar('Request')"></ul>
 
   <!-- Content Wrapper -->
   <div id="content-wrapper" class="d-flex flex-column">
@@ -25,17 +24,18 @@
       <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800 text-center">Ringkasan Surat</h1>
-        <div class="col-lg-6">
+        <h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
+        <table class="table">
+        <td>
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Ringkasan Surat Berdasarkan Status</h5>
+              <h5 class="card-title">Rangkuman Status Request</h5>
 
-              <th:block th:if="${(sumGenerated+sumSubmitted+sumVerified+sumRejected) == 0}">
-                <p>Belum ada surat.</p>
+              <th:block th:if="${(createdCount+assignedCount+inProgressCount+finishedCount) == 0}">
+                <p>There are no requests at the moment.</p>
               </th:block>
 
-              <th:block th:if="${(sumGenerated+sumSubmitted+sumVerified+sumRejected) > 0}">
+              <th:block th:if="${(createdCount+assignedCount+inProgressCount+finishedCount) > 0}">
                 <!-- Donut Chart -->
                 <div id="donutChart" style="min-height: 400px;" class="echart"></div>
 
@@ -70,21 +70,21 @@
                         },
                         data: [
                           {
-                            value: [[${sumGenerated}]],
-                            name: 'Generated'
+                            value: [[${createdCount}]],
+                            name: 'Created'
                           },
                           {
-                            value: [[${sumSubmitted}]],
-                            name: 'Submitted'
+                            value: [[${assignedCount}]],
+                            name: 'Assigned'
                           },
                           {
-                            value: [[${sumVerified}]],
-                            name: 'Verified'
+                            value: [[${inProgressCount}]],
+                            name: 'In-Progress'
                           },
                           {
-                            value: [[${sumRejected}]],
-                            name: 'Rejected'
-                          },
+                            value: [[${finishedCount}]],
+                            name: 'Finished'
+                          }
                         ]
                       }]
                     });
@@ -92,17 +92,32 @@
                 </script>
                 <!-- End Donut Chart -->
               </th:block>
-              <a class="btn btn-primary" th:href="@{/surat/viewall}">Kembali</a>
             </div>
           </div>
+        </td>
+          <td> <a class="nav-link" th:href="@{/request/viewall}">
+          <i class="fas fa-fw fa-briefcase"></i>
+          <span>Kelola Request</span>
+          </a>
+            <a class="nav-link" th:href="@{/request/add}">
+              <i class="fas fa-fw fa-briefcase"></i>
+              <span>Ajukan Request</span>
+            </a>
+
+            <a class="nav-link" th:href="@{/komplain/viewall}">
+              <i class="fas fa-fw fa-wrench"></i>
+              <span>Riwayat Komplain</span>
+            </a>
+        </td>
+        </table>
         </div>
+
 
       </div>
       <!-- /.container-fluid -->
-
+    <footer th:replace="fragments/fragment :: cr"></footer>
     </div>
     <!-- End of Main Content -->
-    <footer th:replace="fragments/fragment :: cr"></footer>
   </div>
   <!-- End of Content Wrapper -->
 
@@ -120,4 +135,3 @@
 </body>
 
 </html>
-
