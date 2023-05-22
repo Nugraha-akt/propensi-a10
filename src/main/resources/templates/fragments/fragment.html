@@ -56,7 +56,8 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item" th:classappend="${active == 'Dashboard'} ? active : ''" sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
+    <li class="nav-item" th:classappend="${active == 'Dashboard'} ? active : ''"
+        sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
         <a class="nav-link" th:href="@{/dashboard}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -68,6 +69,14 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
+
+    <li class="nav-item" th:classappend="${active == 'Dashboard'} ? active : ''"
+        sec:authorize="hasAnyAuthority('DRIVER')">
+        <a class="nav-link" th:href="@{/dashboarddriver}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
+
     <li class="nav-item" th:classappend="${active == 'Home'} ? active : ''">
         <a class="nav-link" th:href="@{/}">
             <i class="fas fa-fw fa-home"></i>

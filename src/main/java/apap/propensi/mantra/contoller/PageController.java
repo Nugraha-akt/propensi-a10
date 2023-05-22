@@ -64,6 +64,19 @@ public class PageController {
         return "dashboard-customer";
     }
 
+    @GetMapping("/dashboarddriver")
+    public String dashboardDriver(Model model, Principal principal) {
+        UserModel user = userService.getUserByUsername(principal.getName());
+        Map<String, Long> statusCount = requestService.getCountOfRequestsByStatus(user);
+
+
+        model.addAttribute("createdCount", statusCount.get("createdCount"));
+        model.addAttribute("assignedCount",  statusCount.get("assignedCount"));
+        model.addAttribute("inProgressCount",  statusCount.get("inProgressCount"));
+        model.addAttribute("finishedCount",  statusCount.get("finishedCount"));
+        return "dashboarddriver";
+    }
+
     @RequestMapping("/login")
     public String login(@ModelAttribute("successMessage") String successMessage, Model model, RedirectAttributes redirectAttributes){
         if (!successMessage.isEmpty()) {
