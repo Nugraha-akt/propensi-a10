@@ -57,8 +57,15 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item" th:classappend="${active == 'Dashboard'} ? active : ''">
-        <a class="nav-link" th:href="@{/dashboard}">
+<!--    <li class="nav-item" th:classappend="${active == 'Dashboard'} ? active : ''">-->
+<!--        <a class="nav-link" th:href="@{/dashboard}">-->
+<!--            <i class="fas fa-fw fa-tachometer-alt"></i>-->
+<!--            <span>Dashboard</span></a>-->
+<!--    </li>-->
+
+    <li class="nav-item" th:classappend="${active == 'Dashboard'} ? active : ''"
+        sec:authorize="hasAnyAuthority('CUSTOMER')">
+        <a class="nav-link" th:href="@{/dashboard/customer}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>

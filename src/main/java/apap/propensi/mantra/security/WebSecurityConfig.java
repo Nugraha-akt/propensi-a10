@@ -61,6 +61,7 @@ public class WebSecurityConfig {
                 .antMatchers("/komplain/detail/**").hasAnyAuthority("ADMIN","MANAGER","CUSTOMERSERVICE","CUSTOMER")
                 .antMatchers("/komplain/add").hasAnyAuthority("CUSTOMER")
                 .antMatchers("/komplain/respond").hasAnyAuthority("CUSTOMERSERVICE")
+                .antMatchers("/dashboard/customer").hasAnyAuthority("CUSTOMER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
