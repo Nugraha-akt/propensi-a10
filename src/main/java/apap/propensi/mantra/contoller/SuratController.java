@@ -187,7 +187,7 @@ public class SuratController {
         HtmlConverter.convertToPdf(orderHtml, target, converterProperties);
 
         byte[] bytes = target.toByteArray();
-        
+
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(bytes);
