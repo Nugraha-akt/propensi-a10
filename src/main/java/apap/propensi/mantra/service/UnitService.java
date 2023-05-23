@@ -23,4 +23,6 @@ public interface UnitService {
     List<CustomUnitPair> getUnitAvailable(LocalDateTime departDate, LocalDateTime returnDate);
 
     List<UnitModel> getUnitByJenisandJumlah(String jenis, Long jumlah, LocalDateTime departDate, LocalDateTime returnDate);
+
+    int getCountOfActiveUnits();
 }

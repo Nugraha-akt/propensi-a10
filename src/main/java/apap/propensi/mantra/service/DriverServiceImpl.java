@@ -99,4 +99,10 @@ public class DriverServiceImpl implements DriverService{
     public Integer getSumInactive() {
         return driverDb.sumInactive();
     }
+
+    @Override
+    public int getCountOfActiveDrivers() {
+        int inactiveStatus = 3;
+        return driverDb.countByStatusNot(inactiveStatus);
+    }
 }

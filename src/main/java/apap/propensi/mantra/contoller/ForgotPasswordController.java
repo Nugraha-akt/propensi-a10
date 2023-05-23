@@ -44,7 +44,7 @@ public class ForgotPasswordController {
 
     @GetMapping
     public String viewPage(){
-        return "auth/forgot-password";
+        return "auth/forgot-page";
     }
 
     @PostMapping
@@ -54,12 +54,12 @@ public class ForgotPasswordController {
                                         RedirectAttributes attributes,
                                         HttpServletRequest request){
         if(result.hasErrors()){
-            return "auth/forgot-password";
+            return "auth/forgot-page";
         }
         UserModel user = userService.getUserByEmail(passwordForgot.getEmail());
         if(user == null){
             model.addAttribute("emailError", messageSource.getMessage("EMAIL_NOT_FOUND", new Object[]{}, Locale.ENGLISH));
-            return "auth/forgot-password";
+            return "auth/forgot-page";
         }
         // proceed to send email with link to reset password to this email address
         PasswordResetToken token = new PasswordResetToken();
@@ -69,7 +69,7 @@ public class ForgotPasswordController {
         token = passwordResetTokenService.save(token);
         if(token == null){
             model.addAttribute("tokenError", messageSource.getMessage("TOKEN_NOT_SAVED", new Object[]{}, Locale.ENGLISH));
-            return "auth/forgot-password";
+            return "auth/forgot-page";
         }
         Mail mail = new Mail();
         mail.setFrom("no-reply@mantra.transcorp");

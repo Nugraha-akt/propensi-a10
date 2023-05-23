@@ -50,4 +50,10 @@ public class UnitServiceImpl implements  UnitService {
     public List<UnitModel> getUnitByJenisandJumlah(String jenis, Long jumlah, LocalDateTime departDate, LocalDateTime returnDate) {
         return unitDb.findAvailableUnitByJenisandJumlah(jenis, jumlah, departDate, returnDate);
     }
+
+    @Override
+    public int getCountOfActiveUnits() {
+        int inactiveStatus = 3;
+        return unitDb.countByStatusNot(inactiveStatus);
+    }
 }

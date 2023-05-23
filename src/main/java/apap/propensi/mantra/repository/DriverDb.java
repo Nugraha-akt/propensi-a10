@@ -26,4 +26,6 @@ public interface DriverDb extends JpaRepository<DriverModel, String> {
 
     @Query("SELECT COUNT(d) FROM DriverModel d WHERE d.status=3")
     Integer sumInactive();
+
+    int countByStatusNot(Integer status);
 }

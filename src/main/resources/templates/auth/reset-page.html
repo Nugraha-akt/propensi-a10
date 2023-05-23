@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <object th:include="fragments/fragment :: style" th:remove="tag"></object>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <title>Reset Password</title>
+</head>
+
+<body class="bg-gradient-success">
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+
+    <div class="col-xl-10 col-lg-12 col-md-9">
+
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Reset Password</h1>
+                </div>
+                <div th:if="${error}">
+                  <div class="alert alert-danger">
+                    <span th:text="${error}"></span>
+                  </div>
+                </div>
+                <form th:action="@{/reset-password}" th:object="${passwordReset}" method="post">
+                  <span class="error-message"
+                        th:if="${#fields.hasGlobalErrors()}"
+                        th:each="error : ${#fields.errors('global')}"
+                        th:text="${error}">Validation error</span>
+
+                  <input type="hidden" name="token" th:value="${token}"/>
+
+                  <div class="form-group">
+                    <input type="password" name="password" class="form-control form-control-user" placeholder="Password" id="password" th:field="*{password}" th:errorClass="is-invalid">
+                    <span class="text-danger"
+                          th:if="${#fields.hasErrors('password')}"
+                          th:errors="*{password}"></span>
+                  </div>
+                  <div class="form-group">
+                    <input type="password" name="confirmPassword" class="form-control form-control-user" placeholder="Confirmation Password" id="confirmPassword"
+                           th:field="*{confirmPassword}" th:errorClass="is-invalid">
+                    <span class="text-danger"
+                          th:if="${#fields.hasErrors('confirmPassword')}"
+                          th:errors="*{confirmPassword}"></span>
+                  </div>
+                  <div class="row form-group justify-content-center">
+                    <button type="submit" class="btn btn-success btn-block btn-user">Reset Password</button>
+                  </div>
+                </form>
+                <hr>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+  <footer>
+    <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
+  </footer>
+
+</body>
+
+</html>

@@ -3,6 +3,7 @@
 
 <head>
     <object th:include="fragments/fragment :: style" th:remove="tag"></object>
+  <title>Login</title>
 </head>
 
 <body class="bg-gradient-success">
@@ -55,6 +56,9 @@
 
   <footer>
     <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
+    <script th:inline="javascript" th:if="${toastrSuccessMessage != ''}">
+      toastr.success([[${toastrSuccessMessage}]], 'Success');
+    </script>
   </footer>
 
 </body>

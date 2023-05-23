@@ -51,7 +51,6 @@ public class DriverController {
         DriverModel driver = driverService.getDriverByUuid(uuid);
         if (driver != null){
             List<PairUnitDriverModel> listRequest = driver.getListPairRequest();
-//            List<RequestModel> listRequest = driver.getListRequest();
             model.addAttribute("driver", driver);
             model.addAttribute("listRequest", listRequest);
             return "driver/detail";

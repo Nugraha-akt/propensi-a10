@@ -20,4 +20,6 @@ public interface KomplainService {
     Integer getSumDriver();
     Integer getSumWaktu();
     Integer getSumLainnya();
+
+    long getAllCount();
 }

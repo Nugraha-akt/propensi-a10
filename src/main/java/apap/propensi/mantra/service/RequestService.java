@@ -16,6 +16,9 @@ public interface RequestService {
 //    RequestModel getRequestByDriverUuid(String uuid);
     RequestModel getRequestById(Long id);
     RequestModel updateRequest(RequestModel request);
-
     Map<String, Long> getCountOfRequestsByStatus(UserModel userModel);
+    long getRequestCountForCurrentMonth();
+    long getTotalCount();
+
+    Map<String, Long> getRequestCounts();
 }

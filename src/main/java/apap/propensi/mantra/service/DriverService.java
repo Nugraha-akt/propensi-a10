@@ -17,4 +17,6 @@ public interface DriverService {
     Integer getSumAvailable();
     Integer getSumUnavailable();
     Integer getSumInactive();
+
+    int getCountOfActiveDrivers();
 }
