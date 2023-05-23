@@ -115,7 +115,6 @@ public class RequestController {
         List<RequestModel> listRequest = new ArrayList<>();
 
         if (!successMessage.isEmpty()) {
-            System.out.println(successMessage);
             model.addAttribute("toastrSuccessMessage", successMessage);
             redirectAttributes.addFlashAttribute("successMessage", "");
         } else {

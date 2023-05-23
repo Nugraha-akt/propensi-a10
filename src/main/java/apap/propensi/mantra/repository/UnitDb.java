@@ -30,4 +30,6 @@ public interface UnitDb extends JpaRepository<UnitModel, Long> {
             "OR (request.depart_date >= :departDate AND request.depart_date <= :returnDate)) " +
             "LIMIT :jumlah", nativeQuery = true)
     List<UnitModel> findAvailableUnitByJenisandJumlah(String jenis, Long jumlah, LocalDateTime departDate, LocalDateTime returnDate);
+
+    int countByStatusNot(Integer status);
 }

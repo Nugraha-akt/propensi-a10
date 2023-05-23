@@ -81,4 +81,7 @@ public class KomplainServiceImpl implements  KomplainService {
     public Integer getSumLainnya() {
         return komplainDb.sumLainnya();
     }
+
+    @Override
+    public long getAllCount() { return komplainDb.count(); }
 }

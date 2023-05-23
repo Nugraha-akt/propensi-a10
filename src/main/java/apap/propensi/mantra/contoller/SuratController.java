@@ -6,7 +6,8 @@ import apap.propensi.mantra.service.SuratService;
 import apap.propensi.mantra.service.UserService;
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
-import com.itextpdf.io.source.ByteArrayOutputStream;
+//import com.itextpdf.io.source.ByteArrayOutputStream;
+import java.io.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
@@ -164,11 +165,9 @@ public class SuratController {
     @GetMapping(value = "/pdf/{noSurat}")
     public ResponseEntity<?> getPDF(@PathVariable("noSurat") long noSurat, HttpServletRequest request, HttpServletResponse response, Model model){
 
-        /* Do Business Logic*/
 
         SuratModel surat = suratService.getSurat(noSurat);
 
-        /* Create HTML using Thymeleaf template Engine */
 
         TemplateEngine templateEngine = new SpringTemplateEngine();
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
@@ -182,22 +181,13 @@ public class SuratController {
         context.setVariable("days", days);
         String orderHtml = templateEngine.process("surat/surat-asli", context);
 
-        /* Setup Source and target I/O streams */
-
         ByteArrayOutputStream target = new ByteArrayOutputStream();
 
-        /*Setup converter properties. */
         ConverterProperties converterProperties = new ConverterProperties();
 
-        /* Call convert method/ masih bermasalah, bikin ngelag*/
         HtmlConverter.convertToPdf(orderHtml, target, converterProperties);
 
-        /* extract output as bytes */
         byte[] bytes = target.toByteArray();
-
-
-        /* Send the response as downloadable PDF  */
-        /* Send the response as downloadable PDF  */
 
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_PDF)

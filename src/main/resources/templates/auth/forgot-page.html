@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <object th:include="fragments/fragment :: style" th:remove="tag"></object>
+    <title>Forgot Password</title>
+</head>
+
+<body class="bg-gradient-success">
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+
+    <div class="col-xl-10 col-lg-12 col-md-9">
+
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Forgot Password?</h1>
+                  <p>Enter your e-mail address and we'll send you a link to reset your password.</p>
+                </div>
+                <div th:if="${success}">
+                  <div class="alert alert-info"><span th:text="${success}"></span></div>
+                </div>
+                <div th:if="${emailError}">
+                  <div class="alert alert-danger"><span th:text="${emailError}"></span></div>
+                </div>
+                <form th:action="@{/forgot-password}" th:object="${passwordForgot}" method="post">
+                  <div class="form-group">
+                    <input type="text" name="email" class="form-control form-control-user" placeholder="Enter Email Address..." id="email" th:field="*{email}" th:errorClass="is-invalid">
+                    <span class="text-danger"
+                          th:if="${#fields.hasErrors('email')}"
+                          th:errors="*{email}"></span>
+                  </div>
+                  <div class="row form-group justify-content-center">
+                    <button type="submit" class="btn btn-success btn-block btn-user">Reset Password</button>
+                  </div>
+                </form>
+                <hr>
+              </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+  <footer>
+    <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
+  </footer>
+
+</body>
+
+</html>

@@ -32,7 +32,7 @@ public class EmailServiceImpl implements EmailService {
                     StandardCharsets.UTF_8.name());
             Context context = new Context();
             context.setVariables(mail.getModel());
-            String html = templateEngine.process("auth/email/email-template", context);
+            String html = templateEngine.process("auth/email/email-temp", context);
             helper.setTo(mail.getTo());
             helper.setFrom(mail.getFrom());
             helper.setSubject(mail.getSubject());
