@@ -39,11 +39,19 @@
                                                 <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
                                                 <form th:action="@{/surat/upload/} + ${surat.id}" enctype="multipart/form-data" method="POST" >
                                                     <div class="form-group">
-                                                        <input type="file" name="img" accept="image/*" required class="form-control-file">
+                                                        <input id="file-0" name="files" type="file" accept="image/*" required class="form-control-file">
                                                     </div>
                                                     <br><br>
                                                     <button type="submit" class="btn btn-success">Submit</button>
                                                     <a class="btn btn-secondary" th:href="@{/}">Beranda</a>
+
+                                                    <div class="image-preview-container">
+                                                        <div id="image-preview" class="image-preview"></div>
+                                                    </div>
+                                                    <div class="form-group form-check d-none">
+                                                        <input id="shared" name="shared" type="checkbox" class="form-check-input" checked="checked" />
+                                                        <label class="form-check-label" for="shared">Shared</label>
+                                                    </div>
                                                 </form>
                                                 <span th:if="${msg != null}" th:text="${msg}"></span>
                                             </div>

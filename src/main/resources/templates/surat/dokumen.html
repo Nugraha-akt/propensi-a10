@@ -28,8 +28,13 @@
                     <div class="card m-4 p-4">
                         <div class="card-body">
                             <div class="justify-content-center">
-                                <img th:src="@{/img/} + ${surat.foto}" alt="" width="100%" height="100%">
-                                <br><br><br>
+<!--                                <img th:src="@{'https://drive.google.com/uc?id=' + ${image.Id}}" alt="" width="100%" height="100%">-->
+                                <div class="table-row" th:each="gambar, iter : ${gambar}">
+<!--                                    <div class="table-data" th:text="${image.name}"></div>-->
+                                    <div class="table-data">
+                                        <img th:src="@{'https://drive.google.com/uc?id=' + ${gambar.Id}}" alt="" width="100%" height="100%">
+                                    </div>
+                                <br><br>
                                 <a th:if="${surat.status == 2}" class="btn btn-success" th:href="@{/surat/verifikasi/} + ${surat.id}">Verifikasi</a>
                                 <a th:if="${surat.status == 2}" class="btn btn-danger" th:href="@{/surat/tolak/} + ${surat.id}">Tolak</a>
                                 <a class="btn btn-secondary" th:href="@{/surat/viewall}">Kembali</a>
