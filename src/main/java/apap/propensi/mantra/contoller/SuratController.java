@@ -1,7 +1,9 @@
 package apap.propensi.mantra.contoller;
 
+import apap.propensi.mantra.dto.GoogleDriveFileDTO;
 import apap.propensi.mantra.model.SuratModel;
 import apap.propensi.mantra.model.UserModel;
+import apap.propensi.mantra.service.GoogleDriveFileService;
 import apap.propensi.mantra.service.SuratService;
 import apap.propensi.mantra.service.UserService;
 import com.itextpdf.html2pdf.ConverterProperties;
@@ -45,34 +47,14 @@ public class SuratController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private GoogleDriveFileService googleDriveFileService;
+
     @GetMapping("/upload-foto/{id}")
     public String uploadFoto(@PathVariable Long id, Model model) {
         SuratModel surat = suratService.getSuratById(id);
         model.addAttribute("surat", surat);
         return "surat/upload-foto";
-    }
-
-    @PostMapping("/upload/{id}")
-    public String imageUpload(@PathVariable Long id, @RequestParam MultipartFile img, Model model, RedirectAttributes redirectAttributes) {
-        SuratModel surat = suratService.getSuratById(id);
-        surat.setFoto(img.getOriginalFilename());
-        surat.setStatus(2);
-        SuratModel updateSurat = suratService.updateSurat(surat);
-
-        if (updateSurat != null) {
-            try {
-                File saveFile = new ClassPathResource("static/img").getFile();
-                Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + img.getOriginalFilename());
-                Files.copy(img.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println(surat.getFoto());
-
-        model.addAttribute("surat", updateSurat);
-        redirectAttributes.addFlashAttribute("successMessage", "Dokumen Berhasil Diupload");
-        return "redirect:/surat/list";
     }
 
     @GetMapping("/list")
@@ -110,13 +92,6 @@ public class SuratController {
         return "surat/ringkasan";
     }
 
-    @GetMapping("/dokumen/{id}")
-    public String dokumenSurat(@PathVariable Long id, Model model) {
-        SuratModel surat = suratService.getSuratById(id);
-        model.addAttribute("surat", surat);
-        return "surat/dokumen";
-    }
-
     @GetMapping("/verifikasi/{id}")
     public String verifikasiSurat(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
         SuratModel surat = suratService.getSuratById(id);
@@ -135,7 +110,6 @@ public class SuratController {
         model.addAttribute("surat", updateSurat);
         redirectAttributes.addFlashAttribute("successMessage", "Dokumen Berhasil Ditolak");
         return "redirect:/surat/viewall";
-//        return "surat/tolak";
     }
     @GetMapping("/viewall")
     public String listSuratAdmin(@ModelAttribute("successMessage") String successMessage, Model model, RedirectAttributes redirectAttributes) {
@@ -194,5 +168,73 @@ public class SuratController {
                 .body(bytes);
 
     }
+
+    @PostMapping(value = "/upload/{id}", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public String suratUpload(
+            @PathVariable Long id,
+            @RequestParam("files")  List<MultipartFile> files,
+            @RequestParam("shared") String shared,
+            RedirectAttributes redirectAttributes) {
+        SuratModel surat = suratService.getSuratById(id);
+        for (MultipartFile file : files) {
+            googleDriveFileService.upload(file, "Surat", Boolean.parseBoolean(shared));
+            surat.setStatus(2);
+            surat.setFoto(file.getOriginalFilename());
+            suratService.updateSurat(surat);
+        }
+        redirectAttributes.addFlashAttribute("successMessage", "Dokumen Berhasil Diupload");
+        return "redirect:/surat/list";
+    }
+
+
+    @GetMapping("/dokumen/{id}")
+    public String dokumenSurat(@PathVariable Long id, Model model) {
+        List<GoogleDriveFileDTO> Images = googleDriveFileService.findAllInFolder("14FApMDJNiBoMQeweJsAdrv_h7MYfkOAn");
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        SuratModel surat = suratService.getSuratById(id);
+        List<GoogleDriveFileDTO> gambar = new ArrayList<>();
+        for (int i=0; i < Images.size(); i++) {
+            if (surat.getFoto().equals(Images.get(i).getName())) {
+                gambar.add(Images.get(i));
+            }
+        }
+        System.out.println(Images.toString());
+        model.addAttribute("role", auth.getAuthorities().toArray()[0].toString());
+        model.addAttribute("name", auth.getAuthorities().toArray()[0].toString());
+        model.addAttribute("Images", Images);
+        model.addAttribute("gambar", gambar);
+        model.addAttribute("surat", surat);
+        return "surat/dokumen";
+    }
+
+    //    @PostMapping("/upload/{id}")
+//    public String imageUpload(@PathVariable Long id, @RequestParam MultipartFile img, Model model, RedirectAttributes redirectAttributes) {
+//        SuratModel surat = suratService.getSuratById(id);
+//        surat.setFoto(img.getOriginalFilename());
+//        surat.setStatus(2);
+//        SuratModel updateSurat = suratService.updateSurat(surat);
+//
+//        if (updateSurat != null) {
+//            try {
+//                File saveFile = new ClassPathResource("static/img").getFile();
+//                Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + img.getOriginalFilename());
+//                Files.copy(img.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        System.out.println(surat.getFoto());
+//
+//        model.addAttribute("surat", updateSurat);
+//        redirectAttributes.addFlashAttribute("successMessage", "Dokumen Berhasil Diupload");
+//        return "redirect:/surat/list";
+//    }
+
+    //    @GetMapping("/dokumen/{id}")
+//    public String dokumenSurat(@PathVariable Long id, Model model) {
+//        SuratModel surat = suratService.getSuratById(id);
+//        model.addAttribute("surat", surat);
+//        return "surat/dokumen";
+//    }
 }
 
