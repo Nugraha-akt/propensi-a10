@@ -16,14 +16,14 @@
 </head>
 <body style="border-color: black">
 
-<table class="table">
+<table class="table" id="printTable">
     <thead>
     </thead>
     <tbody>
     <tr hidden>
         <td><p>pejabat yang berwenang memberi perintah:</p></td>
         <td>
-            <p th:text="'nama(belum tau ini siapa harusnya): '+${unit.request.customer.getNama()}"></p>
+            <p th:text="'nama: '+${unit.request.customer.getNama()}"></p>
             <p style="padding-right: 200px;">jabatan:</p>
         </td>
 
@@ -239,6 +239,25 @@
     </tr>
     </tbody>
 </table>
+<button id="printButton" onclick="print()">Print</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    window.jsPDF = window.jspdf.jsPDF;
+    var docPDF = new jsPDF();
+    function print(){
+        var elementHTML = document.querySelector("#printTable");
+        docPDF.html(elementHTML, {
+            callback: function(docPDF) {
+                docPDF.save('The Stroker.pdf');
+            },
+            x: 15,
+            y: 15,
+            width: 170,
+            windowWidth: 650
+        });
+    }
+</script>
 <!-- End of Main Content -->
 <footer>
     <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
