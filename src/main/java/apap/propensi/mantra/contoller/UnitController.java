@@ -1,5 +1,6 @@
 package apap.propensi.mantra.contoller;
 
+import apap.propensi.mantra.model.PairUnitDriverModel;
 import apap.propensi.mantra.model.Role;
 import apap.propensi.mantra.model.UnitModel;
 import apap.propensi.mantra.model.UserModel;
@@ -50,19 +51,37 @@ public class UnitController {
     @GetMapping(value = "/view/{platNomor}")
     private String viewUnitPage(@PathVariable("platNomor") String plat, Model model){
         UnitModel unit = unitService.getUnitByPlat(plat);
+        int ongoingstatus = 0;
+        for(PairUnitDriverModel stat : unit.getListPairRequest()){
+            if(!stat.getRequest().getStatus().equals("Finished")){
+                ongoingstatus=1;
+                break;
+            }
+        }
+
 
 
         model.addAttribute("unit", unit);
+        model.addAttribute("ongoing",ongoingstatus);
         return "view-unit";
     }
 
     @GetMapping(value = "/update/{platNomor}")
     private String UpdateUnitFormPage(@PathVariable("platNomor") String plat, Model model){
         UnitModel unit = unitService.getUnitByPlat(plat);
+        boolean ongoing = false;
+        for(PairUnitDriverModel stat : unit.getListPairRequest()){
+            if(!stat.getRequest().getStatus().equals("Finished")){
+                ongoing=true;
+                break;
+            }
+        }
+        if(!ongoing){
+            model.addAttribute("unit", unit);
+            return "form-update-unit";
+        }
 
-
-        model.addAttribute("unit", unit);
-        return "form-update-unit";
+        return "redirect:/unit/viewall";
     }
 
     @PostMapping(value = "/update/{platNomor}")
@@ -81,9 +100,16 @@ public class UnitController {
     @GetMapping(value = "/delete/{platNomor}")
     private String DeleteUnitFormPage(@PathVariable("platNomor") String plat, Model model){
         UnitModel unit = unitService.getUnitByPlat(plat);
-//        if(unit.getRequest()==null){
-//            unitService.deleteUnit(unit);
-//        }
+        boolean ongoing = false;
+        for(PairUnitDriverModel stat : unit.getListPairRequest()){
+            if(!stat.getRequest().getStatus().equals("Finished")){
+                ongoing=true;
+                break;
+            }
+        }
+        if(!ongoing){
+            unitService.deleteUnit(unit);
+        }
         return "redirect:/unit/viewall";
     }
 }

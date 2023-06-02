@@ -29,8 +29,9 @@
           <input hidden class="form-control" type="text" required th:field="*{id}"/>
           <input class="form-control" type="text" required th:field="*{platNomor}"/>
           <br><br>
-          <p th:if="${errorstatus == 1}" th:text="'plat nomor sudah pernah terdaftar'"></p>
-
+          <p th:if="${errorstatus == 1}" style="color: red" th:text="'plat nomor sudah pernah terdaftar'"></p>
+          <input class="form-control" type="text" required th:field="*{jenis}"/>
+          <br><br>
           status: <br>
 
           <select name="idk" th:field="*{status}"
