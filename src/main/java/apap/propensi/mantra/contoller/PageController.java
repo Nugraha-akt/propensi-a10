@@ -113,14 +113,14 @@ public class PageController {
     @RequestMapping("/blank")
     public String blank() { return "blank";}
 
-    @GetMapping("/update/{uuid}")
+    @GetMapping("/user/update-profile/{uuid}")
     public String updateProfileFormPage(@PathVariable String uuid, Model model) {
         UserModel user = userService.getUserByUuid(uuid);
         model.addAttribute("user", user);
         return "data-diri/form-update-profile";
     }
 
-    @PostMapping(value = "/data-diri/update-profile/{uuid}")
+    @PostMapping(value = "/user/update-profile")
     private String updateProfileSubmitPage(@ModelAttribute UserModel user, Model model){
         model.addAttribute("user", user);
         userService.updateProfile(user);
