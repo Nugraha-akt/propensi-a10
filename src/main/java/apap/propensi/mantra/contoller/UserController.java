@@ -385,7 +385,7 @@ public class UserController {
         UserModel user = userService.getUserByUuid(uuid);
         model.addAttribute("user", user);
 
-        return "/data-diri/form-update-profile";
+        return "data-diri/form-update-profile";
     }
 
     @PostMapping(value = "/update-profile")
@@ -399,7 +399,7 @@ public class UserController {
         model.addAttribute("user", updatedUser);
 
 
-        return "/data-diri/update-profile";
+        return "data-diri/update-profile";
     }
 
 }
