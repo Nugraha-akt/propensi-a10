@@ -132,16 +132,16 @@
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="modalUbahStatusLabel">Ubah status perjalanan</h5>
+                                                            <h5 class="modal-title" id="modalUbahStatusLabel">Mengubah status perjalanan</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            Ubah status perjalanan
+                                                            Apakah Anda ingin perbarui posisi Anda sekarang atau menyelesaikan pengerjaan request?
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <a class="btn btn-sm btn-primary" th:href="@{/request/update?id=} + ${request.id}">Ubah Status Perjalanan</a>
+                                                            <a class="btn btn-sm btn-primary" th:href="@{/request/update?id=} + ${request.id}">Perbarui</a>
                                                             <button type="button" class="btn btn-sm btn-outline-danger" id="selesaiButton">
                                                                 Selesai
                                                             </button>

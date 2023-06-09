@@ -54,7 +54,7 @@
                                             <td class="text-center" th:text="${iterationStatus.count}"></td>
                                             <td th:if="${role == 'Admin' or role == 'Manager' or role == 'Customer Service'}" class="text-center" th:text="${komplain.customer.nama}"></td>
                                             <td th:if="${role == 'Customer'}" class="text-center" th:text="${komplain.request.tujuan}"></td>
-                                            <td class="text-center" th:text="${komplain.kategoriKomplain}"></td>
+                                            <td class="text-center" th:text="${komplain.kategoriKomplain.name}"></td>
                                             <td class="text-center" th:if="${komplain.status == 0}" th:text="'New'"></td>
                                             <td class="text-center" th:if="${komplain.status == 1}" th:text="'Closed'"></td>
                                             <td class="text-center">

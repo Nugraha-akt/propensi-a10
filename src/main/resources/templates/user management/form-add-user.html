@@ -24,7 +24,7 @@
 
                 <!-- Page Heading -->
                 <h1 class="h3 mb-4 text-gray-800">Tambah User Baru</h1>
-                <table>
+                <table th:if="${role == null}">
                     <tr>
                         <td>
                             <a class="btn btn-primary" th:href="@{/user/add?role=ADMIN}">Admin</a>
@@ -43,6 +43,7 @@
                         </td>
                     </tr>
                 </table>
+                <br>
                 <div th:if="${role != null}" class="container">
                     <div class="card m-4 p-4">
                         <div class="card-body">
@@ -173,7 +174,8 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-link" th:href="@{/user/viewall}">Kembali</a>
+                <a class="btn btn-outline-primary" th:href="@{/user/viewall}">Kembali</a>
+                <a class="btn btn-danger" th:href="@{/user/add}">Ganti Role</a>
             </div>
             <!-- /.container-fluid -->
 
