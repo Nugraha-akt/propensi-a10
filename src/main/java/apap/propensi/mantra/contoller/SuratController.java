@@ -60,7 +60,6 @@ public class SuratController {
     @GetMapping("/list")
     public String listSurat(@ModelAttribute("successMessage") String successMessage, Model model, RedirectAttributes redirectAttributes){
         if (!successMessage.isEmpty()) {
-            System.out.println(successMessage);
             model.addAttribute("toastrSuccessMessage", successMessage);
             redirectAttributes.addFlashAttribute("successMessage", "");
         } else {
@@ -114,7 +113,6 @@ public class SuratController {
     @GetMapping("/viewall")
     public String listSuratAdmin(@ModelAttribute("successMessage") String successMessage, Model model, RedirectAttributes redirectAttributes) {
         if (!successMessage.isEmpty()) {
-            System.out.println(successMessage);
             model.addAttribute("toastrSuccessMessage", successMessage);
             redirectAttributes.addFlashAttribute("successMessage", "");
         } else {
@@ -189,7 +187,7 @@ public class SuratController {
 
     @GetMapping("/dokumen/{id}")
     public String dokumenSurat(@PathVariable Long id, Model model) {
-        List<GoogleDriveFileDTO> Images = googleDriveFileService.findAllInFolder("14FApMDJNiBoMQeweJsAdrv_h7MYfkOAn");
+        List<GoogleDriveFileDTO> Images = googleDriveFileService.findAllInFolder("1CxB2Z9VgnasAILEry5FkNgZ0AT_4pB7k");
         var auth = SecurityContextHolder.getContext().getAuthentication();
         SuratModel surat = suratService.getSuratById(id);
         List<GoogleDriveFileDTO> gambar = new ArrayList<>();
@@ -198,7 +196,6 @@ public class SuratController {
                 gambar.add(Images.get(i));
             }
         }
-        System.out.println(Images.toString());
         model.addAttribute("role", auth.getAuthorities().toArray()[0].toString());
         model.addAttribute("name", auth.getAuthorities().toArray()[0].toString());
         model.addAttribute("Images", Images);
@@ -206,35 +203,5 @@ public class SuratController {
         model.addAttribute("surat", surat);
         return "surat/dokumen";
     }
-
-    //    @PostMapping("/upload/{id}")
-//    public String imageUpload(@PathVariable Long id, @RequestParam MultipartFile img, Model model, RedirectAttributes redirectAttributes) {
-//        SuratModel surat = suratService.getSuratById(id);
-//        surat.setFoto(img.getOriginalFilename());
-//        surat.setStatus(2);
-//        SuratModel updateSurat = suratService.updateSurat(surat);
-//
-//        if (updateSurat != null) {
-//            try {
-//                File saveFile = new ClassPathResource("static/img").getFile();
-//                Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + img.getOriginalFilename());
-//                Files.copy(img.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        System.out.println(surat.getFoto());
-//
-//        model.addAttribute("surat", updateSurat);
-//        redirectAttributes.addFlashAttribute("successMessage", "Dokumen Berhasil Diupload");
-//        return "redirect:/surat/list";
-//    }
-
-    //    @GetMapping("/dokumen/{id}")
-//    public String dokumenSurat(@PathVariable Long id, Model model) {
-//        SuratModel surat = suratService.getSuratById(id);
-//        model.addAttribute("surat", surat);
-//        return "surat/dokumen";
-//    }
 }
 
