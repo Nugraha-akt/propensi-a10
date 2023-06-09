@@ -1,6 +1,5 @@
 package apap.propensi.mantra.contoller;
 
-//import apap.propensi.mantra.service.RoleService;
 import apap.propensi.mantra.model.CustomerModel;
 import apap.propensi.mantra.model.DriverModel;
 import apap.propensi.mantra.model.UserModel;
@@ -31,7 +30,7 @@ public class PageController {
 
     @Autowired
     private UnitService unitService;
-    
+
     @RequestMapping("/")
     public String home() { return "index"; }
 
@@ -113,5 +112,11 @@ public class PageController {
     @RequestMapping("/blank")
     public String blank() { return "blank";}
 
-}
 
+    @GetMapping("/password")
+    public String getPassword(Model model) {
+        model.addAttribute("password", "");
+        return "password";
+    }
+
+}
