@@ -201,6 +201,8 @@ public class RequestController {
             PairUnitDriverModel pair = listPair.get(i);
             DriverModel driver = driverService.getDriverByUuid(request.getListPairRequest().get(i).getDriver().getUuid());
             driver.setStatus(2);
+            UnitModel unit = unitService.getUnitById(pair.getUnit().getId());
+            unit.setStatus(0);
             pair.setDriver(driver);
         }
         updatedRequest.setStatus("Assigned");
@@ -268,6 +270,8 @@ public class RequestController {
             PairUnitDriverModel pair = listPair.get(i);
             DriverModel driver = driverService.getDriverByUuid(pair.getDriver().getUuid());
             driver.setStatus(1);
+            UnitModel unit = unitService.getUnitById(pair.getUnit().getId());
+            unit.setStatus(1);
         }
 
         requestService.updateRequest(request);

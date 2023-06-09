@@ -23,18 +23,18 @@
       <div class="card m-4 p-4">
         <div class="card-body">
           <div class="justify-content-center">
-            <h2>List Unit</h2>
+            <h2 class="text-center">Daftar Unit</h2>
             <br>
-            <a class="btn btn-primary" th:href="@{/}">Beranda</a>
-            <a class="btn btn-primary" th:href="@{/unit/add}">tambah unit</a>
-            <br>
+            <a class="btn btn-primary" th:href="@{/unit/add}">Tambah unit</a>
+            <a class="btn btn-secondary" th:href="@{/}">Beranda</a>
+            <br><br><br>
             <table class="table">
               <thead>
               <tr>
                 <th>No</th>
                 <th>Plat nomor</th>
-                <th>status</th>
-                <th>action</th>
+                <th>Status</th>
+                <th>Aksi</th>
               </tr>
               </thead>
               <tbody>
@@ -43,20 +43,20 @@
                 <td th:text="${iterationStatus.count}"></td>
                 <td th:text="${unit.platNomor}"></td>
                 <div th:if="*{unit.status == 0}">
-                  <td>not available</td>
+                  <td>Not available</td>
                 </div>
                 <div th:if="*{unit.status == 1}">
-                  <td>available</td>
+                  <td>Available</td>
                 </div>
                 <div th:if="*{unit.status == 2}">
-                  <td>tidak aktif</td>
+                  <td>Tidak aktif</td>
                 </div>
                 <td>
-                  <a class="btn btn-sm btn-warning" th:href="@{/unit/view/} + ${unit.platNomor}">Lihat Detail</a>
+                  <a class="btn btn-sm btn-outline-primary" th:href="@{/unit/view/} + ${unit.platNomor}">Detail</a>
                   <br>
                   <br>
                   <!--<div th:if="*{unit.request != null}">
-                    <a class="btn btn-sm btn-danger">hapus(tugas aktif)</a>
+                    <a class="btn btn-sm btn-danger">hapuss(tugas aktif)</a>
                   </div>
                   <div th:if="*{unit.request == null}">
                     <a class="btn btn-sm btn-warning" th:href="@{/unit/delete/} + ${unit.platNomor}">hapus</a>
