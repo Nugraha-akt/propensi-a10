@@ -18,33 +18,41 @@
     <!-- Main Content -->
     <div id="content">
       <nav th:replace="fragments/fragment :: topbar"></nav>
-<div class="container">
-  <div class="card m-4 p-4">
-    <div class="card-body">
-      <div class="justify-content-center">
-        <h2>Tambah Unit</h2>
-        <br>
-        <form th:action="@{/unit/update/}+${unit.platNomor}" th:object="${unit}" method="POST">
-          plat nomor: <br>
-          <input hidden class="form-control" type="text" required th:field="*{id}"/>
-          <input class="form-control" type="text" required th:field="*{platNomor}"/>
-          <br><br>
-          <p th:if="${errorstatus == 1}" style="color: red" th:text="'plat nomor sudah pernah terdaftar'"></p>
-          <input class="form-control" type="text" required th:field="*{jenis}"/>
-          <br><br>
-          status: <br>
 
-          <select name="idk" th:field="*{status}"
-                  class="form-group" required>
-            <option th:value=0 >tidak available</option>
-            <option th:value=1 th:text="available"></option>
-            <option th:value=2 >tidak aktif</option>
-          </select>
-          <br><br>
+      <div class="container-fluid">
+        <h1 class="h3 mb-4 mt-2 text-gray-800 text-center">Memperbarui Unit</h1>
 
-          <button class="btn btn-primary" type="submit" name="save">Submit</button>
-          <a class="btn btn-primary" th:href="@{/unit/view/} + ${unit.platNomor}">kembali</a>
-        </form>
+        <div class="container">
+
+          <div class="card m-4 p-3 w-90 pt-3">
+            <div class="card-body">
+              <p th:if="${errorstatus == 1}" style="color: red" th:text="'Plat nomor sudah pernah terdaftar.'"></p>
+
+              <form class="row g-3" th:action="@{/unit/update/} + ${unit.platNomor}" th:object="${unit}" method="POST">
+                <input hidden class="form-control" type="text" required th:field="*{id}"/>
+                <div class="col-md-6">
+                  <label for="jenis" class="form-label">Jenis</label>
+                  <input type="text" class="form-control" th:field="*{jenis}" id="jenis" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="platNomor" class="form-label">Plat Nomor</label>
+                  <input type="text" class="form-control" th:field="*{platNomor}" id="platNomor" required>
+                </div>
+                <div class="col-md-12">
+                  <select class="form-select form-control" th:field="*{status}" required>
+                    <option th:value=0 >Not Available</option>
+                    <option th:value=1 >Available</option>
+                    <option th:value=2 >Inactive</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <a formnovalidate class="btn btn-outline-primary" th:href="@{/unit/view/} + ${unit.platNomor}">Kembali</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

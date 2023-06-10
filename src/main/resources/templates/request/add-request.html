@@ -22,34 +22,43 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-                <form class="row g-3" th:action="@{/request/add}" th:object="${requestModel}" th:method="POST">
-                    <div class="col-md-12">
-                        <label for="inputTujuan" class="form-label">Tujuan</label>
-                        <input type="text" class="form-control" th:field="*{tujuan}" id="inputTujuan" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputDate" class="form-label">Tanggal Berangkat</label>
-                        <input type="datetime-local" class="form-control" th:field="*{departDate}" id="inputDate"
-                               required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputDate2" class="form-label">Tanggal Kembali</label>
-                        <input type="datetime-local" class="form-control" th:field="*{returnDate}" id="inputDate2"
-                               required>
-                    </div>
-                    <div class="col-md-12">
-                        <label for="inputAlasan" class="col-form-label">Alasan</label>
-                        <div>
-                            <textarea class="form-control" style="height: 100px" th:field="*{alasan}" id="inputAlasan"
-                                      required></textarea>
+                <h1 class="h3 mb-4 mt-2 text-gray-800 text-center">Mengajukan Request</h1>
+
+                <div class="container">
+                    <div class="card m-4 p-3 w-90 pt-3">
+                        <div class="card-body">
+
+                            <form class="row g-3" th:action="@{/request/add}" th:object="${requestModel}" th:method="POST">
+                                <div class="col-md-12">
+                                    <label for="inputTujuan" class="form-label">Tujuan</label>
+                                    <input type="text" class="form-control" th:field="*{tujuan}" id="inputTujuan" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputDate" class="form-label">Tanggal Berangkat</label>
+                                    <input type="datetime-local" class="form-control" th:field="*{departDate}" id="inputDate"
+                                           required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputDate2" class="form-label">Tanggal Kembali</label>
+                                    <input type="datetime-local" class="form-control" th:field="*{returnDate}" id="inputDate2"
+                                           required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="inputAlasan" class="col-form-label">Alasan</label>
+                                    <div>
+                                        <textarea class="form-control" style="height: 100px" th:field="*{alasan}" id="inputAlasan"
+                                                  required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <a formnovalidate class="btn btn-outline-primary" th:href="@{/request/viewall}">Kembali</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <br>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-
+                </div>
             </div>
             <!-- /.container-fluid -->
 
