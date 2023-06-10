@@ -33,11 +33,11 @@
                 <form th:action="@{/request/update}" th:object="${request}" method="POST">
                   <input type="hidden" th:field="*{id}">
 
-                  <label>Isi dengan deskripsi atau nama tempat saat ini</label>
+                  <label>Isi dengan deskripsi atau nama tempat</label>
                   <input required type="text" name="statusPerjalanan" class="form-control" th:field="*{statusPerjalanan}" th:value="*{statusPerjalanan}">
                   <br>
-                  <button type="submit" class="btn btn-sm btn-primary">Submit</button>
-                  <a class="btn btn-sm btn-outline-primary" th:href="@{/request/viewall}">Kembali</a>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <a class="btn btn-outline-primary" th:href="@{/request/viewall}">Kembali</a>
                 </form>
               </div>
             </div>

@@ -14,6 +14,16 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script defer src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 </head>
 
 <body id="page-top">
@@ -29,152 +39,155 @@
         <!-- Main Content -->
         <div id="content">
             <nav th:replace="fragments/fragment :: topbar"></nav>
+            <div class="container-fluid">
+                <h1 class="h3 mb-4 mt-2 text-gray-800 text-center">Detail Surat</h1>
 
-            <div class="container">
-                <div class="card m-4 p-4">
-                    <div class="card-body">
-                        <div class="justify-content-center">
-                            <table class="table">
-                                <thead>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td><p>pejabat yang berwenang memberi perintah:</p></td>
-                                    <td>
-                                        <p th:text="'nama(belum tau ini siapa harusnya): '+${unit.request.customer.getNama()}"></p>
-                                        <p style="padding-right: 200px;">jabatan:</p>
-                                    </td>
+                <div class="container">
+                    <div class="card m-4 p-4">
+                        <div class="card-body">
+                            <div class="justify-content-center">
+                                <table class="table">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><p>pejabat yang berwenang memberi perintah:</p></td>
+                                        <td>
+                                            <p th:text="'nama(belum tau ini siapa harusnya): '+${unit.request.customer.getNama()}"></p>
+                                            <p style="padding-right: 200px;">jabatan:</p>
+                                        </td>
 
-                                </tr>
+                                    </tr>
 
-                                <tr>
-                                    <td><p>pegawai yang diperintah:</p></td>
-                                    <td>
-                                        <p th:text="'nama: '+${unit.driver.getNama()}"></p>
-                                        <p style="padding-right: 200px;">jabatan: driver</p>
-                                    </td>
+                                    <tr>
+                                        <td><p>pegawai yang diperintah:</p></td>
+                                        <td>
+                                            <p th:text="'nama: '+${unit.driver.getNama()}"></p>
+                                            <p style="padding-right: 200px;">jabatan: driver</p>
+                                        </td>
 
-                                </tr>
+                                    </tr>
 
-                                <tr>
-                                    <td><p>maksud perjalanan dinas:</p></td>
-                                    <td>
-                                        <p th:text="${unit.request.getAlasan()}"></p>
-                                    </td>
+                                    <tr>
+                                        <td><p>maksud perjalanan dinas:</p></td>
+                                        <td>
+                                            <p th:text="${unit.request.getAlasan()}"></p>
+                                        </td>
 
-                                </tr>
+                                    </tr>
 
-                                <tr>
-                                    <td><p>alat angkut yang dipergunakan:</p></td>
-                                    <td>
-                                        <p th:text="'jenis: '+${unit.unit.getJenis()}"></p>
-                                        <p th:text="'plat nomor: '+${unit.unit.getPlatNomor()}"></p>
-                                    </td>
+                                    <tr>
+                                        <td><p>alat angkut yang dipergunakan:</p></td>
+                                        <td>
+                                            <p th:text="'jenis: '+${unit.unit.getJenis()}"></p>
+                                            <p th:text="'plat nomor: '+${unit.unit.getPlatNomor()}"></p>
+                                        </td>
 
-                                </tr>
+                                    </tr>
 
-                                <tr>
-                                    <td>
-                                        <p>a.tempat berangkat:</p>
-                                        <p>b.tempat tujuan</p>
-                                    </td>
-                                    <td>
-                                        <p th:text="'a. makassar '"></p>
-                                        <p style="padding-right: 200px;" th:text="'b. '+${unit.request.tujuan}">b.</p>
-                                    </td>
+                                    <tr>
+                                        <td>
+                                            <p>a.tempat berangkat:</p>
+                                            <p>b.tempat tujuan</p>
+                                        </td>
+                                        <td>
+                                            <p th:text="'a. makassar '"></p>
+                                            <p style="padding-right: 200px;" th:text="'b. '+${unit.request.tujuan}">b.</p>
+                                        </td>
 
-                                </tr>
+                                    </tr>
 
-                                <tr>
-                                    <td>
-                                        <p>a.lamanya perjalanan dinas:</p>
-                                        <p>b.tanggal berangkat</p>
-                                        <p>c.tanggal harus kembali</p>
-                                    </td>
-                                    <td>
-                                        <p th:text="'a. '+${days}+' hari'"></p>
-                                        <p style="padding-right: 200px;" th:text="'b. '+${unit.getRequest().getDepartDate().toLocalDate()}"></p>
-                                        <p style="padding-right: 200px;" th:text="'c. '+${unit.getRequest().getReturnDate().toLocalDate()}"></p>
-                                    </td>
+                                    <tr>
+                                        <td>
+                                            <p>a.lamanya perjalanan dinas:</p>
+                                            <p>b.tanggal berangkat</p>
+                                            <p>c.tanggal harus kembali</p>
+                                        </td>
+                                        <td>
+                                            <p th:text="'a. '+${days}+' hari'"></p>
+                                            <p style="padding-right: 200px;" th:text="'b. '+${unit.getRequest().getDepartDate().toLocalDate()}"></p>
+                                            <p style="padding-right: 200px;" th:text="'c. '+${unit.getRequest().getReturnDate().toLocalDate()}"></p>
+                                        </td>
 
-                                </tr>
+                                    </tr>
 
-                                <tr>
-                                    <td>
-                                        <p>keluarga yang ikut perjalanan:</p>
-                                    </td>
-                                    <td>
-                                        <p>hubungan keluarga/keterangan</p>
-                                        <br>
-                                        <br>
-                                        <br>
-                                    </td>
+                                    <tr>
+                                        <td>
+                                            <p>keluarga yang ikut perjalanan:</p>
+                                        </td>
+                                        <td>
+                                            <p>hubungan keluarga/keterangan</p>
+                                            <br>
+                                            <br>
+                                            <br>
+                                        </td>
 
-                                </tr>
+                                    </tr>
 
-                                <tr>
-                                    <td>
-                                        <p>keterangan lain lain:</p>
-                                    </td>
-                                    <td>
-                                        <p></p>
-                                        <br>
-                                        <br>
-                                        <br>
-                                    </td>
+                                    <tr>
+                                        <td>
+                                            <p>keterangan lain lain:</p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                            <br>
+                                            <br>
+                                            <br>
+                                        </td>
 
-                                </tr>
+                                    </tr>
 
-                                <tr>
-                                    <td>
-                                        <p>Cc:</p>
-                                        <p>1.</p>
-                                        <p>2.</p>
-                                        <p>3.</p>
-                                        <p>4.</p>
-                                    </td>
-                                    <td>
-                                        <p th:text="'dikeluarkan di makassar pada tanggal '+${unit.getRequest().getCreatedAt().toLocalDate()} ">dikeluarkan di makassar pada tanggal</p>
-                                        <p hidden>ttd disini</p>
-                                        <p hidden>nama orang yg ttd</p>
-                                        <br>
-                                        <br>
-                                        <p>______________________</p>
-                                        <p>kepala HCGS</p>
-                                    </td>
+                                    <tr>
+                                        <td>
+                                            <p>Cc:</p>
+                                            <p>1.</p>
+                                            <p>2.</p>
+                                            <p>3.</p>
+                                            <p>4.</p>
+                                        </td>
+                                        <td>
+                                            <p th:text="'dikeluarkan di makassar pada tanggal '+${unit.getRequest().getCreatedAt().toLocalDate()} ">dikeluarkan di makassar pada tanggal</p>
+                                            <p hidden>ttd disini</p>
+                                            <p hidden>nama orang yg ttd</p>
+                                            <br>
+                                            <br>
+                                            <p>______________________</p>
+                                            <p>kepala HCGS</p>
+                                        </td>
 
-                                </tr>
-                                </tbody>
-                            </table>
-                            <button id="printButton" onclick="print()">Download</button>
-                            <script>
-                                window.jsPDF = window.jspdf.jsPDF;
-                                var docPDF = new jsPDF();
-                                function print(){
-                                    var elementHTML = document.querySelector("#printTable");
-                                    docPDF.html(elementHTML, {
-                                        callback: function(docPDF) {
-                                            docPDF.deletePage(4);
-                                            docPDF.deletePage(4);
-                                            docPDF.deletePage(4);
-                                            docPDF.deletePage(4);
-                                            docPDF.deletePage(4);
-                                            docPDF.deletePage(4);
-                                            docPDF.deletePage(4);
-                                            docPDF.deletePage(4);
-                                            docPDF.deletePage(3);
-                                            docPDF.save('Surat.pdf');
-                                        },
-                                        x: 15,
-                                        y: 15,
-                                        width: 170,
-                                        windowWidth: 650
-                                    });
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <button id="printButton" class="btn btn-primary" onclick="print()">Download</button>
+                                <script>
+                                    window.jsPDF = window.jspdf.jsPDF;
+                                    var docPDF = new jsPDF();
+                                    function print(){
+                                        var elementHTML = document.querySelector("#printTable");
+                                        docPDF.html(elementHTML, {
+                                            callback: function(docPDF) {
+                                                docPDF.deletePage(4);
+                                                docPDF.deletePage(4);
+                                                docPDF.deletePage(4);
+                                                docPDF.deletePage(4);
+                                                docPDF.deletePage(4);
+                                                docPDF.deletePage(4);
+                                                docPDF.deletePage(4);
+                                                docPDF.deletePage(4);
+                                                docPDF.deletePage(3);
+                                                docPDF.save('Surat.pdf');
+                                            },
+                                            x: 15,
+                                            y: 15,
+                                            width: 170,
+                                            windowWidth: 650
+                                        });
 
-                                }
-                            </script>
-                            <a sec:authorize="hasAnyAuthority('MANAGER', 'ADMIN')" class="btn btn-primary" th:href="@{/surat/viewall}">kembali</a>
-                            <a sec:authorize="hasAnyAuthority('DRIVER')" class="btn btn-primary" th:href="@{/surat/list}">kembali</a>
+                                    }
+                                </script>
+                                <a sec:authorize="hasAnyAuthority('MANAGER', 'ADMIN')" class="btn btn-outline-primary" th:href="@{/surat/viewall}">kembali</a>
+                                <a sec:authorize="hasAnyAuthority('DRIVER')" class="btn btn-outline-primary" th:href="@{/surat/list}">kembali</a>
+                            </div>
                         </div>
                     </div>
                 </div>

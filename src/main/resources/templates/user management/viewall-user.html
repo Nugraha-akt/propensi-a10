@@ -3,6 +3,16 @@
 
 <head>
     <object th:include="fragments/fragment :: style" th:remove="tag"></object>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script defer src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 </head>
 
 <body id="page-top">
@@ -23,25 +33,24 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Daftar User</h1>
-                <a class="btn btn-primary" th:href="@{/}">Beranda</a>
-                <a class="btn btn-primary" th:href="@{/user/add}">Buat User Baru</a>
-                <a class="btn btn-primary" th:href="@{/user/summary}">Rangkuman User</a>
+                <h1 class="h3 mb-4 mt-2 text-gray-800 text-center">Daftar User</h1>
 
                 <!-- ISI DISIN YA MANIS -->
 
                 <div class="container">
-                    <div class="card m-4 p-4">
+                    <div class="card m-4 p-3 w-90 pt-3">
                         <div class="card-body">
+                            <a class="btn btn-primary mb-4 mr-2" th:href="@{/user/add}">Buat User Baru</a>
+                            <a class="btn btn-primary mb-4 mr-2" th:href="@{/user/summary}">Overview User</a>
                             <div class="justify-content-center">
-                                <table class="table">
+                                <table id="datatable" class="table table-hover text-center" style="width: 100%">
                                     <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>Username</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Aksi</th>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">Username</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Role</th>
+                                        <th class="text-center">Aksi</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -51,8 +60,8 @@
                                         <td th:text="${user.email}"></td>
                                         <td th:text="${user.role.name}"></td>
                                         <td>
-                                            <a class="btn btn-sm btn-primary" th:href="@{/user/detail?uuid=} + ${user.uuid}">Detil</a>
-                                            <a class="btn btn-sm btn-outline-primary" th:href="@{/user/update/} + ${user.uuid}">Ubah</a>
+                                            <a class="btn btn-sm btn-outline-primary" th:href="@{/user/detail?uuid=} + ${user.uuid}">Detail</a>
+                                            <a class="btn btn-sm btn-primary" th:href="@{/user/update/} + ${user.uuid}">Ubah</a>
                                             <a class="btn btn-sm btn-danger" th:href="@{/user/delete/} + ${user.uuid}">Hapus</a>
                                         </td>
                                     </tr>
@@ -81,7 +90,15 @@
 <footer>
     <object th:include="fragments/fragment :: ts" th:remove="tag"></object>
 </footer>
-
+<script>
+    $(document).ready(function () {
+        $('#datatable').DataTable({
+            columnDefs: [
+                {orderable: false, targets: -1}
+            ]
+        });
+    });
+</script>
 </body>
 
 </html>

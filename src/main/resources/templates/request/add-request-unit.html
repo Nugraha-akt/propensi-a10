@@ -21,57 +21,66 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <form action="#" th:action="@{/request/add-unit}" th:object="${requestUnitHelper}" method="POST">
-                    <input type="hidden" th:field="*{requestModel.alasan}"/>
-                    <input type="hidden" th:field="*{requestModel.returnDate}"/>
-                    <input type="hidden" th:field="*{requestModel.departDate}"/>
-                    <input type="hidden" th:field="*{requestModel.tujuan}"/>
-                    <th:block th:if="${#lists.isEmpty(availableUnit)}">
-                        <p style="color: green; font-size: 24px;">There are no available units</p>
-                        <button type="submit" class="btn btn-secondary" name="back">Back</button>
-                    </th:block>
-                    <th:block th:unless="${#lists.isEmpty(availableUnit)}">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Unit</th>
-                                <th>Jumlah</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="unit, row : *{selectedUnit}">
-                                <td>
-                                    <select class="form-select form-control" th:id="${'jenis-' + row.index}"
-                                            th:field="*{selectedUnit[__${row.index}__].jenis}" required>
-                                        <option value="">-- Select --</option>
-                                        <option th:each="au : ${availableUnit}" th:value="${au.jenis}"
-                                                th:text="${au.jenis}" th:data-max="${au.jumlah}"></option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input class="form-control" th:id="${'jumlah-' + row.index}" type="number"
-                                           th:field="*{selectedUnit[__${row.index}__].jumlah}" min="1" value="1"
-                                           required/>
-                                </td>
-                                <td>
-                                    <button th:unless="${row.first}" type="submit" class="btn btn-danger"
-                                            name="deleteRow" onclick="removeRequired(this)" th:value="${row.index}">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <br/>
-                        <button class="btn btn-success" type="submit" name="addRow">Add Row</button>
-                        <br/><br/>
-                        <div>
-                            <button type="submit" class="btn btn-primary mr-2" name="save">Submit</button>
-                            <button type="submit" class="btn btn-secondary" name="back">Back</button>
+
+                <h1 class="h3 mb-4 mt-2 text-gray-800 text-center">Pilih Unit</h1>
+                <div class="container">
+                    <div class="card m-4 p-3 w-90 pt-3">
+                        <div class="card-body">
+
+                            <form action="#" th:action="@{/request/add-unit}" th:object="${requestUnitHelper}" method="POST">
+                                <input type="hidden" th:field="*{requestModel.alasan}"/>
+                                <input type="hidden" th:field="*{requestModel.returnDate}"/>
+                                <input type="hidden" th:field="*{requestModel.departDate}"/>
+                                <input type="hidden" th:field="*{requestModel.tujuan}"/>
+                                <th:block th:if="${#lists.isEmpty(availableUnit)}">
+                                    <p style="color: green; font-size: 24px;">Tidak ada unit yang tersedia</p>
+                                    <button type="submit" class="btn btn-outline-primary" name="back">Kembali</button>
+                                </th:block>
+                                <th:block th:unless="${#lists.isEmpty(availableUnit)}">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>Unit</th>
+                                            <th>Jumlah</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="unit, row : *{selectedUnit}">
+                                            <td>
+                                                <select class="form-select form-control" th:id="${'jenis-' + row.index}"
+                                                        th:field="*{selectedUnit[__${row.index}__].jenis}" required>
+                                                    <option value="">-- Pilih Unit --</option>
+                                                    <option th:each="au : ${availableUnit}" th:value="${au.jenis}"
+                                                            th:text="${au.jenis}" th:data-max="${au.jumlah}"></option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input class="form-control" th:id="${'jumlah-' + row.index}" type="number"
+                                                       th:field="*{selectedUnit[__${row.index}__].jumlah}" min="1" value="1"
+                                                       required/>
+                                            </td>
+                                            <td>
+                                                <button th:unless="${row.first}" type="submit" class="btn btn-danger"
+                                                        name="deleteRow" onclick="removeRequired(this)" th:value="${row.index}">
+                                                    Hapus Unit
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <br/>
+                                    <button class="btn btn-success" type="submit" name="addRow">Tambah Unit</button>
+                                    <br/><br/>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary mr-2" name="save">Submit</button>
+                                        <button formnovalidate type="submit" class="btn btn-outline-primary" name="back">Kembali</button>
+                                    </div>
+                                </th:block>
+                            </form>
                         </div>
-                    </th:block>
-                </form>
+                    </div>
+                </div>
             </div>
             <!-- /.container-fluid -->
 
