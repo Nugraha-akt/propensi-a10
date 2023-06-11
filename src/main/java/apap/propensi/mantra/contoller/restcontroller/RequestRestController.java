@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -28,7 +29,12 @@ public class RequestRestController {
     public ResponseEntity<Map<String, Long>> getOverviewRequest(Principal principal) {
         try {
             UserModel user = userService.getUserByUsername(principal.getName());
-            Map<String, Long> statusCount = requestService.getCountOfRequestsByStatus(user);
+            Map<String, Long> statusCount = new HashMap<>();
+            Map<String, Long> statusCountTemp = requestService.getCountOfRequestsByStatus(user);
+            statusCount.put("Telah Dibuat", statusCountTemp.get("createdCount"));
+            statusCount.put("Di Assign", statusCountTemp.get("assignedCount"));
+            statusCount.put("Sedang Proses", statusCountTemp.get("inProgressCount"));
+            statusCount.put("Selesai", statusCountTemp.get("finishedCount"));
             return ResponseEntity.ok(statusCount);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

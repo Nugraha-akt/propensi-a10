@@ -24,9 +24,6 @@ public class DriverController {
     private DriverService driverService;
 
     @Autowired
-    private RequestService requestService;
-
-    @Autowired
     private UserService userService;
 
     @GetMapping("/viewall")

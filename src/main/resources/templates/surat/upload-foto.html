@@ -24,12 +24,12 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
+                <h1 class="h3 mb-4 mt-2 text-gray-800 text-center">Upload Surat</h1>
+
                 <div class="container">
                     <div class="card m-4 p-4">
                         <div class="card-body">
                             <div class="justify-content-center">
-                                <h2 class="text-center">Upload Surat</h2>
-                                <br>
                                 <section class="my-5">
                                     <div class="container">
                                         <div class="row">
@@ -41,8 +41,9 @@
                                                     <div class="form-group">
                                                         <input id="file-0" name="files" type="file" accept="image/*" required class="form-control-file">
                                                     </div>
+                                                    <p>Format file berupa JPEG / JPG / PNG dengan maksimal ukuran 1000MB</p>
                                                     <br><br>
-                                                    <button type="submit" class="btn btn-success">Submit</button>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
                                                     <a class="btn btn-secondary" th:href="@{/}">Beranda</a>
 
                                                     <div class="image-preview-container">

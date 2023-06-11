@@ -24,20 +24,66 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
+                <h1 class="h3 mb-4 mt-2 text-gray-800 text-center">Dokumen Surat</h1>
+
                 <div class="container">
                     <div class="card m-4 p-4">
                         <div class="card-body">
                             <div class="justify-content-center">
-<!--                                <img th:src="@{'https://drive.google.com/uc?id=' + ${image.Id}}" alt="" width="100%" height="100%">-->
                                 <div class="table-row" th:each="gambar, iter : ${gambar}">
-<!--                                    <div class="table-data" th:text="${image.name}"></div>-->
-                                    <div class="table-data">
-                                        <img th:src="@{'https://drive.google.com/uc?id=' + ${gambar.Id}}" alt="" width="100%" height="100%">
+                                    <div class="table-data mb-4">
+                                        <img th:src="@{'https://drive.google.com/uc?id=' + ${gambar.Id}}" alt="" width="70%" height="70%" style="display: block; margin: 0 auto;">
                                     </div>
-                                <br><br>
-                                <a th:if="${surat.status == 2}" class="btn btn-success" th:href="@{/surat/verifikasi/} + ${surat.id}">Verifikasi</a>
-                                <a th:if="${surat.status == 2}" class="btn btn-danger" th:href="@{/surat/tolak/} + ${surat.id}">Tolak</a>
-                                <a class="btn btn-secondary" th:href="@{/surat/viewall}">Kembali</a>
+                                    <button th:if="${surat.status == 2}" type="button" class="btn btn-sm btn-success" data-toggle="modal" th:data-target="'#modalKonfirmasiVerifikasiSurat' + ${surat.id}">
+                                        Verifikasi
+                                    </button>
+                                    <!-- Modal -->
+                                    <div th:if="${surat.status == 2}" class="modal fade" th:id="'modalKonfirmasiVerifikasiSurat' + ${surat.id}" tabindex="-1" role="dialog" aria-labelledby="modalKonfirmasiLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalKonfirmasiLabel">Peringatan!</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Apakah Anda Yakin ingin Memverifikasi Surat?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a th:if="${surat.status == 2}" class="btn btn-success" th:href="@{/surat/verifikasi/} + ${surat.id}">Ya</a>
+                                                        <a class="btn btn-danger text-white" data-dismiss="modal">Tidak</a>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button th:if="${surat.status == 2}" type="button" class="btn btn-sm btn-danger" data-toggle="modal" th:data-target="'#modalKonfirmasiTolakSurat' + ${surat.id}">
+                                        Tolak
+                                    </button>
+                                    <!-- Modal -->
+                                    <div th:if="${surat.status == 2}" class="modal fade" th:id="'modalKonfirmasiTolakSurat' + ${surat.id}" tabindex="-1" role="dialog" aria-labelledby="modalKonfirmasiLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalKonfirmasiLabel">Peringatan!</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Apakah Anda Yakin ingin Menolak Surat?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a th:if="${surat.status == 2}" class="btn btn-success" th:href="@{/surat/tolak/} + ${surat.id}">Ya</a>
+                                                    <a class="btn btn-danger text-white" data-dismiss="modal">Tidak</a>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-outline-primary" th:href="@{/surat/viewall}">Kembali</a>
                             </div>
                         </div>
                     </div>

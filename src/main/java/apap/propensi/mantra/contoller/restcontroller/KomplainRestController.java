@@ -32,6 +32,19 @@ public class KomplainRestController {
         }
     }
 
+    @GetMapping("/resolved-count-chart")
+    public ResponseEntity<Map<String, Long>> resolvedPieChart() {
+        try {
+            Map<String, Long> resolvedCounts = new LinkedHashMap<>();
+            long terselesaikan = komplainService.getSumClosed().longValue();
+            resolvedCounts.put("Belum Selesai", komplainService.getAllCount() - terselesaikan);
+            resolvedCounts.put("Terselesaikan", terselesaikan);
+            return ResponseEntity.ok(resolvedCounts);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");

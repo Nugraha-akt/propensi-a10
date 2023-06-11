@@ -87,7 +87,7 @@
 
           <!-- Line Chart -->
           <div class="col-xl-8 col-lg-7">
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4" style="min-height: 400px;">
               <!-- Card Header - Dropdown -->
               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">History Request</h6>
@@ -131,8 +131,24 @@
 
           <!-- Content Column -->
           <div class="col-lg-6 mb-4">
+            <!-- Donught Chart -->
+            <div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4" style="min-height: 400px; min-width: 400px">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Overview Komplain</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
 
-            <!--Gauge chart -->
+                    <!-- Donut Chart -->
+                    <div id="donutComplaintChart" style="min-height: 400px; min-width: 400px" class="echart"></div>
+                    <script th:src="@{/js/chart/pie-resolved-chart.js}"></script>
+                    <!-- End Donut Chart -->
+                </div>
+              </div>
+            </div>
+<!--            &lt;!&ndash;Gauge chart &ndash;&gt;
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Complaints Resolved</h6>
@@ -141,7 +157,7 @@
                 <div id="respondedChart" style="min-height: 400px" class="echart"></div>
                 <script th:src="@{/js/chart/gauge-resolved-chart.js}"></script>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
 

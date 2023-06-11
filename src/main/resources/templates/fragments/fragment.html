@@ -80,7 +80,7 @@
     <li class="nav-item" th:classappend="${active == 'Home'} ? active : ''">
         <a class="nav-link" th:href="@{/}">
             <i class="fas fa-fw fa-home"></i>
-            <span>Home</span></a>
+            <span>Beranda</span></a>
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider" sec:authorize="hasAnyAuthority('ADMIN','MANAGER','CUSTOMER','DRIVER')">

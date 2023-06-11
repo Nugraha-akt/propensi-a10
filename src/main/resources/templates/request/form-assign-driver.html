@@ -48,7 +48,7 @@
                     <tr th:each="pair, iterationStatus : *{listPairRequest}">
                       <td>
                         <select required class="form-select" name="uuid" th:field="*{listPairRequest[__${iterationStatus.index}__].driver.uuid}">
-                          <option selected value="">-- Select driver --</option>
+                          <option selected value="">-- Pilih Driver --</option>
                           <option th:each="driver : ${listAvailableDrivers}"
                                   th:value="${driver.uuid}"
                                   th:text="${driver.nama}">

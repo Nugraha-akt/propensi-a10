@@ -125,7 +125,7 @@ public class RequestServiceImpl implements RequestService{
 
         Map<String, Long> requestCounts = new LinkedHashMap<>();
 
-        for (int month = currentMonth; month >= threeMonthsAgo; month--) {
+        for (int month = threeMonthsAgo; month <= currentMonth; month++) {
             long count = requestDb.countByCreatedAtMonth(month);
             requestCounts.put(Month.of(month).toString(), count);
         }
